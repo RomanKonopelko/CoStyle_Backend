@@ -1,5 +1,5 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate-v2");
+// const mongoosePaginate = require("mongoose-paginate-v2");
 const { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } = require("../helpers/constants");
 
 const CATEGORIES = Object.values(TRANSACTION_CATEGORIES);
@@ -57,6 +57,6 @@ transactionSchema.virtual("info").get(function () {
 
 // transactionSchemaSchema.plugin(mongoosePaginate);
 
-const Transaction = model("transaction", transactionScheme);
+const Transaction = model("transaction", transactionSchema);
 
 module.exports = Transaction;

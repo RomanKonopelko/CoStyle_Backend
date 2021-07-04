@@ -9,4 +9,28 @@ CATEGORY_VALUES = {
   other: "Другое",
 };
 
-module.exports = { CATEGORY_VALUES };
+const HTTP_CODES = {
+  OK: 200,
+  NOT_FOUND: 404,
+  NO_CONTENT: 204,
+  INTERNAL_SERVER_ERROR: 500,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  CONFLICT: 409,
+  TOO_MANY_REQUESTS: 429,
+};
+
+const HTTP_MESSAGES = {
+  INVALID_CREDENTIALS: "Invalid credentials",
+  ERROR: "Error",
+  NOT_FOUND_MSG: "Not found",
+  SUCCESS: "Success",
+  DELETED: "deleted successfully!",
+  MISSING_FIELDS: "Missing required fields",
+  EMAIL_IS_USED: "This email is already in use!",
+  TOO_MANY_REQUESTS_MSG: "Too many requests. Please, try again later!",
+};
+
+module.exports = { CATEGORY_VALUES, HTTP_MESSAGES, HTTP_CODES };

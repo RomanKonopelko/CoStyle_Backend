@@ -52,4 +52,4 @@ transactionSchemaSchema.plugin(mongoosePaginate);
 
 const Transaction = model("transaction", transactionScheme);
 
-module.exports = Contact;
+module.exports = Transaction;

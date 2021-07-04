@@ -1,8 +1,13 @@
-const Transactions = require("../model/transactionScheme");
+const Transaction = require("../model/transactionScheme");
 
 const getAllTransactions = async () => {
-    const result = await Transactions.find();
-    return result
-}
+  const result = await Transaction.find();
+  return result;
+};
 
-const get
+const addTransaction = async (body) => {
+  const result = await Transaction.create(body);
+  return result;
+};
+
+module.exports = { getAllTransactions, addTransaction };

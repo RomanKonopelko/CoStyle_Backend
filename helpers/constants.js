@@ -36,6 +36,7 @@ const HTTP_MESSAGES = {
   MISSING_FIELDS: "Missing required fields",
   EMAIL_IS_USED: "This email is already in use!",
   TOO_MANY_REQUESTS_MSG: "Too many requests. Please, try again later!",
+  TRANSACTION_CREATED: "Transaction has been created!",
 };
 
 module.exports = { TRANSACTION_SORTS, TRANSACTION_CATEGORIES, HTTP_MESSAGES, HTTP_CODES };

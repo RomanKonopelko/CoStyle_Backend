@@ -50,6 +50,6 @@ transactionSchema.virtual("info").get(function () {
 
 transactionSchemaSchema.plugin(mongoosePaginate);
 
-const Transaction = model("contact", contactSchema);
+const Transaction = model("transaction", transactionScheme);
 
 module.exports = Contact;

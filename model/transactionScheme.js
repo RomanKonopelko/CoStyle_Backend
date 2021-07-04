@@ -26,6 +26,9 @@ const transactionSchema = new Schema(
       required: true,
       enum: SORTS,
     },
+    commentary: {
+      type: String,
+    },
     owner: { type: SchemaTypes.ObjectId, ref: "user" },
   },
   {

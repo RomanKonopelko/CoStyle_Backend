@@ -1,4 +1,4 @@
-CATEGORY_VALUES = {
+const TRANSACTION_CATEGORIES = {
   main: "Основные",
   food: "Еда",
   car: "Машина",
@@ -7,6 +7,11 @@ CATEGORY_VALUES = {
   children: "Дети",
   house: "Дом",
   other: "Другое",
+};
+
+const TRANSACTION_SORTS = {
+  income: "доход",
+  consuption: "расход",
 };
 
 const HTTP_CODES = {
@@ -33,4 +38,4 @@ const HTTP_MESSAGES = {
   TOO_MANY_REQUESTS_MSG: "Too many requests. Please, try again later!",
 };
 
-module.exports = { CATEGORY_VALUES, HTTP_MESSAGES, HTTP_CODES };
+module.exports = { TRANSACTION_SORTS, TRANSACTION_CATEGORIES, HTTP_MESSAGES, HTTP_CODES };

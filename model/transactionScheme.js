@@ -1,26 +1,30 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
-const { CATEGORY_VALUES } = require("../helpers/constants");
+const { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } = require("../helpers/constants");
 
-const CATEGORIES = Object.values(CATEGORY_VALUES);
+const CATEGORIES = Object.values(TRANSACTION_CATEGORIES);
+const SORTS = Object.values(TRANSACTION_SORTS);
 
 const transactionSchema = new Schema(
   {
     category: {
       type: String,
       enum: CATEGORIES,
-      default: null,
       required: true,
     },
     time: {
       type: String,
       required: true,
-      default: null,
     },
     amount: {
       type: Number,
       required: true,
       default: 0,
+    },
+    sort: {
+      type: String,
+      required: true,
+      enum: SORTS,
     },
     owner: { type: SchemaTypes.ObjectId, ref: "user" },
   },

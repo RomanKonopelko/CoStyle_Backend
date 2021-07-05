@@ -1,4 +1,4 @@
-const Transaction = require("../model/transactionScheme");
+const Transaction = require("../model/transactionSchema");
 
 const getAllTransactions = async () => {
   const result = await Transaction.find();

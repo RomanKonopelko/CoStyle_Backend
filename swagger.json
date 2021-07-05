@@ -1,0 +1,132 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "Wallet online API. powered by CoStyle Studio",
+        "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Local Dev, or from Heroku"
+        },
+        {
+            "url": "/api/",
+            "description": "With docker-compose and nginx proxy"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Transactions",
+            "description": "API for transactions operating"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "api/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get all transactions in system from particular user(!)",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Create a new transaction in system",
+                "requestBody": {
+                    "description": "Transaction Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Transaction"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Transaction": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "required": true
+                },
+                "time": {
+                    "type": "string",
+                    "required": true
+                },
+                "amount": {
+                    "type": "number",
+                    "default": 0,
+                    "required": true
+                },
+                "sort": {
+                    "type": "string",
+                    "enum": {
+                        "income": "доход",
+                        "consumption": "расход"
+                    },
+                    "required": true
+                },
+                "commentary": {
+                    "type": "string"
+                }
+            }
+        },
+        "Transactions": {
+            "type": "object",
+            "properties": {
+                "cats": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Transactions"
+                    }
+                }
+            }
+        }
+    }
+}

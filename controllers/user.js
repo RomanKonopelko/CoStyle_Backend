@@ -44,6 +44,7 @@ const loginUser = async (req, res, next) => {
 
 const logoutUser = async (req, res, next) => {
   try {
+    console.log(req);
     const id = req.user.id;
     await User.updateToken(id, null);
     return res.status(NO_CONTENT).json({});

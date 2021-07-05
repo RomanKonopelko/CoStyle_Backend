@@ -7,7 +7,8 @@ const { NOT_FOUND_MSG, SUCCESS, DELETED, MISSING_FIELDS, ERROR, TRANSACTION_CREA
 
 const getAllTransactions = async (req, res, next) => {
   try {
-    const transactions = await Transaction.getAllTransactions();
+    const userId = req.user.id;
+    const transactions = await Transaction.getAllTransactions(userId);
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,
@@ -20,7 +21,8 @@ const getAllTransactions = async (req, res, next) => {
 
 const addTransaction = async (req, res, next) => {
   try {
-    const transaction = await Transaction.addTransaction(req.body);
+    const userId = req.user.id;
+    const transaction = await Transaction.addTransaction({ ...req.body, owner: userId });
     return res.status(CREATED).json({
       status: SUCCESS,
       code: CREATED,

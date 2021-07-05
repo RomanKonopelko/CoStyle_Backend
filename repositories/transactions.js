@@ -1,7 +1,10 @@
 const Transaction = require("../model/transactionSchema");
 
-const getAllTransactions = async () => {
-  const result = await Transaction.find();
+const getAllTransactions = async (userId) => {
+  const result = await Transaction.find({ owner: userId }).populate({
+    path: "owner",
+    select: "email",
+  });
   return result;
 };
 

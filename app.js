@@ -2,7 +2,6 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const app = express();
-const transactionRouter = require("./routes/api/transaction");
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -10,7 +9,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/transactions", transactionRouter);
+app.use("/api/", require("./routes/api"));
 
 app.use((req, res) => {
   res.status(404).json({ status: "error", code: 404, message: "Not found" });

@@ -1,11 +1,6 @@
 const { Schema, model } = require("mongoose");
-const { SUBSCRIPTIONS } = require("../helpers/constants");
 const bcrypt = require("bcryptjs");
 const SALT_WORK_FACTOR = 8;
-
-const SubscriptionValues = Object.values(SUBSCRIPTIONS);
-
-console.log(SubscriptionValues);
 
 const userSchema = new Schema({
   password: {

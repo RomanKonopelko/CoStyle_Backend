@@ -22,110 +22,126 @@
     "tags": [
         {
             "name": "Transactions",
-            "description": "API for transactions operating"
+            "description": "API for transaction operations"
         }
     ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
     "paths": {
-        "api/transactions": {
-            "get": {
-                "tags": [
-                    "Transactions"
-                ],
-                "summary": "Get all transactions in system from particular user(!)",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Transaction"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Transaction"
-                ],
-                "summary": "Create a new transaction in system",
-                "requestBody": {
-                    "description": "Transaction Object",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Transaction"
-                            }
-                        }
-                    }
-                },
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    },
-                    "400": {
-                        "description": "Failed. Bad post data."
-                    }
+        "/user/register":{
+"post":{
+    "tags": ["Auth"],
+    "summary": "User registration",
+    "parameters": [],
+    "requestBody":{
+        "description" :"Registration object",
+        "required": true,
+        "content": {
+            "application/json":{
+                "schema":{
+                    "$ref":"#/components/schemas/RegistrationRequest"
                 }
             }
         }
     },
-    "definitions": {
-        "id": {
-            "properties": {
-                "uuid": {
-                    "type": "string"
+  "responses": {
+      "201":{
+          "description": "User has been created!",
+          "content": {
+              "aplication/json":{
+                  "schema":{
+                      "$ref": "#/components/schemas/RegistrationResponse"
+                  }
+              }
+          }
+      },
+      "400":{
+          "description": "Invalid request body",
+          "content": {}
+      },
+      "409":{
+          "description": "This email already exists!",
+          "content": {}
+      }
+  }
+
+}
+        },
+        "/user/login":{
+"post":{
+      "tags": ["Auth"],
+    "summary": "User authentication",
+    "parameters": [],
+    "security":[{"Bearer": []}],
+    "requestBody":{
+        "description" :"Registration object",
+        "required": true,
+        "content": {
+            "application/json":{
+                "schema":{
+                    "$ref":"#/components/schemas/RegistrationRequest"
                 }
             }
-        },
-        "Transaction": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "type": "string",
-                    "required": true
-                },
-                "time": {
-                    "type": "string",
-                    "required": true
-                },
-                "amount": {
-                    "type": "number",
-                    "default": 0,
-                    "required": true
-                },
-                "sort": {
-                    "type": "string",
-                    "enum": {
-                        "income": "доход",
-                        "consumption": "расход"
+        }
+    },
+    "responses": {
+"200":{
+    "description": "User logged in successfully!",
+    "content": {
+         "aplication/json":{
+                  "schema":{
+                      "$ref": "#/components/schemas/RegistrationResponse"
+                  }
+              }
+    }
+},
+"409":{
+    "description": "Invalid credentials!",
+    "content": {}
+}
+    }
+}
+        }
+    },
+    "components": {
+        "schemas": {
+            "RegistrationRequest":{
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                    "email":{
+                        "type":"string",
+                        "description": "User's email",
+                        "format": "email",
+                        "example": "dungeonMaster@mail.com"
                     },
-                    "required": true
-                },
-                "commentary": {
-                    "type": "string"
-                }
-            }
-        },
-        "Transactions": {
-            "type": "object",
-            "properties": {
-                "cats": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "#/definitions/Transactions"
+                    "password":{
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qweqwe123123"
                     }
                 }
+            },
+            "RegistrationResponse":{
+                "type":"object",
+                "properties": {
+                         "email":{
+                        "type":"string",
+                        "description": "User's email",
+                        "format": "email",
+                        "example": "dungeonMaster@mail.com"
+                    },
+                  "id":{
+                      "type": "string",
+                      "description": "User's id",
+                      "example":"12defef44vfvfg4t3tf4"
+                  }
+                }
+            }
+        },
+        "securitySchemes": {
+            "Bearer":{
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }

@@ -2,6 +2,9 @@
   "name": "costyle_backend",
   "version": "1.0.0",
   "private": true,
+    "engines": {
+    "node": "14.15"
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=production node bin/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon bin/server.js",

@@ -26,7 +26,7 @@
         }
     ],
     "paths": {
-        "/user/register":{
+        "/api/users/register":{
 "post":{
     "tags": ["Auth"],
     "summary": "User registration",
@@ -65,14 +65,13 @@
 
 }
         },
-        "/user/login":{
+        "/api/users/login":{
 "post":{
       "tags": ["Auth"],
     "summary": "User authentication",
     "parameters": [],
-    "security":[{"Bearer": []}],
     "requestBody":{
-        "description" :"Registration object",
+        "description" :"Login object",
         "required": true,
         "content": {
             "application/json":{
@@ -86,9 +85,9 @@
 "200":{
     "description": "User logged in successfully!",
     "content": {
-         "aplication/json":{
+         "application/json":{
                   "schema":{
-                      "$ref": "#/components/schemas/RegistrationResponse"
+                      "$ref": "#/components/schemas/LoginResponse"
                   }
               }
     }
@@ -99,10 +98,239 @@
 }
     }
 }
+        },
+        "/api/users/logout":{
+            "post":{
+                "tags": ["Auth"],
+                "summary": "User unathorization",
+                "parameters": [],
+                "security": [{"Bearer":[] }],
+                "responses": {
+                    "204":{
+                        "description": "User logged out. No content."
+                    }
+                }
+            }
+
+        },
+        "/api/transactions":{
+            "post":{
+                "tags": ["Transactions"],
+                "summary": "Add transaction operation",
+                "parameters": [],
+               "security": [{"Bearer":[] }],
+               "requestBody":{
+                     "description" :"Add transaction object",
+        "required": true,
+        "content": {
+            "application/json":{
+                "schema":{
+                    "$ref":"#/components/schemas/AddTransactionRequest"
+                }
+            }
         }
+               },
+               "responses": {
+                    "201":{
+          "description": "Transaction has been created!",
+          "content": {
+              "aplication/json":{
+                  "schema":{
+                      "$ref": "#/components/schemas/AddTransactionResponse"
+                  }
+              }
+          }
+      },
+      "400":{
+
+          "description": "Missing required fields!",
+          "content": { }
+      }
+               }
+            },
+          "get":{
+                  "tags": ["Transactions"],
+                  "summary": "Get all transaction of a particular user operation",
+                 "parameters": [],
+                 "security": [{"Bearer":[] }],
+                 "responses": {
+                   "200":{
+                  "description": "Successfull transactions data response!",
+             "content": {
+            "application/json":{
+                "schema":{
+                    "$ref":"#/components/schemas/GetAllTransactionsResponse"
+                }
+            }
+        }
+                   }
+               }
+            }        
+        }
+
     },
     "components": {
         "schemas": {
+            "GetAllTransactionsResponse":{
+                  "type": "array",
+                  "items":{
+                      "type": "object",
+                         "properties": {
+                    "category":{
+                        "type": "string",
+                        "description": "Transaction category",
+                        "example": "Дом"
+                    },
+                    "time":{
+                        "type": "string",
+                        "description": "Timestamp of a made transaction",
+                        "example": "10.07.21"
+                    },
+                    "amount":{
+                        "type": "integer",
+                        "description": "Money amount in transaction",
+                        "example": 10400
+                    },
+                    "sort":{
+                        "type":"string",
+                        "description": "Sort of a transaction",
+                        "example": "Доход"
+                    },
+                    "commentary":{
+                        "type": "string",
+                        "description": "Transaction commentary",
+                        "example": "Месячная плата за аренду жилья"
+                    },
+                    "owner":{
+                        "type": "string",
+                        "description": "User id",
+                        "example":"5430e2da7f863dg53cf025de7"
+                    },
+                         "id":{
+                            "type":"string",
+                            "description": "Transaction id made by DB",
+                            "example": "60e2da7f8630053cf025de7a"
+                        }
+                }
+                  },
+                  "example": [{  "transactions": [
+            {
+                "amount": 100,
+                "category": "Дом",
+                "time": "13.10.21",
+                "sort": "доход",
+                "commentary": "walletAPI тестовая транзакция",
+                "owner": {
+                    "_id": "60e2d79db0e55a3b7ce329a1",
+                    "email": "roman11@gmail.com"
+                },
+                "createdAt": "2021-07-05T10:10:07.731Z",
+                "updatedAt": "2021-07-05T10:10:07.731Z",
+                "id": "60e2da7f8630053cf025de7a"
+            }
+        ]},{  "transactions": [
+            {
+                "amount": 9999,
+                "category": "Другое",
+                "time": "13.10.21",
+                "sort": "доход",
+                "commentary": "walletAPI тестовая транзакция",
+                "owner": {
+                    "_id": "60e2d79db0e55a3b7ce329a1",
+                    "email": "roman11@gmail.com"
+                },
+                "createdAt": "2021-07-05T10:10:07.731Z",
+                "updatedAt": "2021-07-05T10:10:07.731Z",
+                "id": "60e2da7f8630053cf025de7a"
+            }
+        ]},{  "transactions": [
+            {
+                "amount": 1000,
+                "category": "Образование",
+                "time": "13.10.21",
+                "sort": "доход",
+                "commentary": "walletAPI тестовая транзакция",
+                "owner": {
+                    "_id": "60e2d79db0e55a3b7ce329a1",
+                    "email": "roman11@gmail.com"
+                },
+                "createdAt": "2021-07-05T10:10:07.731Z",
+                "updatedAt": "2021-07-05T10:10:07.731Z",
+                "id": "60e2da7f8630053cf025de7a"
+            }
+        ]}]
+            },
+            "AddTransactionRequest":{
+                "type": "object",
+                "required": ["category", "time","amount","sort", "commentary"],
+                "properties": {
+                    "category":{
+                        "type": "string",
+                        "description": "Transaction category",
+                        "example": "Дом"
+                    },
+                    "time":{
+                        "type": "string",
+                        "description": "Timestamp of a made transaction",
+                        "example": "10.07.21"
+                    },
+                    "amount":{
+                        "type": "integer",
+                        "description": "Money amount in transaction",
+                        "example": 10400
+                    },
+                    "sort":{
+                        "type":"string",
+                        "description": "Sort of a transaction",
+                        "example": "Доход"
+                    },
+                    "commentary":{
+                        "type": "string",
+                        "description": "Transaction commentary",
+                        "example": "Месячная плата за аренду жилья"
+                    }
+                }
+            },
+            "AddTransactionResponse":{
+                  "type": "object",
+                "properties": {
+                    "category":{
+                        "type": "string",
+                        "description": "Transaction category",
+                        "example": "Дом"
+                    },
+                    "time":{
+                        "type": "string",
+                        "description": "Timestamp of a made transaction",
+                        "example": "10.07.21"
+                    },
+                    "amount":{
+                        "type": "integer",
+                        "description": "Money amount in transaction",
+                        "example": 10400
+                    },
+                    "sort":{
+                        "type":"string",
+                        "description": "Sort of a transaction",
+                        "example": "Доход"
+                    },
+                    "commentary":{
+                        "type": "string",
+                        "description": "Transaction commentary",
+                        "example": "Месячная плата за аренду жилья"
+                    },
+                    "owner":{
+                        "type": "string",
+                        "description": "User id",
+                        "example":"5430e2da7f863dg53cf025de7"
+                    },
+                         "id":{
+                            "type":"string",
+                            "description": "Transaction id made by DB",
+                            "example": "60e2da7f8630053cf025de7a"
+                        }
+                }
+            },
             "RegistrationRequest":{
                 "type": "object",
                 "required": ["email", "password"],
@@ -111,23 +339,23 @@
                         "type":"string",
                         "description": "User's email",
                         "format": "email",
-                        "example": "dungeonMaster@mail.com"
+                        "example":  "roman11@gmail.com"
                     },
                     "password":{
                         "type": "string",
                         "description": "User's password",
-                        "example": "qweqwe123123"
+                        "example": "qweqw123"
                     }
                 }
             },
             "RegistrationResponse":{
                 "type":"object",
                 "properties": {
-                         "email":{
+                           "email":{
                         "type":"string",
                         "description": "User's email",
                         "format": "email",
-                        "example": "dungeonMaster@mail.com"
+                        "example":  "roman11@gmail.com"
                     },
                   "id":{
                       "type": "string",
@@ -135,6 +363,17 @@
                       "example":"12defef44vfvfg4t3tf4"
                   }
                 }
+            },
+            "LoginResponse":{
+              "type": "object",
+              "example":{
+                    "status": "Success",
+  "code": 200,
+  "payload": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
+  }
+              }  
+
             }
         },
         "securitySchemes": {

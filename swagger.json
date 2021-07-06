@@ -76,7 +76,7 @@
         "content": {
             "application/json":{
                 "schema":{
-                    "$ref":"#/components/schemas/RegistrationRequest"
+                    "$ref":"#/components/schemas/LoginRequest"
                 }
             }
         }
@@ -333,7 +333,7 @@
             },
             "RegistrationRequest":{
                 "type": "object",
-                "required": ["email", "password"],
+                "required": ["email", "password", "name"],
                 "properties": {
                     "name":{
                         "type": "string",
@@ -378,12 +378,30 @@
               "type": "object",
               "example":{
                     "status": "Success",
-  "code": 200,
-  "payload": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
+                    "code": 200,
+                    "payload": {
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
   }
               }  
 
+            },
+            "LoginRequest":{
+                "type":"object",
+                 "required": ["email", "password"],
+                "properties": {
+                    "email":{
+                        "type":"string",
+                        "description": "User's email",
+                        "format": "email",
+                        "example":  "roman11@gmail.com"
+                    },
+                    "password":{
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qweqw123"
+                    }
+                }
+                
             }
         },
         "securitySchemes": {

@@ -14,10 +14,10 @@ const registerUser = async (req, res, next) => {
     if (user) {
       return res.status(CONFLICT).json({ status: ERROR, code: CONFLICT, message: EMAIL_IS_USED });
     }
-    const { id, email, subscription } = await User.create(req.body);
+    const { id, email, name } = await User.create(req.body);
     return res
       .status(CREATED)
-      .json({ status: SUCCESS, code: CREATED, payload: { id, email, subscription } });
+      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name } });
   } catch (error) {
     next(error);
   }

@@ -335,6 +335,11 @@
                 "type": "object",
                 "required": ["email", "password"],
                 "properties": {
+                    "name":{
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Grisha"
+                    },
                     "email":{
                         "type":"string",
                         "description": "User's email",
@@ -351,6 +356,11 @@
             "RegistrationResponse":{
                 "type":"object",
                 "properties": {
+                       "name":{
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Grisha"
+                    },
                            "email":{
                         "type":"string",
                         "description": "User's email",

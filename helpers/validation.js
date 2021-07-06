@@ -6,11 +6,11 @@ const schemaCreateTransaction = Joi.object({
 });
 
 const schemaCreateUser = Joi.object({
-  name: Joi.string().alphanum().min(3).max(30).required(),
+  name: Joi.string().alphanum().min(1).max(12).required(),
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required(),
-  password: Joi.string().min(8).max(20).required(),
+  password: Joi.string().min(6).max(12).required(),
 });
 
 const isIdValid = (id) => {

@@ -262,7 +262,7 @@
             },
             "AddTransactionRequest":{
                 "type": "object",
-                "required": ["category", "time","amount","sort", "commentary"],
+                "required": ["category", "time","amount","sort"],
                 "properties": {
                     "category":{
                         "type": "string",

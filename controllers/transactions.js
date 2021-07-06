@@ -22,7 +22,7 @@ const getAllTransactions = async (req, res, next) => {
 const addTransaction = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const transaction = await Transaction.addTransaction({ ...req.body, owner: userId });
+    const transaction = await Transaction.addTransaction(userId, req.body);
     return res.status(CREATED).json({
       status: SUCCESS,
       code: CREATED,

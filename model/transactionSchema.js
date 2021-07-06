@@ -51,9 +51,9 @@ const transactionSchema = new Schema(
   }
 );
 
-transactionSchema.virtual("info").get(function () {
-  return `This is transactions of ${this.name}`;
-});
+// transactionSchema.virtual("info").get(function () {
+//   return `This is transactions of ${this.name}`;
+// });
 
 // transactionSchemaSchema.plugin(mongoosePaginate);
 

@@ -10,8 +10,8 @@ const TRANSACTION_CATEGORIES = {
 };
 
 const TRANSACTION_SORTS = {
-  income: "доход",
-  consuption: "расход",
+  income: "Доход",
+  consuption: "Расход",
 };
 
 const HTTP_CODES = {

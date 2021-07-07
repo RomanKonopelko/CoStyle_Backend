@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const mangoose = require("mongoose");
+const { JoiPasswordComplexity } = require("joi-password");
 
 const schemaCreateTransaction = Joi.object({
   commentary: Joi.string().alphanum().min(0).max(50).required(),
@@ -10,7 +11,19 @@ const schemaCreateUser = Joi.object({
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required(),
-  password: Joi.string().min(6).max(12).required(),
+  password: JoiPasswordComplexity.string()
+    .min(6)
+    .max(12)
+    .minOfSpecialCharacters(1)
+    .minOfUppercase(1)
+    .minOfNumeric(1)
+    .required()
+    .messages({
+      "password.minOfUppercase": "Password must contain at least one of A-Z characters",
+      "password.minOfSpecialCharacters":
+        "Password must containt at least one of a special character",
+      "password.minOfNumeric": "Password must contain at least one of 0-9",
+    }),
 });
 
 const isIdValid = (id) => {

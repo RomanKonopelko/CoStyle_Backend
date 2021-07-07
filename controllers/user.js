@@ -55,8 +55,10 @@ const logoutUser = async (req, res, next) => {
 
 const getCurrentUserData = async (req, res, next) => {
   try {
-    const { email, subscription } = req.user;
-    return await res.status(OK).json({ status: SUCCESS, code: OK, payload: { email } });
+    const { email, name, token } = req.user;
+    return await res
+      .status(OK)
+      .json({ status: SUCCESS, code: OK, payload: { email, name, token } });
   } catch (err) {
     next(err);
   }

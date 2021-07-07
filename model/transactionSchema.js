@@ -1,20 +1,31 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
 // const mongoosePaginate = require("mongoose-paginate-v2");
-const { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } = require("../helpers/constants");
+const {
+  TRANSACTION_CATEGORIES,
+  TRANSACTION_SORTS,
+  GET_CATEGORY_COLOR,
+} = require("../helpers/constants");
 
-const CATEGORIES = Object.values(TRANSACTION_CATEGORIES);
+const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
+const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
 const SORTS = Object.values(TRANSACTION_SORTS);
 
 const transactionSchema = new Schema(
   {
     category: {
       type: String,
-      enum: CATEGORIES,
+      enum: CATEGORIES_ARRAY,
       required: true,
     },
     time: {
       type: String,
       required: true,
+    },
+    color: {
+      type: String,
+      default: function () {
+        return GET_CATEGORY_COLOR(CATEGORIES, this.category);
+      },
     },
     amount: {
       type: Number,

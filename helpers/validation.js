@@ -3,7 +3,11 @@ const mangoose = require("mongoose");
 const { JoiPasswordComplexity } = require("joi-password");
 
 const schemaCreateTransaction = Joi.object({
-  commentary: Joi.string().alphanum().min(0).max(50).required(),
+  time: Joi.string().required(),
+  amount: Joi.number().min(0).max(1000000).required(),
+  sort: Joi.string().required(),
+  category: Joi.string().required(),
+  commentary: Joi.string().min(0).max(50),
 });
 
 const schemaCreateUser = Joi.object({

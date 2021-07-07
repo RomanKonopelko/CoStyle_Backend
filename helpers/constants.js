@@ -1,12 +1,24 @@
+const GET_CATEGORY_COLOR = function (arr, category) {
+  const color = arr.find((e) => e[1].title === category)[1].color;
+  return color;
+};
+
 const TRANSACTION_CATEGORIES = {
-  main: "Основные",
-  food: "Еда",
-  car: "Машина",
-  development: "Развитие",
-  education: "Образование",
-  children: "Дети",
-  house: "Дом",
-  other: "Другое",
+  main: {
+    title: "Основные",
+    color: "rgba(254, 208, 87, 1)",
+  },
+  leisure: {
+    title: "Досуг",
+    color: "rgba(36, 204, 167, 1)",
+  },
+  food: { title: "Еда", color: "rgba(255, 216, 208, 1)" },
+  car: { title: "Машина", color: "rgba(253, 148, 152, 1)" },
+  development: { title: "Развитие", color: "rgba(197, 186, 255, 1)" },
+  education: { title: "Образование", color: "rgba(129, 225, 255, 1)" },
+  children: { title: "Дети", color: "rgba(110, 120, 232, 1)" },
+  house: { title: "Дом", color: "rgba(74, 86, 226, 1)" },
+  other: { title: "Другое", color: "rgba(0, 173, 132, 1)" },
 };
 
 const TRANSACTION_SORTS = {
@@ -39,4 +51,10 @@ const HTTP_MESSAGES = {
   TRANSACTION_CREATED: "Transaction has been created!",
 };
 
-module.exports = { TRANSACTION_SORTS, TRANSACTION_CATEGORIES, HTTP_MESSAGES, HTTP_CODES };
+module.exports = {
+  TRANSACTION_SORTS,
+  TRANSACTION_CATEGORIES,
+  HTTP_MESSAGES,
+  HTTP_CODES,
+  GET_CATEGORY_COLOR,
+};

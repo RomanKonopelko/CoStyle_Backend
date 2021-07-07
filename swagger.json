@@ -99,6 +99,26 @@
     }
 }
         },
+        "/api/users/current":{
+"get":{
+    "tags":["Auth"],
+    "summary":"Getting user's data",
+    "parameters":[],
+    "security":[{ "Bearer":[]}],
+    "responses":{
+        "200":{
+            "description": "User's data has been sent!",
+            "content":{
+  "application/json":{
+                "schema":{
+                    "$ref":"#/components/schemas/CurrentResponse"
+                }
+            }
+            }
+        }
+    }
+}
+        },
         "/api/users/logout":{
             "post":{
                 "tags": ["Auth"],
@@ -371,6 +391,11 @@
                       "type": "string",
                       "description": "User's id",
                       "example":"12defef44vfvfg4t3tf4"
+                  },
+                  "token":{
+                      "type":"string",
+                      "description": "User's token",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
                   }
                 }
             },
@@ -399,6 +424,23 @@
                         "type": "string",
                         "description": "User's password",
                         "example": "qweqw123"
+                    }
+                }
+                
+            },
+              "CurrentResponse":{
+                "type":"object",
+                "properties": {
+                    "email":{
+                        "type":"string",
+                        "description": "User's email",
+                        "format": "email",
+                        "example":  "roman11@gmail.com"
+                    },
+                    "name":{
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "GachiMuchi"
                     }
                 }
                 

@@ -7,7 +7,7 @@ const db = Mongoose.connect(uriDb, {
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  poolSize: 5,
+  poolSize: 10,
 });
 
 Mongoose.connection.on("connected", () => {

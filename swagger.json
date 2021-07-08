@@ -281,6 +281,12 @@
                         "description": "Transaction category",
                         "example": "Дом"
                     },
+                    "color": {
+                        "type": "string",
+                        "description": "Category mark color",
+                        "example": "rgb(255,255,255)"
+
+                    },
                     "time": {
                         "type": "string",
                         "description": "Timestamp of a made transaction",

@@ -15,7 +15,6 @@ const transactionSchema = new Schema(
     category: {
       type: String,
       enum: CATEGORIES_ARRAY,
-      required: true,
     },
     time: {
       type: String,

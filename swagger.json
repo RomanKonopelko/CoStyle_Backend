@@ -13,10 +13,6 @@
         {
             "url": "/",
             "description": "Local Dev, or from Heroku"
-        },
-        {
-            "url": "/api/",
-            "description": "With docker-compose and nginx proxy"
         }
     ],
     "tags": [
@@ -211,109 +207,36 @@
                     }
                 }
             }
+        },
+        "/api/transactions/statistic": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "get transactions total values and statistic",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statistic has been sent!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTransactionStatisticResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
-            "GetAllTransactionsResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "category": {
-                            "type": "string",
-                            "description": "Transaction category",
-                            "example": "Дом"
-                        },
-                        "time": {
-                            "type": "string",
-                            "description": "Timestamp of a made transaction",
-                            "example": "10.07.21"
-                        },
-                        "amount": {
-                            "type": "integer",
-                            "description": "Money amount in transaction",
-                            "example": 10400
-                        },
-                        "sort": {
-                            "type": "string",
-                            "description": "Sort of a transaction",
-                            "example": "Доход"
-                        },
-                        "commentary": {
-                            "type": "string",
-                            "description": "Transaction commentary",
-                            "example": "Месячная плата за аренду жилья"
-                        },
-                        "owner": {
-                            "type": "string",
-                            "description": "User id",
-                            "example": "5430e2da7f863dg53cf025de7"
-                        },
-                        "id": {
-                            "type": "string",
-                            "description": "Transaction id made by DB",
-                            "example": "60e2da7f8630053cf025de7a"
-                        }
-                    }
-                },
-                "example": [
-                    {
-                        "transactions": [
-                            {
-                                "amount": 100,
-                                "category": "Дом",
-                                "time": "13.10.21",
-                                "sort": "доход",
-                                "commentary": "walletAPI тестовая транзакция",
-                                "owner": {
-                                    "_id": "60e2d79db0e55a3b7ce329a1",
-                                    "email": "roman11@gmail.com"
-                                },
-                                "createdAt": "2021-07-05T10:10:07.731Z",
-                                "updatedAt": "2021-07-05T10:10:07.731Z",
-                                "id": "60e2da7f8630053cf025de7a"
-                            }
-                        ]
-                    },
-                    {
-                        "transactions": [
-                            {
-                                "amount": 9999,
-                                "category": "Другое",
-                                "time": "13.10.21",
-                                "sort": "доход",
-                                "commentary": "walletAPI тестовая транзакция",
-                                "owner": {
-                                    "_id": "60e2d79db0e55a3b7ce329a1",
-                                    "email": "roman11@gmail.com"
-                                },
-                                "createdAt": "2021-07-05T10:10:07.731Z",
-                                "updatedAt": "2021-07-05T10:10:07.731Z",
-                                "id": "60e2da7f8630053cf025de7a"
-                            }
-                        ]
-                    },
-                    {
-                        "transactions": [
-                            {
-                                "amount": 1000,
-                                "category": "Образование",
-                                "time": "13.10.21",
-                                "sort": "доход",
-                                "commentary": "walletAPI тестовая транзакция",
-                                "owner": {
-                                    "_id": "60e2d79db0e55a3b7ce329a1",
-                                    "email": "roman11@gmail.com"
-                                },
-                                "createdAt": "2021-07-05T10:10:07.731Z",
-                                "updatedAt": "2021-07-05T10:10:07.731Z",
-                                "id": "60e2da7f8630053cf025de7a"
-                            }
-                        ]
-                    }
-                ]
-            },
             "AddTransactionRequest": {
                 "type": "object",
                 "required": [
@@ -485,6 +408,29 @@
                         "type": "string",
                         "description": "User's name",
                         "example": "GachiMuchi"
+                    }
+                }
+            },
+            "GetTransactionStatisticResponse": {
+                "type": "object",
+                "properties": {
+                    "incomeValue": {
+                        "type": "integer",
+                        "description": "total of income transactions",
+                        "example": 12030
+                    },
+                    "consumptionValue": {
+                        "type": "integer",
+                        "description": "total of consumption transactions",
+                        "example": 1600
+                    },
+                    "categoriesSummary": {
+                        "type": "object",
+                        "description": "Summary income of particular category",
+                        "example": {
+                            "Другое": 239976,
+                            "Дом": 10400
+                        }
                     }
                 }
             }

@@ -1,5 +1,12 @@
 const Transaction = require("../repositories/transactions");
-const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
+const {
+  HTTP_CODES,
+  HTTP_MESSAGES,
+  GET_INCOME_AMOUNT,
+  GET_CONSUMPTION_AMOUNT,
+  TRANSACTION_CATEGORIES,
+  GET_CATEGORY_AMOUNT,
+} = require("../helpers/constants");
 
 const { OK, NOT_FOUND, CREATED } = HTTP_CODES;
 const { NOT_FOUND_MSG, SUCCESS, DELETED, MISSING_FIELDS, ERROR, TRANSACTION_CREATED } =
@@ -34,4 +41,21 @@ const addTransaction = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllTransactions, addTransaction };
+const getTransactionStatistic = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const transactions = await Transaction.getAllTransactions(userId);
+    const incomeValue = await GET_INCOME_AMOUNT(transactions);
+    const consumptionValue = await GET_CONSUMPTION_AMOUNT(transactions);
+    const categoriesSummary = await GET_CATEGORY_AMOUNT(transactions);
+    return res.status(OK).json({
+      status: SUCCESS,
+      code: OK,
+      payload: { incomeValue, consumptionValue, categoriesSummary },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllTransactions, addTransaction, getTransactionStatistic };

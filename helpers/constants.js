@@ -1,6 +1,33 @@
 const GET_CATEGORY_COLOR = function (arr, category) {
+  if (!category) return null;
   const color = arr.find((e) => e[1].title === category)[1].color;
   return color;
+};
+
+const GET_INCOME_AMOUNT = function (arr) {
+  const incomeArr = arr.filter((e) => e.sort === "Доход").map((e) => e.amount);
+  const summaryValue = incomeArr.reduce((acc, value) => acc + value, 0);
+  return summaryValue;
+};
+
+const GET_CONSUMPTION_AMOUNT = function (arr) {
+  const consumptionArr = arr.filter((e) => e.sort === "Расход").map((e) => e.amount);
+  const summaryValue = consumptionArr.reduce((acc, value) => acc + value, 0);
+  return summaryValue;
+};
+
+const GET_CATEGORY_AMOUNT = function (arr) {
+  const incomeArr = arr.filter((e) => e.sort === "Расход");
+  console.log(incomeArr);
+  const amountObj = incomeArr.reduce((acc, value) => {
+    return (
+      acc[value.category]
+        ? (acc[value.category] += value.amount)
+        : (acc[value.category] = value.amount),
+      acc
+    );
+  }, {});
+  return amountObj;
 };
 
 const TRANSACTION_CATEGORIES = {
@@ -52,6 +79,9 @@ const HTTP_MESSAGES = {
 };
 
 module.exports = {
+  GET_INCOME_AMOUNT,
+  GET_CONSUMPTION_AMOUNT,
+  GET_CATEGORY_AMOUNT,
   TRANSACTION_SORTS,
   TRANSACTION_CATEGORIES,
   HTTP_MESSAGES,

@@ -6,7 +6,7 @@ const schemaCreateTransaction = Joi.object({
   time: Joi.string().required(),
   amount: Joi.number().min(0).max(1000000).required(),
   sort: Joi.string().required(),
-  category: Joi.string().required(),
+  category: Joi.string().when("sort", { is: "Расход", then: Joi.string().required() }),
   commentary: Joi.string().min(0).max(50),
 });
 

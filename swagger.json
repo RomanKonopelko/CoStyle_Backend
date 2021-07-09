@@ -267,6 +267,11 @@
                             "description": "Transaction commentary",
                             "example": "Месячная плата за аренду жилья"
                         },
+                        "balance": {
+                            "type": "integer",
+                            "desctiption": "User's balance after transaction",
+                            "example": 10000
+                        },
                         "owner": {
                             "type": "string",
                             "description": "User id",
@@ -288,6 +293,7 @@
                                 "time": "13.10.21",
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -306,7 +312,8 @@
                                 "category": "Другое",
                                 "time": "13.10.21",
                                 "sort": "доход",
-                                 "color": "rgba(255,255,255,1)",
+                                "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -325,7 +332,8 @@
                                 "category": "Образование",
                                 "time": "13.10.21",
                                 "sort": "доход",
-                                 "color": "rgba(255,255,255,1)",
+                                "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -392,6 +400,11 @@
                         "type": "string",
                         "description": "Timestamp of a made transaction",
                         "example": "10.07.21"
+                    },
+                    "balance": {
+                        "type": "integer",
+                        "desctiption": "User's balance after transaction",
+                        "example": 10000
                     },
                     "amount": {
                         "type": "integer",
@@ -460,6 +473,11 @@
                         "format": "email",
                         "example": "roman11@gmail.com"
                     },
+                    "balanceValue": {
+                        "type": "integer",
+                        "desctiption": "User's balance current balance",
+                        "example": 10000
+                    },
                     "id": {
                         "type": "string",
                         "description": "User's id",
@@ -515,6 +533,11 @@
                         "type": "string",
                         "description": "User's name",
                         "example": "GachiMuchi"
+                    },
+                    "balanceValue": {
+                        "type": "integer",
+                        "desctiption": "User's current balance",
+                        "example": 10000
                     }
                 }
             },
@@ -531,17 +554,22 @@
                         "description": "total of consumption transactions",
                         "example": 1600
                     },
+                    "balanceValue":{
+                        "type":"integer",
+                        "desctiption": "User's balance current balance",
+                        "example": 10000
+                    },
                     "categoriesSummary": {
                         "type": "object",
                         "description": "Summary income of particular category",
                         "example": {
                             "Другое": {
                                 "value": 10000,
-                                "color":"rgba(255,255,255,1)"
+                                "color": "rgba(255,255,255,1)"
                             },
-                            "Дом":  {
+                            "Дом": {
                                 "value": 20600,
-                                "color":"rgba(255,255,0,1)"
+                                "color": "rgba(255,255,0,1)"
                             }
                         }
                     }

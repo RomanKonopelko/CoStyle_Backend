@@ -8,9 +8,10 @@ const getAllTransactions = async (userId) => {
   return result;
 };
 
-const addTransaction = async (userId, body) => {
-  const result = await Transaction.create({ owner: userId, ...body });
+const addTransaction = async (userId, body, balance) => {
+  const result = await Transaction.create({ owner: userId, ...body, ...balance });
   return result;
 };
+
 
 module.exports = { getAllTransactions, addTransaction };

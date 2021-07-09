@@ -1,4 +1,5 @@
 const Transaction = require("../repositories/transactions");
+const { updateBalance } = require("../repositories/user");
 const {
   HTTP_CODES,
   HTTP_MESSAGES,
@@ -6,7 +7,7 @@ const {
   GET_CONSUMPTION_AMOUNT,
   TRANSACTION_CATEGORIES,
   GET_CATEGORY_AMOUNT,
-  GET_CATEGORY_COLOR,
+  GET_BALANCE_AMOUNT,
 } = require("../helpers/constants");
 
 const { OK, NOT_FOUND, CREATED } = HTTP_CODES;
@@ -31,7 +32,14 @@ const getAllTransactions = async (req, res, next) => {
 const addTransaction = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const transaction = await Transaction.addTransaction(userId, req.body);
+    const { balanceValue } = req.user;
+    const { sort, amount } = req.body;
+    const balance = await GET_BALANCE_AMOUNT(sort, amount, balanceValue);
+    console.log(balance);
+    const transaction = await Transaction.addTransaction(userId, req.body, balance);
+
+    await updateBalance(userId, balance);
+
     return res.status(CREATED).json({
       status: SUCCESS,
       code: CREATED,
@@ -46,6 +54,7 @@ const addTransaction = async (req, res, next) => {
 const getTransactionStatistic = async (req, res, next) => {
   try {
     const userId = req.user.id;
+    const { balanceValue } = req.user;
     const transactions = await Transaction.getAllTransactions(userId);
     const incomeValue = await GET_INCOME_AMOUNT(transactions);
     const consumptionValue = await GET_CONSUMPTION_AMOUNT(transactions);
@@ -53,7 +62,7 @@ const getTransactionStatistic = async (req, res, next) => {
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,
-      payload: { incomeValue, consumptionValue, categoriesSummary },
+      payload: { incomeValue, consumptionValue, balanceValue, categoriesSummary },
     });
   } catch (error) {
     next(error);

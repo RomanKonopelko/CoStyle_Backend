@@ -21,6 +21,10 @@ const userSchema = new Schema({
       return re.test(String(value).toLowerCase());
     },
   },
+  balanceValue: {
+    type: Number,
+    default: 0,
+  },
   token: {
     type: String,
     default: null,

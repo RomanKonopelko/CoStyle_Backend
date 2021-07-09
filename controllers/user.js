@@ -15,13 +15,13 @@ const registerUser = async (req, res, next) => {
       return res.status(CONFLICT).json({ status: ERROR, code: CONFLICT, message: EMAIL_IS_USED });
     }
 
-    const { id, email, name } = await User.create(req.body);
+    const { id, email, name, balanceValue } = await User.create(req.body);
     const payload = { id };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
     await User.updateToken(id, token);
     return res
       .status(CREATED)
-      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, token } });
+      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, balanceValue, token } });
   } catch (error) {
     next(error);
   }
@@ -59,8 +59,10 @@ const logoutUser = async (req, res, next) => {
 
 const getCurrentUserData = async (req, res, next) => {
   try {
-    const { email, name } = req.user;
-    return await res.status(OK).json({ status: SUCCESS, code: OK, payload: { email, name } });
+    const { email, name, balanceValue } = req.user;
+    return await res
+      .status(OK)
+      .json({ status: SUCCESS, code: OK, payload: { email, name, balanceValue } });
   } catch (err) {
     next(err);
   }

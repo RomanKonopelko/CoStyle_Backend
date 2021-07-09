@@ -18,13 +18,13 @@ const GET_CONSUMPTION_AMOUNT = function (arr) {
 
 const GET_CATEGORY_AMOUNT = function (arr, categories) {
   const incomeArr = arr.filter((e) => e.sort === "Расход");
+  console.log(incomeArr);
   const amountObj = incomeArr.reduce((acc, value) => {
     return (
       acc[value.category]
         ? (acc[value.category] = {
-            value: (value.amount += value.amount),
-            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))[1]
-              .color,
+            value: acc[value.category].value + value.amount,
+            color: acc[value.category].color,
           })
         : (acc[value.category] = {
             value: value.amount,
@@ -34,7 +34,13 @@ const GET_CATEGORY_AMOUNT = function (arr, categories) {
       acc
     );
   }, {});
+  console.log(amountObj);
   return amountObj;
+};
+
+const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
+  balance = sort === "Доход" ? (balance += amount) : (balance -= amount);
+  return { balance };
 };
 
 const TRANSACTION_CATEGORIES = {
@@ -94,4 +100,5 @@ module.exports = {
   HTTP_MESSAGES,
   HTTP_CODES,
   GET_CATEGORY_COLOR,
+  GET_BALANCE_AMOUNT,
 };

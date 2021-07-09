@@ -26,6 +26,9 @@ const transactionSchema = new Schema(
         return GET_CATEGORY_COLOR(CATEGORIES, this.category);
       },
     },
+    balance: {
+      type: Number,
+    },
     amount: {
       type: Number,
       required: true,

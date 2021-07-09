@@ -58,6 +58,8 @@ const TRANSACTION_CATEGORIES = {
   education: { title: "Образование", color: "rgba(129, 225, 255, 1)" },
   children: { title: "Дети", color: "rgba(110, 120, 232, 1)" },
   house: { title: "Дом", color: "rgba(74, 86, 226, 1)" },
+  stableIncome: { title: "Регулярный доход", color: "rgba(110, 120, 232, 1)" },
+  unstableIncome: { title: "Нерегулярный доход", color: "rgba(74, 86, 226, 1)" },
   other: { title: "Другое", color: "rgba(0, 173, 132, 1)" },
 };
 

@@ -471,7 +471,7 @@
                         "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "example": "roman11@gmail.com"
+                        "email": "roman@gmail.com"
                     },
                     "balanceValue": {
                         "type": "integer",
@@ -511,12 +511,12 @@
                         "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "example": "roman11@gmail.com"
+                        "email": "roman@gmail.com"
                     },
                     "password": {
                         "type": "string",
                         "description": "User's password",
-                        "example": "qweqw123"
+                        "example": "qwe_Lw123"
                     }
                 }
             },
@@ -554,8 +554,8 @@
                         "description": "total of consumption transactions",
                         "example": 1600
                     },
-                    "balanceValue":{
-                        "type":"integer",
+                    "balanceValue": {
+                        "type": "integer",
                         "desctiption": "User's balance current balance",
                         "example": 10000
                     },

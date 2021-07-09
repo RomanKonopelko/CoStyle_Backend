@@ -36,11 +36,11 @@ const loginUser = async (req, res, next) => {
         .status(UNAUTHORIZED)
         .json({ status: ERROR, code: CONFLICT, message: INVALID_CREDENTIALS });
     }
-    const id = user.id;
+    const { name, id, email } = user;
     const payload = { id };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
     await User.updateToken(id, token);
-    return res.json({ status: SUCCESS, code: OK, payload: { token } });
+    return res.json({ status: SUCCESS, code: OK, payload: { token, name, email } });
   } catch (error) {
     next(error);
   }

@@ -16,14 +16,21 @@ const GET_CONSUMPTION_AMOUNT = function (arr) {
   return summaryValue;
 };
 
-const GET_CATEGORY_AMOUNT = function (arr) {
+const GET_CATEGORY_AMOUNT = function (arr, categories) {
   const incomeArr = arr.filter((e) => e.sort === "Расход");
-  console.log(incomeArr);
   const amountObj = incomeArr.reduce((acc, value) => {
     return (
       acc[value.category]
-        ? (acc[value.category] += value.amount)
-        : (acc[value.category] = value.amount),
+        ? (acc[value.category] = {
+            value: (value.amount += value.amount),
+            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))[1]
+              .color,
+          })
+        : (acc[value.category] = {
+            value: value.amount,
+            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))[1]
+              .color,
+          }),
       acc
     );
   }, {});

@@ -6,11 +6,13 @@ const {
   GET_CONSUMPTION_AMOUNT,
   TRANSACTION_CATEGORIES,
   GET_CATEGORY_AMOUNT,
+  GET_CATEGORY_COLOR,
 } = require("../helpers/constants");
 
 const { OK, NOT_FOUND, CREATED } = HTTP_CODES;
 const { NOT_FOUND_MSG, SUCCESS, DELETED, MISSING_FIELDS, ERROR, TRANSACTION_CREATED } =
   HTTP_MESSAGES;
+const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 
 const getAllTransactions = async (req, res, next) => {
   try {
@@ -47,7 +49,7 @@ const getTransactionStatistic = async (req, res, next) => {
     const transactions = await Transaction.getAllTransactions(userId);
     const incomeValue = await GET_INCOME_AMOUNT(transactions);
     const consumptionValue = await GET_CONSUMPTION_AMOUNT(transactions);
-    const categoriesSummary = await GET_CATEGORY_AMOUNT(transactions);
+    const categoriesSummary = await GET_CATEGORY_AMOUNT(transactions, CATEGORIES);
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,

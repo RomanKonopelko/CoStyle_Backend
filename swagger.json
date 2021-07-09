@@ -287,6 +287,7 @@
                                 "category": "Дом",
                                 "time": "13.10.21",
                                 "sort": "доход",
+                                "color": "rgba(255,255,255,1)",
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -305,6 +306,7 @@
                                 "category": "Другое",
                                 "time": "13.10.21",
                                 "sort": "доход",
+                                 "color": "rgba(255,255,255,1)",
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -323,6 +325,7 @@
                                 "category": "Образование",
                                 "time": "13.10.21",
                                 "sort": "доход",
+                                 "color": "rgba(255,255,255,1)",
                                 "commentary": "walletAPI тестовая транзакция",
                                 "owner": {
                                     "_id": "60e2d79db0e55a3b7ce329a1",
@@ -532,8 +535,14 @@
                         "type": "object",
                         "description": "Summary income of particular category",
                         "example": {
-                            "Другое": 239976,
-                            "Дом": 10400
+                            "Другое": {
+                                "value": 10000,
+                                "color":"rgba(255,255,255,1)"
+                            },
+                            "Дом":  {
+                                "value": 20600,
+                                "color":"rgba(255,255,0,1)"
+                            }
                         }
                     }
                 }

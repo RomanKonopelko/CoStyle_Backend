@@ -1,5 +1,5 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
-// const mongoosePaginate = require("mongoose-paginate-v2");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const {
   TRANSACTION_CATEGORIES,
   TRANSACTION_SORTS,
@@ -17,9 +17,12 @@ const transactionSchema = new Schema(
       enum: CATEGORIES_ARRAY,
     },
     time: {
-      type: String,
+      type: Object,
       required: true,
+      properties: {},
     },
+    month: { type: String },
+    year: { type: String },
     color: {
       type: String,
       default: function () {
@@ -64,11 +67,7 @@ const transactionSchema = new Schema(
   }
 );
 
-// transactionSchema.virtual("info").get(function () {
-//   return `This is transactions of ${this.name}`;
-// });
-
-// transactionSchemaSchema.plugin(mongoosePaginate);
+transactionSchema.plugin(mongoosePaginate);
 
 const Transaction = model("transaction", transactionSchema);
 

@@ -4,6 +4,8 @@ const { JoiPasswordComplexity } = require("joi-password");
 
 const schemaCreateTransaction = Joi.object({
   time: Joi.string().required(),
+  month: Joi.string(),
+  year: Joi.string(),
   amount: Joi.number().min(0).max(1000000).required(),
   sort: Joi.string().required(),
   category: Joi.string().when("sort", { is: "Расход", then: Joi.string().required() }),

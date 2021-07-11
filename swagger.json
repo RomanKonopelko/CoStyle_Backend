@@ -233,6 +233,45 @@
                     }
                 }
             }
+        },
+        "/api/transactions/statistic?month=#&year=#": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "get transactions total values and statistic of a selected time period",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "month",
+                        "type": "integer",
+                        "description": "transaction's month"
+                    },
+                    {
+                        "in": "query",
+                        "name": "year",
+                        "type": "integer",
+                        "description": "transaction's year"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statistic has been sent!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTransactionStatisticResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -251,6 +290,16 @@
                             "type": "string",
                             "description": "Timestamp of a made transaction",
                             "example": "10.07.21"
+                        },
+                        "month": {
+                            "type": "string",
+                            "description": "Month of a made transaction",
+                            "example": "10"
+                        },
+                        "year": {
+                            "type": "string",
+                            "description": "Year of a made transaction",
+                            "example": "2020"
                         },
                         "amount": {
                             "type": "integer",
@@ -291,6 +340,8 @@
                                 "amount": 100,
                                 "category": "Дом",
                                 "time": "13.10.21",
+                                "month": "10",
+                                "year": "2021",
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -311,6 +362,8 @@
                                 "amount": 9999,
                                 "category": "Другое",
                                 "time": "13.10.21",
+                                 "month": "10",
+                                "year": "2021",
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -331,6 +384,8 @@
                                 "amount": 1000,
                                 "category": "Образование",
                                 "time": "13.10.21",
+                                 "month": "10",
+                                "year": "2021",
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -400,6 +455,16 @@
                         "type": "string",
                         "description": "Timestamp of a made transaction",
                         "example": "10.07.21"
+                    },
+                    "month": {
+                        "type": "string",
+                        "description": "Month of a made transaction",
+                        "example": "10"
+                    },
+                    "year": {
+                        "type": "string",
+                        "description": "Year of a made transaction",
+                        "example": "2020"
                     },
                     "balance": {
                         "type": "integer",

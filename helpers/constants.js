@@ -5,12 +5,14 @@ const GET_CATEGORY_COLOR = function (arr, category) {
 };
 
 const GET_INCOME_AMOUNT = function (arr) {
+  console.log(arr);
   const incomeArr = arr.filter((e) => e.sort === "Доход").map((e) => e.amount);
   const summaryValue = incomeArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
 };
 
 const GET_CONSUMPTION_AMOUNT = function (arr) {
+  console.log(arr);
   const consumptionArr = arr.filter((e) => e.sort === "Расход").map((e) => e.amount);
   const summaryValue = consumptionArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
@@ -18,12 +20,11 @@ const GET_CONSUMPTION_AMOUNT = function (arr) {
 
 const GET_CATEGORY_AMOUNT = function (arr, categories) {
   const incomeArr = arr.filter((e) => e.sort === "Расход");
-  console.log(incomeArr);
   const amountObj = incomeArr.reduce((acc, value) => {
     return (
       acc[value.category]
         ? (acc[value.category] = {
-            value: acc[value.category].value + value.amount,
+            value: (acc[value.category].value += value.amount),
             color: acc[value.category].color,
           })
         : (acc[value.category] = {
@@ -41,6 +42,15 @@ const GET_CATEGORY_AMOUNT = function (arr, categories) {
 const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
   balance = sort === "Доход" ? (balance += amount) : (balance -= amount);
   return { balance };
+};
+
+const TO_CONVERT_TIME = function (time) {
+  const [day, month, year] = time.split(".").map(Number);
+  return {
+    time: new Date(year, month, day),
+    month,
+    year,
+  };
 };
 
 const TRANSACTION_CATEGORIES = {
@@ -103,4 +113,5 @@ module.exports = {
   HTTP_CODES,
   GET_CATEGORY_COLOR,
   GET_BALANCE_AMOUNT,
+  TO_CONVERT_TIME,
 };

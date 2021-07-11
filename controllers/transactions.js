@@ -19,7 +19,12 @@ const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 const getAllTransactions = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { docs: transactions, ...rest } = await Transaction.getAllTransactions(userId, req.query);
+    const options = { pagination: true };
+    const { docs: transactions, ...rest } = await Transaction.getAllTransactions(
+      userId,
+      req.query,
+      options
+    );
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,
@@ -57,14 +62,15 @@ const getTransactionStatistic = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const { balanceValue } = req.user;
-    const { docs: transactions, ...rest } = await Transaction.getAllTransactions(userId, req.query);
+    const options = { pagination: false };
+    const { docs: transactions } = await Transaction.getAllTransactions(userId, req.query, options);
     const incomeValue = await GET_INCOME_AMOUNT(transactions);
     const consumptionValue = await GET_CONSUMPTION_AMOUNT(transactions);
     const categoriesSummary = await GET_CATEGORY_AMOUNT(transactions, CATEGORIES);
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,
-      payload: { incomeValue, consumptionValue, balanceValue, categoriesSummary, ...rest },
+      payload: { incomeValue, consumptionValue, balanceValue, categoriesSummary },
     });
   } catch (error) {
     next(error);

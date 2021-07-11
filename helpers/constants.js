@@ -5,14 +5,12 @@ const GET_CATEGORY_COLOR = function (arr, category) {
 };
 
 const GET_INCOME_AMOUNT = function (arr) {
-  console.log(arr);
   const incomeArr = arr.filter((e) => e.sort === "Доход").map((e) => e.amount);
   const summaryValue = incomeArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
 };
 
 const GET_CONSUMPTION_AMOUNT = function (arr) {
-  console.log(arr);
   const consumptionArr = arr.filter((e) => e.sort === "Расход").map((e) => e.amount);
   const summaryValue = consumptionArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
@@ -35,7 +33,6 @@ const GET_CATEGORY_AMOUNT = function (arr, categories) {
       acc
     );
   }, {});
-  console.log(amountObj);
   return amountObj;
 };
 
@@ -45,7 +42,7 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
 };
 
 const TO_CONVERT_TIME = function (time) {
-  const [day, month, year] = time.split(".").map(Number);
+  const [year, month, day] = time.split("-").map(Number);
   return {
     time: new Date(year, month, day),
     month,

@@ -48,9 +48,22 @@ const HTTP_MESSAGES = {
   TRANSACTION_CREATED: "Transaction has been created!",
 };
 
+const APIlimiter = {
+  windowsMs: 15 * 60 * 1000,
+  max: 1000,
+  handler: (req, res, next) => {
+    return res.status(HTTP_CODES.UNAUTHORIZED).json({
+      status: HTTP_MESSAGES.ERROR,
+      code: HTTP_CODES.TOO_MANY_REQUESTS,
+      message: HTTP_MESSAGES.TOO_MANY_REQUESTS_MSG,
+    });
+  },
+};
+
 module.exports = {
   TRANSACTION_SORTS,
   TRANSACTION_CATEGORIES,
   HTTP_MESSAGES,
   HTTP_CODES,
+  APIlimiter,
 };

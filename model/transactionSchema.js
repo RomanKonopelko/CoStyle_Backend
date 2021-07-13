@@ -6,6 +6,8 @@ const {
   GET_CATEGORY_COLOR,
 } = require("../helpers/constants");
 
+const { GET_CATEGORY_COLOR } = require("../helpers/functions");
+
 const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
 const SORTS = Object.values(TRANSACTION_SORTS);

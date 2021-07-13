@@ -20,8 +20,6 @@ const getAllTransactions = async (userId, query, options) => {
     Object.assign(optionSearch, { "time.year": year });
   }
 
-  console.log(optionSearch);
-
   const result = await Transaction.paginate(optionSearch, {
     pagination,
     limit,
@@ -32,7 +30,7 @@ const getAllTransactions = async (userId, query, options) => {
     },
     populate: { path: "owner", select: "balanceValue -_id" },
   });
-  console.log(result);
+
   return result;
 };
 

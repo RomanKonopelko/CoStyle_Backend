@@ -1,15 +1,14 @@
 const Transaction = require("../repositories/transactions");
 const { updateBalance } = require("../repositories/user");
+const { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } = require("../helpers/constants");
+
 const {
-  HTTP_CODES,
-  HTTP_MESSAGES,
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
-  TRANSACTION_CATEGORIES,
   GET_CATEGORY_AMOUNT,
   TO_CONVERT_TIME,
   GET_BALANCE_AMOUNT,
-} = require("../helpers/constants");
+} = require("../helpers/functions");
 
 const { OK, CREATED } = HTTP_CODES;
 const { SUCCESS, TRANSACTION_CREATED } = HTTP_MESSAGES;

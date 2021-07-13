@@ -14,10 +14,14 @@ const registerUser = async (req, res, next) => {
     if (user) {
       return res.status(CONFLICT).json({ status: ERROR, code: CONFLICT, message: EMAIL_IS_USED });
     }
-    const { id, email, subscription } = await User.create(req.body);
+
+    const { id, email, name, balanceValue } = await User.create(req.body);
+    const payload = { id };
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
+    await User.updateToken(id, token);
     return res
       .status(CREATED)
-      .json({ status: SUCCESS, code: CREATED, payload: { id, email, subscription } });
+      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, balanceValue, token } });
   } catch (error) {
     next(error);
   }
@@ -32,11 +36,11 @@ const loginUser = async (req, res, next) => {
         .status(UNAUTHORIZED)
         .json({ status: ERROR, code: CONFLICT, message: INVALID_CREDENTIALS });
     }
-    const id = user.id;
+    const { name, id, email } = user;
     const payload = { id };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
     await User.updateToken(id, token);
-    return res.json({ status: SUCCESS, code: OK, payload: { token } });
+    return res.json({ status: SUCCESS, code: OK, payload: { token, name, email } });
   } catch (error) {
     next(error);
   }
@@ -44,7 +48,6 @@ const loginUser = async (req, res, next) => {
 
 const logoutUser = async (req, res, next) => {
   try {
-    console.log(req);
     const id = req.user.id;
     await User.updateToken(id, null);
     return res.status(NO_CONTENT).json({});
@@ -55,8 +58,10 @@ const logoutUser = async (req, res, next) => {
 
 const getCurrentUserData = async (req, res, next) => {
   try {
-    const { email, subscription } = req.user;
-    return await res.status(OK).json({ status: SUCCESS, code: OK, payload: { email } });
+    const { email, name, balanceValue } = req.user;
+    return await res
+      .status(OK)
+      .json({ status: SUCCESS, code: OK, payload: { email, name, balanceValue } });
   } catch (err) {
     next(err);
   }

@@ -9,8 +9,12 @@ const create = async (body) => {
   return await user.save();
 };
 
+const updateBalance = async (id, { balance }) => {
+  return await User.updateOne({ _id: id }, { balanceValue: balance });
+};
+
 const updateToken = async (id, token) => {
   return await User.updateOne({ _id: id }, { token });
 };
 
-module.exports = { findByEmail, findById, create, updateToken };
+module.exports = { findByEmail, findById, create, updateToken, updateBalance };

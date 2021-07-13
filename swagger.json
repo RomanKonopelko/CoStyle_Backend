@@ -12,11 +12,7 @@
     "servers": [
         {
             "url": "/",
-            "description": "Local Dev, or from Heroku"
-        },
-        {
-            "url": "/api/",
-            "description": "With docker-compose and nginx proxy"
+            "description": "heroku hosting"
         }
     ],
     "tags": [
@@ -26,358 +22,645 @@
         }
     ],
     "paths": {
-        "/api/users/register":{
-"post":{
-    "tags": ["Auth"],
-    "summary": "User registration",
-    "parameters": [],
-    "requestBody":{
-        "description" :"Registration object",
-        "required": true,
-        "content": {
-            "application/json":{
-                "schema":{
-                    "$ref":"#/components/schemas/RegistrationRequest"
+        "/api/users/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User registration",
+                "parameters": [],
+                "requestBody": {
+                    "description": "Registration object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User has been created!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegistrationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body",
+                        "content": {}
+                    },
+                    "409": {
+                        "description": "This email already exists!",
+                        "content": {}
+                    }
                 }
             }
-        }
-    },
-  "responses": {
-      "201":{
-          "description": "User has been created!",
-          "content": {
-              "aplication/json":{
-                  "schema":{
-                      "$ref": "#/components/schemas/RegistrationResponse"
-                  }
-              }
-          }
-      },
-      "400":{
-          "description": "Invalid request body",
-          "content": {}
-      },
-      "409":{
-          "description": "This email already exists!",
-          "content": {}
-      }
-  }
-
-}
         },
-        "/api/users/login":{
-"post":{
-      "tags": ["Auth"],
-    "summary": "User authentication",
-    "parameters": [],
-    "requestBody":{
-        "description" :"Login object",
-        "required": true,
-        "content": {
-            "application/json":{
-                "schema":{
-                    "$ref":"#/components/schemas/RegistrationRequest"
+        "/api/users/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User authentication",
+                "parameters": [],
+                "requestBody": {
+                    "description": "Login object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Invalid credentials!",
+                        "content": {}
+                    }
                 }
             }
-        }
-    },
-    "responses": {
-"200":{
-    "description": "User logged in successfully!",
-    "content": {
-         "application/json":{
-                  "schema":{
-                      "$ref": "#/components/schemas/LoginResponse"
-                  }
-              }
-    }
-},
-"409":{
-    "description": "Invalid credentials!",
-    "content": {}
-}
-    }
-}
         },
-        "/api/users/logout":{
-            "post":{
-                "tags": ["Auth"],
+        "/api/users/current": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Getting user's data",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's data has been sent!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "User unathorization",
                 "parameters": [],
-                "security": [{"Bearer":[] }],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
                 "responses": {
-                    "204":{
+                    "204": {
                         "description": "User logged out. No content."
                     }
                 }
             }
-
         },
-        "/api/transactions":{
-            "post":{
-                "tags": ["Transactions"],
+        "/api/transactions": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
                 "summary": "Add transaction operation",
                 "parameters": [],
-               "security": [{"Bearer":[] }],
-               "requestBody":{
-                     "description" :"Add transaction object",
-        "required": true,
-        "content": {
-            "application/json":{
-                "schema":{
-                    "$ref":"#/components/schemas/AddTransactionRequest"
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Add transaction object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddTransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Transaction has been created!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddTransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing required fields!",
+                        "content": {}
+                    }
                 }
-            }
-        }
-               },
-               "responses": {
-                    "201":{
-          "description": "Transaction has been created!",
-          "content": {
-              "aplication/json":{
-                  "schema":{
-                      "$ref": "#/components/schemas/AddTransactionResponse"
-                  }
-              }
-          }
-      },
-      "400":{
-
-          "description": "Missing required fields!",
-          "content": { }
-      }
-               }
             },
-          "get":{
-                  "tags": ["Transactions"],
-                  "summary": "Get all transaction of a particular user operation",
-                 "parameters": [],
-                 "security": [{"Bearer":[] }],
-                 "responses": {
-                   "200":{
-                  "description": "Successfull transactions data response!",
-             "content": {
-            "application/json":{
-                "schema":{
-                    "$ref":"#/components/schemas/GetAllTransactionsResponse"
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get all transaction of a particular user operation",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull transactions data response!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetAllTransactionsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/statistic": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "get transactions total values and statistic",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statistic has been sent!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTransactionStatisticResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/statistic?month=#&year=#": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "get transactions total values and statistic of a selected time period",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "month",
+                        "type": "string",
+                        "description": "transaction's month"
+                    },
+                    {
+                        "in": "query",
+                        "name": "year",
+                        "type": "string",
+                        "description": "transaction's year"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statistic has been sent!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetTransactionStatisticResponse"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
-                   }
-               }
-            }        
-        }
-
     },
     "components": {
         "schemas": {
-            "GetAllTransactionsResponse":{
-                  "type": "array",
-                  "items":{
-                      "type": "object",
-                         "properties": {
-                    "category":{
-                        "type": "string",
-                        "description": "Transaction category",
-                        "example": "Дом"
-                    },
-                    "time":{
-                        "type": "string",
-                        "description": "Timestamp of a made transaction",
-                        "example": "10.07.21"
-                    },
-                    "amount":{
-                        "type": "integer",
-                        "description": "Money amount in transaction",
-                        "example": 10400
-                    },
-                    "sort":{
-                        "type":"string",
-                        "description": "Sort of a transaction",
-                        "example": "Доход"
-                    },
-                    "commentary":{
-                        "type": "string",
-                        "description": "Transaction commentary",
-                        "example": "Месячная плата за аренду жилья"
-                    },
-                    "owner":{
-                        "type": "string",
-                        "description": "User id",
-                        "example":"5430e2da7f863dg53cf025de7"
-                    },
-                         "id":{
-                            "type":"string",
+            "GetAllTransactionsResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "category": {
+                            "type": "string",
+                            "description": "Transaction category",
+                            "example": "Дом"
+                        },
+                        "time": {
+                            "type": "object",
+                            "description": "Timestamp of a made transaction",
+                            "properties": {
+                                "date": {
+                                    "type": "object",
+                                    "description": "Data object",
+                                    "example": "2021-11-09T22:00:00.000Z"
+                                },
+                                "month": {
+                                    "type": "string",
+                                    "description": "Parsed data month",
+                                    "example": "11"
+                                },
+                                "year": {
+                                    "type": "string",
+                                    "description": "Parsed data year",
+                                    "example": "2021"
+                                }
+                            }
+                        },
+                        "amount": {
+                            "type": "integer",
+                            "description": "Money amount in transaction",
+                            "example": 10400
+                        },
+                        "sort": {
+                            "type": "string",
+                            "description": "Sort of a transaction",
+                            "example": "Доход"
+                        },
+                        "commentary": {
+                            "type": "string",
+                            "description": "Transaction commentary",
+                            "example": "Месячная плата за аренду жилья"
+                        },
+                        "balance": {
+                            "type": "integer",
+                            "desctiption": "User's balance after transaction",
+                            "example": 10000
+                        },
+                        "owner": {
+                            "type": "string",
+                            "description": "User id",
+                            "example": "5430e2da7f863dg53cf025de7"
+                        },
+                        "id": {
+                            "type": "string",
                             "description": "Transaction id made by DB",
                             "example": "60e2da7f8630053cf025de7a"
                         }
-                }
-                  },
-                  "example": [{  "transactions": [
-            {
-                "amount": 100,
-                "category": "Дом",
-                "time": "13.10.21",
-                "sort": "доход",
-                "commentary": "walletAPI тестовая транзакция",
-                "owner": {
-                    "_id": "60e2d79db0e55a3b7ce329a1",
-                    "email": "roman11@gmail.com"
+                    }
                 },
-                "createdAt": "2021-07-05T10:10:07.731Z",
-                "updatedAt": "2021-07-05T10:10:07.731Z",
-                "id": "60e2da7f8630053cf025de7a"
-            }
-        ]},{  "transactions": [
-            {
-                "amount": 9999,
-                "category": "Другое",
-                "time": "13.10.21",
-                "sort": "доход",
-                "commentary": "walletAPI тестовая транзакция",
-                "owner": {
-                    "_id": "60e2d79db0e55a3b7ce329a1",
-                    "email": "roman11@gmail.com"
-                },
-                "createdAt": "2021-07-05T10:10:07.731Z",
-                "updatedAt": "2021-07-05T10:10:07.731Z",
-                "id": "60e2da7f8630053cf025de7a"
-            }
-        ]},{  "transactions": [
-            {
-                "amount": 1000,
-                "category": "Образование",
-                "time": "13.10.21",
-                "sort": "доход",
-                "commentary": "walletAPI тестовая транзакция",
-                "owner": {
-                    "_id": "60e2d79db0e55a3b7ce329a1",
-                    "email": "roman11@gmail.com"
-                },
-                "createdAt": "2021-07-05T10:10:07.731Z",
-                "updatedAt": "2021-07-05T10:10:07.731Z",
-                "id": "60e2da7f8630053cf025de7a"
-            }
-        ]}]
+                "example": [
+                    {
+                        "transactions": [
+                            {
+                                "amount": 100,
+                                "category": "Дом",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
+                                "sort": "доход",
+                                "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
+                                "commentary": "walletAPI тестовая транзакция",
+                                "owner": {
+                                    "_id": "60e2d79db0e55a3b7ce329a1",
+                                    "email": "roman11@gmail.com"
+                                },
+                                "createdAt": "2021-07-05T10:10:07.731Z",
+                                "updatedAt": "2021-07-05T10:10:07.731Z",
+                                "id": "60e2da7f8630053cf025de7a"
+                            }
+                        ]
+                    },
+                    {
+                        "transactions": [
+                            {
+                                "amount": 9999,
+                                "category": "Другое",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
+                                "sort": "доход",
+                                "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
+                                "commentary": "walletAPI тестовая транзакция",
+                                "owner": {
+                                    "_id": "60e2d79db0e55a3b7ce329a1",
+                                    "email": "roman11@gmail.com"
+                                },
+                                "createdAt": "2021-07-05T10:10:07.731Z",
+                                "updatedAt": "2021-07-05T10:10:07.731Z",
+                                "id": "60e2da7f8630053cf025de7a"
+                            }
+                        ]
+                    },
+                    {
+                        "transactions": [
+                            {
+                                "amount": 1000,
+                                "category": "Образование",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
+                                "sort": "доход",
+                                "color": "rgba(255,255,255,1)",
+                                "balance": 10000,
+                                "commentary": "walletAPI тестовая транзакция",
+                                "owner": {
+                                    "_id": "60e2d79db0e55a3b7ce329a1",
+                                    "email": "roman11@gmail.com"
+                                },
+                                "createdAt": "2021-07-05T10:10:07.731Z",
+                                "updatedAt": "2021-07-05T10:10:07.731Z",
+                                "id": "60e2da7f8630053cf025de7a"
+                            }
+                        ]
+                    }
+                ]
             },
-            "AddTransactionRequest":{
+            "AddTransactionRequest": {
                 "type": "object",
-                "required": ["category", "time","amount","sort"],
+                "required": [
+                    "category",
+                    "time",
+                    "amount",
+                    "sort"
+                ],
                 "properties": {
-                    "category":{
+                    "category": {
                         "type": "string",
                         "description": "Transaction category",
                         "example": "Дом"
                     },
-                    "time":{
+                    "time": {
                         "type": "string",
                         "description": "Timestamp of a made transaction",
                         "example": "10.07.21"
                     },
-                    "amount":{
+                    "amount": {
                         "type": "integer",
                         "description": "Money amount in transaction",
                         "example": 10400
                     },
-                    "sort":{
-                        "type":"string",
+                    "sort": {
+                        "type": "string",
                         "description": "Sort of a transaction",
                         "example": "Доход"
                     },
-                    "commentary":{
+                    "commentary": {
                         "type": "string",
                         "description": "Transaction commentary",
                         "example": "Месячная плата за аренду жилья"
                     }
                 }
             },
-            "AddTransactionResponse":{
-                  "type": "object",
+            "AddTransactionResponse": {
+                "type": "object",
                 "properties": {
-                    "category":{
+                    "category": {
                         "type": "string",
                         "description": "Transaction category",
                         "example": "Дом"
                     },
-                    "time":{
+                    "color": {
                         "type": "string",
-                        "description": "Timestamp of a made transaction",
-                        "example": "10.07.21"
+                        "description": "Category mark color",
+                        "example": "rgb(255,255,255)"
                     },
-                    "amount":{
+                    "time": {
+                        "type": "object",
+                        "description": "Timestamp of a made transaction",
+                        "properties": {
+                            "date": {
+                                "type": "object",
+                                "description": "Data object",
+                                "example": "2021-11-09T22:00:00.000Z"
+                            },
+                            "month": {
+                                "type": "string",
+                                "description": "Parsed data month",
+                                "example": "11"
+                            },
+                            "year": {
+                                "type": "string",
+                                "description": "Parsed data year",
+                                "example": "2021"
+                            }
+                        }
+                    },
+                    "balance": {
+                        "type": "integer",
+                        "desctiption": "User's balance after transaction",
+                        "example": 10000
+                    },
+                    "amount": {
                         "type": "integer",
                         "description": "Money amount in transaction",
                         "example": 10400
                     },
-                    "sort":{
-                        "type":"string",
+                    "sort": {
+                        "type": "string",
                         "description": "Sort of a transaction",
                         "example": "Доход"
                     },
-                    "commentary":{
+                    "commentary": {
                         "type": "string",
                         "description": "Transaction commentary",
                         "example": "Месячная плата за аренду жилья"
                     },
-                    "owner":{
+                    "owner": {
                         "type": "string",
                         "description": "User id",
-                        "example":"5430e2da7f863dg53cf025de7"
+                        "example": "5430e2da7f863dg53cf025de7"
                     },
-                         "id":{
-                            "type":"string",
-                            "description": "Transaction id made by DB",
-                            "example": "60e2da7f8630053cf025de7a"
-                        }
+                    "id": {
+                        "type": "string",
+                        "description": "Transaction id made by DB",
+                        "example": "60e2da7f8630053cf025de7a"
+                    }
                 }
             },
-            "RegistrationRequest":{
+            "RegistrationRequest": {
                 "type": "object",
-                "required": ["email", "password"],
+                "required": [
+                    "email",
+                    "password",
+                    "name"
+                ],
                 "properties": {
-                    "email":{
-                        "type":"string",
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Grisha"
+                    },
+                    "email": {
+                        "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "example":  "roman11@gmail.com"
+                        "example": "roman11@gmail.com"
                     },
-                    "password":{
+                    "password": {
                         "type": "string",
                         "description": "User's password",
                         "example": "qweqw123"
                     }
                 }
             },
-            "RegistrationResponse":{
-                "type":"object",
+            "RegistrationResponse": {
+                "type": "object",
                 "properties": {
-                           "email":{
-                        "type":"string",
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Grisha"
+                    },
+                    "email": {
+                        "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "example":  "roman11@gmail.com"
+                        "email": "roman@gmail.com"
                     },
-                  "id":{
-                      "type": "string",
-                      "description": "User's id",
-                      "example":"12defef44vfvfg4t3tf4"
-                  }
+                    "balanceValue": {
+                        "type": "integer",
+                        "desctiption": "User's balance current balance",
+                        "example": 10000
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "User's id",
+                        "example": "12defef44vfvfg4t3tf4"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "User's token",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
+                    }
                 }
             },
-            "LoginResponse":{
-              "type": "object",
-              "example":{
+            "LoginResponse": {
+                "type": "object",
+                "example": {
                     "status": "Success",
-  "code": 200,
-  "payload": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
-  }
-              }  
-
+                    "code": 200,
+                    "payload": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
+                    }
+                }
+            },
+            "LoginRequest": {
+                "type": "object",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email",
+                        "email": "roman@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qwe_Lw123"
+                    }
+                }
+            },
+            "CurrentResponse": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email",
+                        "example": "roman11@gmail.com"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "GachiMuchi"
+                    },
+                    "balanceValue": {
+                        "type": "integer",
+                        "desctiption": "User's current balance",
+                        "example": 10000
+                    }
+                }
+            },
+            "GetTransactionStatisticResponse": {
+                "type": "object",
+                "properties": {
+                    "incomeValue": {
+                        "type": "integer",
+                        "description": "total of income transactions",
+                        "example": 12030
+                    },
+                    "consumptionValue": {
+                        "type": "integer",
+                        "description": "total of consumption transactions",
+                        "example": 1600
+                    },
+                    "balanceValue": {
+                        "type": "integer",
+                        "desctiption": "User's balance current balance",
+                        "example": 10000
+                    },
+                    "categoriesSummary": {
+                        "type": "object",
+                        "description": "Summary income of particular category",
+                        "example": {
+                            "Другое": {
+                                "value": 10000,
+                                "color": "rgba(255,255,255,1)"
+                            },
+                            "Дом": {
+                                "value": 20600,
+                                "color": "rgba(255,255,0,1)"
+                            }
+                        }
+                    }
+                }
             }
         },
         "securitySchemes": {
-            "Bearer":{
+            "Bearer": {
                 "type": "http",
                 "scheme": "bearer",
                 "bearerFormat": "JWT"

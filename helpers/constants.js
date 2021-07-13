@@ -44,9 +44,11 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
 const TO_CONVERT_TIME = function (time) {
   const [year, month, day] = time.split("-").map(Number);
   return {
-    time: new Date(year, month, day),
-    month,
-    year,
+    time: {
+      date: new Date(year, month, day),
+      month,
+      year,
+    },
   };
 };
 

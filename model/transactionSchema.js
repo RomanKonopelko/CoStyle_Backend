@@ -18,11 +18,9 @@ const transactionSchema = new Schema(
     },
     time: {
       type: Object,
-      required: true,
-      properties: {},
+      required: [true, "Time is required"],
     },
-    month: { type: String },
-    year: { type: String },
+
     color: {
       type: String,
       default: function () {

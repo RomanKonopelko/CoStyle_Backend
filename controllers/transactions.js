@@ -11,9 +11,8 @@ const {
   GET_BALANCE_AMOUNT,
 } = require("../helpers/constants");
 
-const { OK, NOT_FOUND, CREATED } = HTTP_CODES;
-const { NOT_FOUND_MSG, SUCCESS, DELETED, MISSING_FIELDS, ERROR, TRANSACTION_CREATED } =
-  HTTP_MESSAGES;
+const { OK, CREATED } = HTTP_CODES;
+const { SUCCESS, TRANSACTION_CREATED } = HTTP_MESSAGES;
 const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 
 const getAllTransactions = async (req, res, next) => {
@@ -43,7 +42,7 @@ const addTransaction = async (req, res, next) => {
 
     const convertedTime = await TO_CONVERT_TIME(time);
     const balance = await GET_BALANCE_AMOUNT(sort, amount, balanceValue);
-    const transaction = await Transaction.addTransaction(userId, req.body, balance, convertedTime);
+    const transaction = await Transaction.addTransaction(userId, req.body, convertedTime, balance);
 
     await updateBalance(userId, balance);
 

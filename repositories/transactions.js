@@ -1,11 +1,26 @@
 const Transaction = require("../model/transactionSchema");
 
 const getAllTransactions = async (userId, query, options) => {
-  const { pagination } = options;
-  const { sortBy, sortByDesc, month = null, year = null, limit = 5, offset = 0 } = query;
-  const optionSearch = { owner: userId };
-  if (month !== null) optionSearch.time.month = month;
-  if (year !== null) optionSearch.time.year = year;
+  const { pagination = true } = options;
+  const {
+    sortBy,
+    sortByDesc = "createdAt",
+    month = null,
+    year = null,
+    limit = 5,
+    offset = 0,
+  } = query;
+  const optionSearch = {
+    owner: userId,
+  };
+  if (month !== null) {
+    Object.assign(optionSearch, { "time.month": month });
+  }
+  if (year !== null) {
+    Object.assign(optionSearch, { "time.year": year });
+  }
+
+  console.log(optionSearch);
 
   const result = await Transaction.paginate(optionSearch, {
     pagination,
@@ -17,6 +32,7 @@ const getAllTransactions = async (userId, query, options) => {
     },
     populate: { path: "owner", select: "balanceValue -_id" },
   });
+  console.log(result);
   return result;
 };
 

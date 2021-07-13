@@ -45,9 +45,9 @@ const TO_CONVERT_TIME = function (time) {
   const [year, month, day] = time.split("-").map(Number);
   return {
     time: {
-      date: new Date(year, month, day),
-      month,
-      year,
+      date: new Date(year, month - 1, day),
+      month: month + "",
+      year: year + "",
     },
   };
 };

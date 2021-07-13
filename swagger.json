@@ -12,7 +12,7 @@
     "servers": [
         {
             "url": "/",
-            "description": "Local Dev, or from Heroku"
+            "description": "heroku hosting"
         }
     ],
     "tags": [
@@ -244,13 +244,13 @@
                     {
                         "in": "query",
                         "name": "month",
-                        "type": "integer",
+                        "type": "string",
                         "description": "transaction's month"
                     },
                     {
                         "in": "query",
                         "name": "year",
-                        "type": "integer",
+                        "type": "string",
                         "description": "transaction's year"
                     }
                 ],
@@ -287,19 +287,25 @@
                             "example": "Дом"
                         },
                         "time": {
-                            "type": "string",
+                            "type": "object",
                             "description": "Timestamp of a made transaction",
-                            "example": "10.07.21"
-                        },
-                        "month": {
-                            "type": "string",
-                            "description": "Month of a made transaction",
-                            "example": "10"
-                        },
-                        "year": {
-                            "type": "string",
-                            "description": "Year of a made transaction",
-                            "example": "2020"
+                            "properties": {
+                                "date": {
+                                    "type": "object",
+                                    "description": "Data object",
+                                    "example": "2021-11-09T22:00:00.000Z"
+                                },
+                                "month": {
+                                    "type": "string",
+                                    "description": "Parsed data month",
+                                    "example": "11"
+                                },
+                                "year": {
+                                    "type": "string",
+                                    "description": "Parsed data year",
+                                    "example": "2021"
+                                }
+                            }
                         },
                         "amount": {
                             "type": "integer",
@@ -339,9 +345,11 @@
                             {
                                 "amount": 100,
                                 "category": "Дом",
-                                "time": "13.10.21",
-                                "month": "10",
-                                "year": "2021",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -361,9 +369,11 @@
                             {
                                 "amount": 9999,
                                 "category": "Другое",
-                                "time": "13.10.21",
-                                 "month": "10",
-                                "year": "2021",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -383,9 +393,11 @@
                             {
                                 "amount": 1000,
                                 "category": "Образование",
-                                "time": "13.10.21",
-                                 "month": "10",
-                                "year": "2021",
+                                "time": {
+                                    "date": "2021-11-09T22:00:00.000Z",
+                                    "month": "11",
+                                    "year": "2021"
+                                },
                                 "sort": "доход",
                                 "color": "rgba(255,255,255,1)",
                                 "balance": 10000,
@@ -452,19 +464,25 @@
                         "example": "rgb(255,255,255)"
                     },
                     "time": {
-                        "type": "string",
+                        "type": "object",
                         "description": "Timestamp of a made transaction",
-                        "example": "10.07.21"
-                    },
-                    "month": {
-                        "type": "string",
-                        "description": "Month of a made transaction",
-                        "example": "10"
-                    },
-                    "year": {
-                        "type": "string",
-                        "description": "Year of a made transaction",
-                        "example": "2020"
+                        "properties": {
+                            "date": {
+                                "type": "object",
+                                "description": "Data object",
+                                "example": "2021-11-09T22:00:00.000Z"
+                            },
+                            "month": {
+                                "type": "string",
+                                "description": "Parsed data month",
+                                "example": "11"
+                            },
+                            "year": {
+                                "type": "string",
+                                "description": "Parsed data year",
+                                "example": "2021"
+                            }
+                        }
                     },
                     "balance": {
                         "type": "integer",

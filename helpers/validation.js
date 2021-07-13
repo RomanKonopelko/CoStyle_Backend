@@ -9,15 +9,17 @@ const schemaCreateTransaction = Joi.object({
   amount: Joi.number().min(0).max(1000000).required(),
   sort: Joi.string().required(),
   category: Joi.string().when("sort", { is: "Расход", then: Joi.string().required() }),
-  commentary: Joi.string().min(0).max(50),
+  commentary: Joi.string().trim().min(0).max(50),
 });
 
 const schemaCreateUser = Joi.object({
-  name: Joi.string().alphanum().min(1).max(12).required(),
+  name: Joi.string().trim().alphanum().min(1).max(12).required(),
   email: Joi.string()
+    .trim()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required(),
   password: JoiPasswordComplexity.string()
+    .trim()
     .min(6)
     .max(12)
     .minOfSpecialCharacters(1)
@@ -31,10 +33,6 @@ const schemaCreateUser = Joi.object({
       "password.minOfNumeric": "Password must contain at least one of 0-9",
     }),
 });
-
-const isIdValid = (id) => {
-  return mangoose.isValidObjectId(id);
-};
 
 const toValidate = async (schema, obj, next) => {
   try {

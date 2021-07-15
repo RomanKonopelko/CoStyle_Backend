@@ -3,7 +3,6 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const {
   TRANSACTION_CATEGORIES,
   TRANSACTION_SORTS,
-  GET_CATEGORY_COLOR,
 } = require("../helpers/constants");
 
 const { GET_CATEGORY_COLOR } = require("../helpers/functions");

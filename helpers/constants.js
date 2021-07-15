@@ -23,6 +23,8 @@ const TRANSACTION_SORTS = {
   consuption: "Расход",
 };
 
+const RATE_LIMIT = 10000;
+
 const HTTP_CODES = {
   OK: 200,
   NOT_FOUND: 404,
@@ -39,9 +41,12 @@ const HTTP_CODES = {
 const HTTP_MESSAGES = {
   INVALID_CREDENTIALS: "Invalid credentials",
   ERROR: "Error",
+  FAIL: "Fail",
   NOT_FOUND_MSG: "Not found",
   SUCCESS: "Success",
-  DELETED: "deleted successfully!",
+  BLACKLISTED_TOKEN: "Token is located in blacklist!",
+  INVALID_REQUEST: "Invalid request. Token is not valid",
+  INVALID_SESSION: "Your session is not valid!",
   MISSING_FIELDS: "Missing required fields",
   EMAIL_IS_USED: "This email is already in use!",
   TOO_MANY_REQUESTS_MSG: "Too many requests. Please, try again later!",
@@ -65,5 +70,6 @@ module.exports = {
   TRANSACTION_CATEGORIES,
   HTTP_MESSAGES,
   HTTP_CODES,
+  RATE_LIMIT,
   APIlimiter,
 };

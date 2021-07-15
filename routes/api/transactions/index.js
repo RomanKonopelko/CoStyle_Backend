@@ -1,11 +1,11 @@
 const express = require("express");
-const guard = require("../../../helpers/guard");
+const guard = require("../../../middlewares/guard");
 const {
   getAllTransactions,
   addTransaction,
   getTransactionStatistic,
 } = require("../../../controllers/transactions");
-const { validatedNewTransaction } = require("../../../helpers/validation");
+const { validatedNewTransaction } = require("../../../middlewares/validation");
 
 const router = express.Router();
 

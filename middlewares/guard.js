@@ -10,8 +10,12 @@ const guard = (req, res, next) => {
     const headerAuth = req.get("Authorization");
     let token = null;
     if (headerAuth) {
+      console.log(headerAuth);
       token = headerAuth.split(" ")[1];
     }
+    console.log(user, "user");
+    console.log(token);
+
     if (err || !user || token !== user?.token) {
       return res.status(UNAUTHORIZED).json({
         status: ERROR,

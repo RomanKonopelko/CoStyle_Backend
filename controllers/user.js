@@ -19,15 +19,15 @@ const registerUser = async (req, res, next) => {
     }
 
     const { id, email, name, balanceValue } = await User.create(req.body);
-    const payload = { id };
-    const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
-      expiresIn: JWT_ACCESS_TIME,
-    });
+    // const payload = { id };
+    // const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
+    //   expiresIn: JWT_ACCESS_TIME,
+    // });
 
-    await User.updateToken(id, token);
+    // await User.updateToken(id, token);
     return res
       .status(CREATED)
-      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, balanceValue, token } });
+      .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, balanceValue } });
   } catch (error) {
     next(error);
   }
@@ -44,8 +44,8 @@ const loginUser = async (req, res, next) => {
     }
     const { name, id, email } = user;
     const payload = { id };
-    const token = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-      expiresIn: process.env.JWT_ACCESS_TIME,
+    const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
+      expiresIn: JWT_ACCESS_TIME,
     });
     const refreshToken = await GENERATE_REFRESH_TOKEN(id);
     await User.updateToken(id, token);

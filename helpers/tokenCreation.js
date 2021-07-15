@@ -1,14 +1,18 @@
 const redisClient = require("../model/redis");
 const jwt = require("jsonwebtoken");
 
-const GET_ACCESS_TOKEN = function async(req, res) {
-  const { id } = req.user;
-  const payload = { id };
-  const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: process.env.JWT_ACCESS_TIME,
-  });
-  const refreshToken = GENERATE_REFRESH_TOKEN(id);
-  return res.json({ status: true, message: "success", data: { accessToken, refreshToken } });
+const GET_ACCESS_TOKEN = async (req, res, next) => {
+  try {
+    const { id } = req.userData;
+    const payload = { id };
+    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
+      expiresIn: process.env.JWT_ACCESS_TIME,
+    });
+    const refreshToken = GENERATE_REFRESH_TOKEN(id);
+    return res.json({ status: true, message: "success", data: { accessToken, refreshToken } });
+  } catch (err) {
+    next(err);
+  }
 };
 
 const GENERATE_REFRESH_TOKEN = function async(id) {

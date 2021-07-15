@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/register", validatedNewUser, registerUser);
 router.post("/login", loginUser);
 router.post("/logout", guard, verifyToken, logoutUser);
-router.post("/token", guard, verifyRefreshToken, GET_ACCESS_TOKEN);
-router.get("/current", getCurrentUserData);
+router.post("/token",verifyRefreshToken, GET_ACCESS_TOKEN);
+router.get("/current", guard, getCurrentUserData);
 
 module.exports = router;

@@ -1,57 +1,3 @@
-const GET_CATEGORY_COLOR = function (arr, category) {
-  if (!category) return null;
-  const color = arr.find((e) => e[1].title === category)[1].color;
-  return color;
-};
-
-const GET_INCOME_AMOUNT = function (arr) {
-  const incomeArr = arr.filter((e) => e.sort === "Доход").map((e) => e.amount);
-  const summaryValue = incomeArr.reduce((acc, value) => acc + value, 0);
-  return summaryValue;
-};
-
-const GET_CONSUMPTION_AMOUNT = function (arr) {
-  const consumptionArr = arr.filter((e) => e.sort === "Расход").map((e) => e.amount);
-  const summaryValue = consumptionArr.reduce((acc, value) => acc + value, 0);
-  return summaryValue;
-};
-
-const GET_CATEGORY_AMOUNT = function (arr, categories) {
-  const incomeArr = arr.filter((e) => e.sort === "Расход");
-  const amountObj = incomeArr.reduce((acc, value) => {
-    return (
-      acc[value.category]
-        ? (acc[value.category] = {
-            value: (acc[value.category].value += value.amount),
-            color: acc[value.category].color,
-          })
-        : (acc[value.category] = {
-            value: value.amount,
-            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))[1]
-              .color,
-          }),
-      acc
-    );
-  }, {});
-  return amountObj;
-};
-
-const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
-  balance = sort === "Доход" ? (balance += amount) : (balance -= amount);
-  return { balance };
-};
-
-const TO_CONVERT_TIME = function (time) {
-  const [year, month, day] = time.split("-").map(Number);
-  return {
-    time: {
-      date: new Date(year, month - 1, day),
-      month: month + "",
-      year: year + "",
-    },
-  };
-};
-
 const TRANSACTION_CATEGORIES = {
   main: {
     title: "Основные",
@@ -77,6 +23,8 @@ const TRANSACTION_SORTS = {
   consuption: "Расход",
 };
 
+const RATE_LIMIT = 10000;
+
 const HTTP_CODES = {
   OK: 200,
   NOT_FOUND: 404,
@@ -93,24 +41,35 @@ const HTTP_CODES = {
 const HTTP_MESSAGES = {
   INVALID_CREDENTIALS: "Invalid credentials",
   ERROR: "Error",
+  FAIL: "Fail",
   NOT_FOUND_MSG: "Not found",
   SUCCESS: "Success",
-  DELETED: "deleted successfully!",
+  BLACKLISTED_TOKEN: "Token is located in blacklist!",
+  INVALID_REQUEST: "Invalid request. Token is not valid",
+  INVALID_SESSION: "Your session is not valid!",
   MISSING_FIELDS: "Missing required fields",
   EMAIL_IS_USED: "This email is already in use!",
   TOO_MANY_REQUESTS_MSG: "Too many requests. Please, try again later!",
   TRANSACTION_CREATED: "Transaction has been created!",
 };
 
+const APIlimiter = {
+  windowsMs: 15 * 60 * 1000,
+  max: 1000,
+  handler: (req, res, next) => {
+    return res.status(HTTP_CODES.UNAUTHORIZED).json({
+      status: HTTP_MESSAGES.ERROR,
+      code: HTTP_CODES.TOO_MANY_REQUESTS,
+      message: HTTP_MESSAGES.TOO_MANY_REQUESTS_MSG,
+    });
+  },
+};
+
 module.exports = {
-  GET_INCOME_AMOUNT,
-  GET_CONSUMPTION_AMOUNT,
-  GET_CATEGORY_AMOUNT,
   TRANSACTION_SORTS,
   TRANSACTION_CATEGORIES,
   HTTP_MESSAGES,
   HTTP_CODES,
-  GET_CATEGORY_COLOR,
-  GET_BALANCE_AMOUNT,
-  TO_CONVERT_TIME,
+  RATE_LIMIT,
+  APIlimiter,
 };

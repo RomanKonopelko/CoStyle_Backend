@@ -3,8 +3,9 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const {
   TRANSACTION_CATEGORIES,
   TRANSACTION_SORTS,
-  GET_CATEGORY_COLOR,
 } = require("../helpers/constants");
+
+const { GET_CATEGORY_COLOR } = require("../helpers/functions");
 
 const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);

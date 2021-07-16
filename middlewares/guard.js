@@ -8,12 +8,12 @@ const { INVALID_CREDENTIALS } = HTTP_MESSAGES;
 const guard = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user) => {
     const headerAuth = req.get("Authorization");
-    console.log(user);
+    console.log(user.token);
     let token = null;
     if (headerAuth) {
       token = headerAuth.split(" ")[1];
     }
-    console.log(user, "user");
+    console.log(token);
 
     if (err || !user || token !== user?.token) {
       return res.status(UNAUTHORIZED).json({

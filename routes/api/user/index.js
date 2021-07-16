@@ -10,9 +10,13 @@ const { registerUser, loginUser, logoutUser, getCurrentUserData } = ctrl;
 const router = express.Router();
 
 router.post("/register", validatedNewUser, registerUser);
+
 router.post("/login", loginUser);
+
 router.post("/logout", guard, verifyToken, logoutUser);
-router.post("/token",verifyRefreshToken, GET_ACCESS_TOKEN);
-router.get("/current", guard, getCurrentUserData);
+
+router.post("/token", verifyRefreshToken, GET_ACCESS_TOKEN);
+
+router.get("/current", guard, verifyToken, getCurrentUserData);
 
 module.exports = router;

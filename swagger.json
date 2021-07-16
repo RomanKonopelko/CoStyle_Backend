@@ -124,6 +124,35 @@
                 }
             }
         },
+        "/api/users/token": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Getting user's new pair of tokens",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's new tokens are sent!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNewPairOfTokens"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid request. Token is not valid"
+                    }
+                }
+            }
+        },
         "/api/users/logout": {
             "post": {
                 "tags": [
@@ -579,7 +608,8 @@
                     "status": "Success",
                     "code": 200,
                     "payload": {
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk",
+                        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTgreTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
                     }
                 }
             },
@@ -655,6 +685,17 @@
                                 "color": "rgba(255,255,0,1)"
                             }
                         }
+                    }
+                }
+            },
+            "GetNewPairOfTokens": {
+                "type": "object",
+                "example": {
+                    "status": "Success",
+                    "code": 200,
+                    "payload": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTU1NTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk",
+                        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJkNzlkYjBlNTVhM2I3Y2UzMjlhMSIsImlhdCI6MTYyNTgreTY5OCwiZXhwIjoxNjI1NTYyODk4fQ.lPTy3jIUye4GxAeGGOr6uDm35MfrH_AjmFg2sAH7rFk"
                     }
                 }
             }

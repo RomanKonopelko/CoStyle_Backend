@@ -19,12 +19,12 @@ const registerUser = async (req, res, next) => {
     }
 
     const { id, email, name, balanceValue } = await User.create(req.body);
-    // const payload = { id };
-    // const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
-    //   expiresIn: JWT_ACCESS_TIME,
-    // });
+    const payload = { id };
+    const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
+      expiresIn: JWT_ACCESS_TIME,
+    });
 
-    // await User.updateToken(id, token);
+    await User.updateToken(id, token);
     return res
       .status(CREATED)
       .json({ status: SUCCESS, code: CREATED, payload: { id, email, name, balanceValue } });
@@ -60,8 +60,9 @@ const logoutUser = async (req, res, next) => {
     const id = req.user.id;
     const token = req.token;
     await User.updateToken(id, null);
-    await redisClient.del(id.toString());
-    await redisClient.set("BlackList" + id.toString(), token);
+    await redisClient.del(id);
+    await redisClient.set("BlackList_" + id, token);
+
     return res.status(NO_CONTENT).json({});
   } catch (error) {
     next(error);

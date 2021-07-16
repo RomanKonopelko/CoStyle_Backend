@@ -5,14 +5,16 @@ const {
   addTransaction,
   getTransactionStatistic,
 } = require("../../../controllers/transactions");
+
 const { validatedNewTransaction } = require("../../../middlewares/validation");
+const { verifyToken } = require("../../../middlewares/auth.tokenValidation");
 
 const router = express.Router();
 
-router.get("/", guard, getAllTransactions);
+router.get("/", guard, verifyToken, getAllTransactions);
 
-router.post("/", guard, validatedNewTransaction, addTransaction);
+router.post("/", guard, verifyToken, validatedNewTransaction, addTransaction);
 
-router.get("/statistic", guard, getTransactionStatistic);
+router.get("/statistic", guard, verifyToken, getTransactionStatistic);
 
 module.exports = router;

@@ -1,15 +1,24 @@
 const redisClient = require("../model/redis");
 const jwt = require("jsonwebtoken");
+const User = require("../repositories/user");
+const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
+
+const { OK } = HTTP_CODES;
+const { SUCCESS } = HTTP_MESSAGES;
 
 const GET_ACCESS_TOKEN = async (req, res, next) => {
   try {
     const { id } = req.userData;
     const payload = { id };
-    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
+
+    const token = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
       expiresIn: process.env.JWT_ACCESS_TIME,
     });
+
     const refreshToken = GENERATE_REFRESH_TOKEN(id);
-    return res.json({ status: true, message: "success", data: { accessToken, refreshToken } });
+    await User.updateToken(id, token);
+
+    return res.json({ status: OK, message: SUCCESS, payload: { token, refreshToken } });
   } catch (err) {
     next(err);
   }
@@ -21,11 +30,7 @@ const GENERATE_REFRESH_TOKEN = function async(id) {
     expiresIn: process.env.JWT_REFRESH_TIME,
   });
 
-  redisClient.get(id.toString(), (err, data) => {
-    if (err) throw err;
-
-    redisClient.set(id.toString(), JSON.stringify({ refreshToken }));
-  });
+  redisClient.set(id, JSON.stringify({ token: refreshToken }));
 
   return refreshToken;
 };

@@ -15,7 +15,7 @@ router.post("/login", loginUser);
 
 router.post("/logout", guard, verifyToken, logoutUser);
 
-router.post("/token", verifyRefreshToken, GET_ACCESS_TOKEN);
+router.get("/token", verifyRefreshToken, GET_ACCESS_TOKEN);
 
 router.get("/current", guard, verifyToken, getCurrentUserData);
 

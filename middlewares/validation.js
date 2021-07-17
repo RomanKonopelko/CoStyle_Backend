@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const mangoose = require("mongoose");
 const { JoiPasswordComplexity } = require("joi-password");
 
 const schemaCreateTransaction = Joi.object({

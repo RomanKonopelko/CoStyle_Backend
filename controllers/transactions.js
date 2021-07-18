@@ -94,10 +94,19 @@ const removeTransaction = async (req, res, next) => {
 const updateTransaction = async (req, res, next) => {
   try {
     const userId = req.user.id;
+    const { balanceValue } = req.user;
+
     if (req.body.time) {
       const convertedTime = TO_CONVERT_TIME(req.body.time);
       req.body.time = convertedTime;
     }
+
+    if (req.body.amount) {
+      const balance = await GET_BALANCE_AMOUNT(req.body.sort, req.body.amount, balanceValue);
+      req.body.balance = balance;
+      await updateBalance(userId, balance);
+    }
+
     const transaction = await Transaction.updateTransaction(
       userId,
       req.params.transactionId,

@@ -42,6 +42,7 @@ const HTTP_MESSAGES = {
   INVALID_CREDENTIALS: "Invalid credentials",
   ERROR: "Error",
   FAIL: "Fail",
+  DELETED: "Transaction has been deleted!",
   NOT_FOUND_MSG: "Not found",
   SUCCESS: "Success",
   RESUBMITTED: "Resubmitted successfully!",

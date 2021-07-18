@@ -13,7 +13,6 @@ const guard = (req, res, next) => {
     if (headerAuth) {
       token = headerAuth.split(" ")[1];
     }
-    console.log(token);
 
     if (err || !user || token !== user?.token) {
       return res.status(UNAUTHORIZED).json({

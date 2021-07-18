@@ -1,18 +1,21 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
+const { EMAIL_PASSWORD, EMAIL_LOGIN } = process.env;
+
 class CreateSenderNodemailer {
   async send(msg) {
     const config = {
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
       secure: true,
       auth: {
-        user: "romankstudio@gmail.com",
-        pass: process.env.EMAIL_PASSWORD,
+        user: EMAIL_LOGIN,
+        pass: EMAIL_PASSWORD,
       },
     };
     const transporter = nodemailer.createTransport(config);
-    return transporter.sendMail({ ...msg, from: "CoStyle Studio <romankstudio@gmail.com>" });
+    return transporter.sendMail({ ...msg, from: `CoStyle Studio <${EMAIL_LOGIN}>` });
   }
 }
 

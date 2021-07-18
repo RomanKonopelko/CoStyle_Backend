@@ -59,6 +59,7 @@ const TO_CONVERT_TIME = function (time) {
 
 const VERIFY_TOKEN = async (req, res, next) => {
   try {
+    console.log(req.params);
     const user = await findByVerifyToken(req.params.token);
     if (user) {
       await updateVerifyToken(user.id, true, null);

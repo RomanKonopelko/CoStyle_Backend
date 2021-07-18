@@ -1,21 +1,24 @@
 const Mailgen = require("mailgen");
 const ngrok = require("ngrok");
+
 require("dotenv").config();
+
+const { DEVELOPE_URL, PRODUCTION_URL } = process.env;
 
 class EmailService {
   constructor(env, sender) {
     this.sender = sender;
     switch (env) {
       case "development":
-        this.link = ngrok.connect(3000);
+        this.link = DEVELOPE_URL;
         break;
 
       case "production":
-        this.link = "link for production";
+        this.link = PRODUCTION_URL;
         break;
 
       default:
-        this.link = ngrok.connect(3000);
+        this.link = DEVELOPE_URL;
         break;
     }
   }
@@ -36,7 +39,7 @@ class EmailService {
           button: {
             color: "#22BC66",
             text: "Confirm your account",
-            link: `${this.link}/api/users/verify${verifyToken}`,
+            link: `${this.link}/api/users/verify/${verifyToken}`,
           },
         },
         outro: "Need help, or have questions? Please do not hesitate and just reply to this email!",

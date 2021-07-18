@@ -10,8 +10,9 @@ const {
   GET_BALANCE_AMOUNT,
 } = require("../helpers/functions");
 
-const { OK, CREATED } = HTTP_CODES;
-const { SUCCESS, TRANSACTION_CREATED } = HTTP_MESSAGES;
+const { OK, CREATED, NOT_FOUND } = HTTP_CODES;
+const { SUCCESS, TRANSACTION_CREATED, DELETED, MISSING_FIELDS, ERROR, NOT_FOUND_MSG } =
+  HTTP_MESSAGES;
 const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 
 const getAllTransactions = async (req, res, next) => {
@@ -75,4 +76,52 @@ const getTransactionStatistic = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllTransactions, addTransaction, getTransactionStatistic };
+const removeTransaction = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const transaction = await Transaction.removeTransaction(userId, req.params.transactionId);
+    if (transaction) {
+      return res
+        .status(OK)
+        .json({ status: SUCCESS, code: OK, message: DELETED, payload: { transaction } });
+    }
+    return res.json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateTransaction = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    if (req.body.time) {
+      const convertedTime = TO_CONVERT_TIME(req.body.time);
+      req.body.time = convertedTime;
+    }
+    const transaction = await Transaction.updateTransaction(
+      userId,
+      req.params.transactionId,
+      req.body
+    );
+
+    if (Object.keys(req.body).length === 0)
+      return res
+        .status(NOT_FOUND)
+        .json({ status: ERROR, code: NOT_FOUND, message: MISSING_FIELDS });
+
+    if (transaction)
+      return res.status(CREATED).json({ status: SUCCESS, code: CREATED, payload: { transaction } });
+
+    return res.json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllTransactions,
+  addTransaction,
+  getTransactionStatistic,
+  removeTransaction,
+  updateTransaction,
+};

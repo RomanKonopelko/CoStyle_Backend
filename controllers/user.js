@@ -44,7 +44,7 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const user = await User.findByEmail(req.body.email);
-    if (!user) {
+    if (!user || !user.isVerified) {
       return res
         .status(UNAUTHORIZED)
         .json({ status: ERROR, code: CONFLICT, message: INVALID_CREDENTIALS });

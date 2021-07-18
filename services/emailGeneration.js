@@ -1,5 +1,4 @@
 const Mailgen = require("mailgen");
-const ngrok = require("ngrok");
 
 require("dotenv").config();
 

@@ -10,6 +10,9 @@ const GET_ACCESS_TOKEN = async (req, res, next) => {
   try {
     const { id } = req.userData;
     const payload = { id };
+    const usedToken = req.headers.authorization.split(" ")[1];
+
+    redisClient.set("Blacklist_" + id, usedToken);
 
     const token = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
       expiresIn: process.env.JWT_ACCESS_TIME,

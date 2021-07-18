@@ -237,6 +237,91 @@
                 }
             }
         },
+        "/api/transactions/:transactionId": {
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Delete transaction operation",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "name": "transactionId",
+                        "type": "string",
+                        "description": "transaction's id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction has been deleted!",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddTransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Transaction not found",
+                        "content": {}
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Update transaction of a particular user",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "name": "transactionId",
+                        "type": "string",
+                        "description": "transaction's id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Add transaction update object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddTransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfull transaction data update!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddTransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Transaction not found or missing fields",
+                        "content": {}
+                    }
+                }
+            }
+        },
         "/api/transactions/statistic": {
             "get": {
                 "tags": [

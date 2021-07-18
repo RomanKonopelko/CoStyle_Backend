@@ -1,14 +1,21 @@
 const Joi = require("joi");
 const mangoose = require("mongoose");
 const { JoiPasswordComplexity } = require("joi-password");
+const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
 
 const schemaCreateTransaction = Joi.object({
   time: Joi.string().required(),
-  month: Joi.string(),
-  year: Joi.string(),
   amount: Joi.number().min(0).max(1000000).required(),
   sort: Joi.string().required(),
   category: Joi.string().when("sort", { is: "Расход", then: Joi.string().required() }),
+  commentary: Joi.string().trim().min(0).max(50),
+});
+
+const schemaUpdateTransaction = Joi.object({
+  time: Joi.string().optional(),
+  amount: Joi.number().min(0).max(1000000).optional(),
+  sort: Joi.string().optional(),
+  category: Joi.string().when("sort", { is: "Расход", then: Joi.string().optional() }),
   commentary: Joi.string().trim().min(0).max(50),
 });
 
@@ -27,10 +34,9 @@ const schemaCreateUser = Joi.object({
     .minOfNumeric(1)
     .required()
     .messages({
-      "password.minOfUppercase": "Password must contain at least one of A-Z characters",
-      "password.minOfSpecialCharacters":
-        "Password must containt at least one of a special character",
-      "password.minOfNumeric": "Password must contain at least one of 0-9",
+      "password.minOfUppercase": "Пароль должен иметь минимум один A-Z символ",
+      "password.minOfSpecialCharacters": "Пароль должен иметь минимум олин спец.символ",
+      "password.minOfNumeric": "Пароль должен иметь минимум одну 0-9 цифру",
     }),
 });
 
@@ -46,11 +52,27 @@ const toValidate = async (schema, obj, next) => {
   }
 };
 
+const isIdValid = (id) => {
+  return mangoose.isValidObjectId(id);
+};
+
 module.exports = {
   validatedNewTransaction: (req, res, next) => {
     return toValidate(schemaCreateTransaction, req.body, next);
   },
   validatedNewUser: (req, res, next) => {
     return toValidate(schemaCreateUser, req.body, next);
+  },
+  validatedTransactionId: (req, res, next) => {
+    if (!isIdValid(req.params.transactionId)) {
+      return next({
+        status: 400,
+        message: "invalid ID",
+      });
+    }
+    next();
+  },
+  validatedUpdateTransaction: (req, res, next) => {
+    return toValidate(schemaUpdateTransaction, req.body, next);
   },
 };

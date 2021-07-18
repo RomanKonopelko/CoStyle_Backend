@@ -4,17 +4,32 @@ const {
   getAllTransactions,
   addTransaction,
   getTransactionStatistic,
+  removeTransaction,
+  updateTransaction,
 } = require("../../../controllers/transactions");
 
-const { validatedNewTransaction } = require("../../../middlewares/validation");
-const { verifyToken } = require("../../../middlewares/auth.tokenValidation");
+const {
+  validatedNewTransaction,
+  validatedUpdateTransaction,
+  validatedTransactionId,
+} = require("../../../middlewares/validation");
 
 const router = express.Router();
 
-router.get("/", guard, verifyToken, getAllTransactions);
+router.get("/", guard, getAllTransactions);
 
-router.post("/", guard, verifyToken, validatedNewTransaction, addTransaction);
+router.post("/", guard, validatedNewTransaction, addTransaction);
 
-router.get("/statistic", guard, verifyToken, getTransactionStatistic);
+router.get("/statistic", guard, getTransactionStatistic);
+
+router.delete("/:transactionId", guard, validatedTransactionId, removeTransaction);
+
+router.put(
+  "/:transactionId",
+  guard,
+  validatedTransactionId,
+  validatedUpdateTransaction,
+  updateTransaction
+);
 
 module.exports = router;

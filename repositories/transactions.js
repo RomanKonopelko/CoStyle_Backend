@@ -39,4 +39,32 @@ const addTransaction = async (userId, body, convertedTime, balance) => {
   return result;
 };
 
-module.exports = { getAllTransactions, addTransaction };
+const getTransactionById = async (userId, id) => {
+  const result = await Contact.findOne({ _id: id, owner: userId }).populate({
+    path: "owner",
+    select: "balanceValue -_id",
+  });
+  return result;
+};
+
+const removeTransaction = async (userId, id) => {
+  const result = await Transaction.findOneAndRemove({ _id: id, owner: userId });
+  return result;
+};
+
+const updateTransaction = async (userId, id, body) => {
+  const result = await Transaction.findOneAndUpdate(
+    { _id: id, owner: userId },
+    { ...body },
+    { new: true }
+  );
+  return result;
+};
+
+module.exports = {
+  getAllTransactions,
+  addTransaction,
+  removeTransaction,
+  updateTransaction,
+  getTransactionById,
+};

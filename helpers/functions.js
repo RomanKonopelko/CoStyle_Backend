@@ -1,3 +1,8 @@
+const { HTTP_CODES, HTTP_MESSAGES } = require("./constants");
+const { OK, BAD_REQUEST, CONFLICT } = HTTP_CODES;
+const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
+const { findByVerifyToken, updateVerifyToken } = require("../repositories/user");
+
 const GET_CATEGORY_COLOR = function (arr, category) {
   if (!category) return null;
   const color = arr.find((e) => e[1].title === category)[1].color;
@@ -52,6 +57,53 @@ const TO_CONVERT_TIME = function (time) {
   };
 };
 
+const VERIFY_TOKEN = async (req, res, next) => {
+  try {
+    const user = await findByVerifyToken(req.params.token);
+    if (user) {
+      await updateVerifyToken(user.id, true, null);
+      return res.json({ status: SUCCESS, code: OK, data: { message: SUCCESS } });
+    }
+    return res.status(BAD_REQUEST).json({
+      status: ERROR,
+      code: BAD_REQUEST,
+      message: "Verification token is not valid",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const REPEAT_EMAIL_VERIFICATION = async (req, res, next) => {
+  try {
+    const user = await findByEmail(req.body.email);
+    if (user) {
+      const { name, email, isVerified, verifyToken } = user;
+      if (!isVerified) {
+        const emailService = new EmailService(process.env.NODE_ENV, new CreateSenderNodemailer());
+        await emailService.sendVerifyEmail(verifyToken, email, name);
+        return res.json({
+          status: SUCCESS,
+          code: OK,
+          message: RESUBMITTED,
+        });
+      }
+      return res.status(CONFLICT).json({
+        status: ERROR,
+        code: CONFLICT,
+        message: EMAIL_IS_VERIFIED,
+      });
+    }
+    return res.status(HTTP_CODES.NOT_FOUND).json({
+      status: ERROR,
+      code: HTTP_CODES.NOT_FOUND,
+      message: HTTP_MESSAGES.NOT_FOUND,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
@@ -59,4 +111,6 @@ module.exports = {
   GET_CATEGORY_COLOR,
   GET_BALANCE_AMOUNT,
   TO_CONVERT_TIME,
+  VERIFY_TOKEN,
+  REPEAT_EMAIL_VERIFICATION,
 };

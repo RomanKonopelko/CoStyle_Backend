@@ -4,8 +4,7 @@ require("dotenv").config();
 class CreateSenderNodemailer {
   async send(msg) {
     const config = {
-      host: "smtp.meta.ua",
-      port: 465,
+      service: "gmail",
       secure: true,
       auth: {
         user: "romankstudio@gmail.com",
@@ -13,10 +12,8 @@ class CreateSenderNodemailer {
       },
     };
     const transporter = nodemailer.createTransport(config);
-    return transporter.sendMail({ ...msg, from: "CoStyle Studio <romank761@gmail.com>" });
+    return transporter.sendMail({ ...msg, from: "CoStyle Studio <romankstudio@gmail.com>" });
   }
 }
 
-module.exports = {
-  CreateSenderNodemailer,
-};
+module.exports = CreateSenderNodemailer;

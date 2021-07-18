@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const SALT_WORK_FACTOR = 8;
+const { nanoid } = require("nanoid");
 
 const userSchema = new Schema({
   name: {
@@ -28,6 +29,15 @@ const userSchema = new Schema({
   token: {
     type: String,
     default: null,
+  },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verifyToken: {
+    type: String,
+    required: true,
+    default: nanoid(),
   },
 });
 

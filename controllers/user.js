@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const redisClient = require("../model/redis");
 const { GENERATE_REFRESH_TOKEN } = require("../helpers/tokenCreation");
 const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
+const EmailService = require("../services/emailGeneration");
+const CreateSenderNodemailer = require("../services/email-sender");
 
 require("dotenv").config();
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
@@ -14,11 +16,17 @@ const { CONFLICT, CREATED, OK, UNAUTHORIZED, NO_CONTENT } = HTTP_CODES;
 const registerUser = async (req, res, next) => {
   try {
     const user = await User.findByEmail(req.body.email);
+
     if (user) {
       return res.status(CONFLICT).json({ status: ERROR, code: CONFLICT, message: EMAIL_IS_USED });
     }
 
-    const { id, email, name, balanceValue } = await User.create(req.body);
+    const { id, email, name, balanceValue, verifyToken } = await User.create(req.body);
+
+    const emailService = new EmailService(process.env.NODE_ENV, new CreateSenderNodemailer());
+
+    await emailService.sendVerifyEmail(verifyToken, email, name);
+
     const payload = { id };
     const token = jwt.sign(payload, JWT_ACCESS_SECRET, {
       expiresIn: JWT_ACCESS_TIME,
@@ -36,8 +44,7 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const user = await User.findByEmail(req.body.email);
-    const isValidPassword = await user?.isValidPassword(req.body.password);
-    if (!user || !isValidPassword) {
+    if (!user) {
       return res
         .status(UNAUTHORIZED)
         .json({ status: ERROR, code: CONFLICT, message: INVALID_CREDENTIALS });

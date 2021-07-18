@@ -44,6 +44,8 @@ const HTTP_MESSAGES = {
   FAIL: "Fail",
   NOT_FOUND_MSG: "Not found",
   SUCCESS: "Success",
+  RESUBMITTED: "Resubmitted successfully!",
+  EMAIL_IS_VERIFIED: "Email has been verified",
   BLACKLISTED_TOKEN: "Token is located in blacklist!",
   INVALID_REQUEST: "Invalid request. Token is not valid",
   INVALID_SESSION: "Your session is not valid!",

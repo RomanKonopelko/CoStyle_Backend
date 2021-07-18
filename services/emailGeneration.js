@@ -1,4 +1,5 @@
 const Mailgen = require("mailgen");
+const ngrok = require("ngrok");
 require("dotenv").config();
 
 class EmailService {
@@ -6,7 +7,7 @@ class EmailService {
     this.sender = sender;
     switch (env) {
       case "development":
-        this.link = "http://localhost:3000";
+        this.link = ngrok.connect(3000);
         break;
 
       case "production":
@@ -14,16 +15,16 @@ class EmailService {
         break;
 
       default:
-        this.link = "http://localhost:3000";
+        this.link = ngrok.connect(3000);
         break;
     }
   }
   #createTemplateVerificationEmail(verifyToken, name) {
     const mailGenerator = new Mailgen({
-      theme: "default",
+      theme: "neopolitan",
       product: {
         name: "CoStyle Studio",
-        link: this.link, //better use ngrok service
+        link: this.link,
       },
     });
     const email = {
@@ -35,7 +36,7 @@ class EmailService {
           button: {
             color: "#22BC66",
             text: "Confirm your account",
-            link: `${this.link}/api/users/verify${verifyToken}`, //change localhost link to ingrok wrapper to avoid Spam warning
+            link: `${this.link}/api/users/verify${verifyToken}`,
           },
         },
         outro: "Need help, or have questions? Please do not hesitate and just reply to this email!",

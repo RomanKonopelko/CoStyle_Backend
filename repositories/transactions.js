@@ -58,6 +58,7 @@ const updateTransaction = async (userId, id, body) => {
     { ...body },
     { new: true }
   );
+  console.log(result, "result");
   return result;
 };
 

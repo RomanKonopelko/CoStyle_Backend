@@ -5,6 +5,7 @@ const { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } = require("../helper
 const {
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
+  UPDATE_TRANSACTIONS_BALANCE,
   GET_CATEGORY_AMOUNT,
   TO_CONVERT_TIME,
   GET_BALANCE_AMOUNT,
@@ -79,7 +80,20 @@ const getTransactionStatistic = async (req, res, next) => {
 const removeTransaction = async (req, res, next) => {
   try {
     const userId = req.user.id;
+    console.log(userId, "id");
+    const options = { pagination: false };
+    const { docs: transactions, ...rest } = await Transaction.getAllTransactions(
+      userId,
+      req.query,
+      options
+    );
     const transaction = await Transaction.removeTransaction(userId, req.params.transactionId);
+    const updatedTransactions = await UPDATE_TRANSACTIONS_BALANCE(transactions, transaction);
+    await updatedTransactions.forEach(async (el) => {
+      const { balance } = el;
+      console.log(balance, "balance");
+      return await Transaction.updateTransaction(userId, el.id, { balance });
+    });
     if (transaction) {
       return res
         .status(OK)

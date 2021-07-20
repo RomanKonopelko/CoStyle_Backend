@@ -49,10 +49,20 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
   return { balance };
 };
 
-const UPDATE_TRANSACTIONS_BALANCE = function (arr, time) {
-  const dataSelectedArr = arr.filter(
-    (el) => el.time.day >= time.day || el.time.month >= time.month || el.time.year >= time.year
-  );
+const UPDATE_TRANSACTIONS_BALANCE = function (arr, transaction) {
+  const dataSelectedArr = arr.filter((el) => {
+    el.time.day >= transaction.time.day ||
+      el.time.month >= transaction.time.month ||
+      el.time.year >= transaction.time.year;
+    return el;
+  });
+  const updatedBalanceArr = dataSelectedArr.map((el) => {
+    transaction.sort === "Доход"
+      ? (el.balance -= transaction.amount)
+      : (el.balance += transaction.amount);
+    return el;
+  });
+  return updatedBalanceArr;
 };
 
 const TO_CONVERT_TIME = function (time) {
@@ -123,4 +133,5 @@ module.exports = {
   TO_CONVERT_TIME,
   VERIFY_TOKEN,
   REPEAT_EMAIL_VERIFICATION,
+  UPDATE_TRANSACTIONS_BALANCE,
 };

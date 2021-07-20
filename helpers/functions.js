@@ -2,6 +2,9 @@ const { HTTP_CODES, HTTP_MESSAGES } = require("./constants");
 const { OK, BAD_REQUEST, CONFLICT } = HTTP_CODES;
 const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
 const { findByVerifyToken, updateVerifyToken } = require("../repositories/user");
+require("dotenv").config();
+
+const { NETLIFY_URL } = process.env;
 
 const GET_CATEGORY_COLOR = function (arr, category) {
   if (!category) return null;
@@ -46,6 +49,12 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
   return { balance };
 };
 
+const UPDATE_TRANSACTIONS_BALANCE = function (arr, time) {
+  const dataSelectedArr = arr.filter(
+    (el) => el.time.day >= time.day || el.time.month >= time.month || el.time.year >= time.year
+  );
+};
+
 const TO_CONVERT_TIME = function (time) {
   const [year, month, day] = time.split("-").map(Number);
   return {
@@ -63,7 +72,7 @@ const VERIFY_TOKEN = async (req, res, next) => {
     const user = await findByVerifyToken(req.params.token);
     if (user) {
       await updateVerifyToken(user.id, true, null);
-      return res.json({ status: SUCCESS, code: OK, data: { message: SUCCESS } });
+      return res.redirect(NETLIFY_URL);
     }
     return res.status(BAD_REQUEST).json({
       status: ERROR,

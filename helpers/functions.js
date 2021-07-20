@@ -49,6 +49,11 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
   return { balance };
 };
 
+const UPDATE_BALANCE_AMOUNT = function (sort, amount, balance) {
+  balance = sort === "Доход" ? (balance -= amount) : (balance += amount);
+  return { balance };
+};
+
 const UPDATE_TRANSACTIONS_BALANCE = function (arr, transaction) {
   const dataSelectedArr = arr.filter((el) => {
     el.time.day >= transaction.time.day ||
@@ -134,4 +139,5 @@ module.exports = {
   VERIFY_TOKEN,
   REPEAT_EMAIL_VERIFICATION,
   UPDATE_TRANSACTIONS_BALANCE,
+  UPDATE_BALANCE_AMOUNT,
 };

@@ -55,12 +55,9 @@ const UPDATE_BALANCE_AMOUNT = function (sort, amount, balance) {
 };
 
 const UPDATE_TRANSACTIONS_BALANCE = function (arr, transaction) {
-  const dataSelectedArr = arr.filter((el) => {
-    el.time.day >= transaction.time.day ||
-      el.time.month >= transaction.time.month ||
-      el.time.year >= transaction.time.year;
-    return el;
-  });
+  const dataSelectedArr = arr.filter((el) =>
+    el.time.date > transaction.time.date ? el : el.createdAt > transaction.createdAt
+  );
   const updatedBalanceArr = dataSelectedArr.map((el) => {
     transaction.sort === "Доход"
       ? (el.balance -= transaction.amount)
@@ -83,7 +80,6 @@ const TO_CONVERT_TIME = function (time) {
 
 const VERIFY_TOKEN = async (req, res, next) => {
   try {
-    console.log(req.params);
     const user = await findByVerifyToken(req.params.token);
     if (user) {
       await updateVerifyToken(user.id, true, null);

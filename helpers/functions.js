@@ -83,7 +83,7 @@ const VERIFY_TOKEN = async (req, res, next) => {
     const user = await findByVerifyToken(req.params.token);
     if (user) {
       await updateVerifyToken(user.id, true, null);
-      return res.redirect(NETLIFY_URL);
+      return res.render("verifiedEmail/index");
     }
     return res.status(BAD_REQUEST).json({
       status: ERROR,

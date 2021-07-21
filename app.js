@@ -2,6 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const swaggerUi = require("swagger-ui-express");
@@ -27,6 +28,10 @@ app.use(cors());
 app.use(express.json({ limit: RATE_LIMIT }));
 
 app.use(cookieParser());
+
+app.use(express.static(__dirname + "/views"));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 app.use("/api/", rateLimit(APIlimiter));
 

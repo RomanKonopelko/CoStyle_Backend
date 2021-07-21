@@ -5,12 +5,13 @@ const { GENERATE_REFRESH_TOKEN } = require("../helpers/tokenCreation");
 const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
 const EmailService = require("../services/emailGeneration");
 const CreateSenderNodemailer = require("../services/email-sender");
+const { REPEAT_EMAIL_VERIFICATION } = require("../helpers/functions");
 
 require("dotenv").config();
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
 const JWT_ACCESS_TIME = process.env.JWT_ACCESS_TIME;
 
-const { ERROR, SUCCESS, EMAIL_IS_USED, INVALID_CREDENTIALS } = HTTP_MESSAGES;
+const { ERROR, SUCCESS, EMAIL_IS_USED, INVALID_CREDENTIALS, EMAIL_IS_NOT_VERIFIED } = HTTP_MESSAGES;
 const { CONFLICT, CREATED, OK, UNAUTHORIZED, NO_CONTENT } = HTTP_CODES;
 
 const registerUser = async (req, res, next) => {
@@ -45,7 +46,12 @@ const loginUser = async (req, res, next) => {
   try {
     const user = await User.findByEmail(req.body.email);
     const isValidPassword = await user?.isValidPassword(req.body.password);
-    if (!user || !user.isVerified || !isValidPassword) {
+    if (!user?.isVerified)
+      return res
+        .status(CONFLICT)
+        .json({ status: ERROR, code: CONFLICT, message: EMAIL_IS_NOT_VERIFIED });
+
+    if (!user || !isValidPassword) {
       return res
         .status(UNAUTHORIZED)
         .json({ status: ERROR, code: CONFLICT, message: INVALID_CREDENTIALS });

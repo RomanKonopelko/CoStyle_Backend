@@ -45,6 +45,7 @@ const HTTP_MESSAGES = {
   DELETED: "Transaction has been deleted!",
   NOT_FOUND_MSG: "Not found",
   SUCCESS: "Success",
+  EMAIL_IS_NOT_VERIFIED: "Your email wasn't verified. New email has been sent!",
   RESUBMITTED: "Resubmitted successfully!",
   EMAIL_IS_VERIFIED: "Email has been verified",
   BLACKLISTED_TOKEN: "Token is located in blacklist!",

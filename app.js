@@ -19,6 +19,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
+app.use(express.static(__dirname + "/views"));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use(helmet());
 
 app.use(logger(formatsLogger));
@@ -28,10 +32,6 @@ app.use(cors());
 app.use(express.json({ limit: RATE_LIMIT }));
 
 app.use(cookieParser());
-
-app.use(express.static(__dirname + "/views"));
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
 
 app.use("/api/", rateLimit(APIlimiter));
 

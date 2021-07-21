@@ -85,11 +85,7 @@ const VERIFY_TOKEN = async (req, res, next) => {
       await updateVerifyToken(user.id, true, null);
       return res.render("verifiedEmail/index");
     }
-    return res.status(BAD_REQUEST).json({
-      status: ERROR,
-      code: BAD_REQUEST,
-      message: "Verification token is not valid",
-    });
+    return res.render("unverifiedEmail/index");
   } catch (error) {
     next(error);
   }

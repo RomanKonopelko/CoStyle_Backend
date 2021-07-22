@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 const { NETLIFY_URL } = process.env;
 
 setTimeout(function () {

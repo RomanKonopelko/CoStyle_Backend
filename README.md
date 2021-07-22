@@ -116,7 +116,7 @@ This section should list any major frameworks that you built your project using.
 
 ## Backend
 
-<a href="https://github.com/" title="GitHub"><img height="200" style="border-raduis:50%" src="assets/icons/redis.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="200" border-raduis="50%" src="assets/icons/redis.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="200" src="assets/icons/mongodb.png" /></a>
 
 Talking about what is going on under the skin?

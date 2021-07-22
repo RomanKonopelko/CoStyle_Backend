@@ -62,7 +62,6 @@
 <a href="https://github.com/" title="Roman"><img height="60" src="assets/Roman.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/)
-  
 [![Git][git]](https://github.com/romankonopelko)
 
 # Frontend
@@ -74,7 +73,6 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Katya.png" /></a>
   
 [![Linkedin][linkedin]](https://www.linkedin.com/in/katerynalutska/)
-  
 [![Git][git]](https://github.com/katerynalutska)
 
 -Lama UI team:
@@ -86,8 +84,8 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Jenya.png" /></a>
   
 [![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/)
-  
 [![Git][git]](https://github.com/evgenmag)
+  
 **Sanya aka Huracan**
 
 -Sass master
@@ -95,7 +93,6 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Huracan.png" /></a>
 
 [![Linkedin][linkedin]](http://linkedin.com/in/alexander-huracan-1b8229119/) 
-  
 [![Git][git]](https://github.com/huracan22505)
 
 **Sveta**
@@ -105,7 +102,6 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Sveta.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/svetlanakhvastova/)
-  
 [![Git][git]](https://github.com/svetlanakhvastova)
 
 **Ravshan**
@@ -115,7 +111,6 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Ravshan.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/ravshanmahmudov/)
-  
 [![Git][git]](https://github.com/rmhmdv)
 
 **Andrey**

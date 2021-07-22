@@ -709,7 +709,7 @@
                         "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "email": "romank761@gmail.com"
+                        "example": "romank761@gmail.com"
                     },
                     "password": {
                         "type": "string",

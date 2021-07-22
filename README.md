@@ -85,10 +85,13 @@ If having any issues with our API, Lama Manager is always ready to help.
 
 We implemented full CRUD logic to operated with the transactions:
 
-**Easly create!
-**Easly read!
-**Easly delete!
-**Easly update!
+Easly create!
+  ====
+Easly read!
+  ====
+Easly delete!
+  ====
+Easly update!
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
 
@@ -155,4 +158,4 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 [issues-shield]: https://img.shields.io/github/issues/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [issues-url]: https://github.com/RomanKonopelko/CoStyle_Backend/issues
 [license-shield]: https://img.shields.io/github/license/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
-[license-url]: https://github.com/RomanKonopelko/CoStyle_Backend/blob/master/LICENSE.txt
+[license-url]: https://github.com/RomanKonopelko/CoStyle_Backend/LICENSE.txt

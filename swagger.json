@@ -101,7 +101,7 @@
         "/api/users/current": {
             "get": {
                 "tags": [
-                    "Auth"
+                    "User data"
                 ],
                 "summary": "Getting user's data",
                 "parameters": [],
@@ -127,7 +127,7 @@
         "/api/users/token": {
             "get": {
                 "tags": [
-                    "Auth"
+                    "Token"
                 ],
                 "summary": "Getting user's new pair of tokens",
                 "parameters": [],
@@ -325,7 +325,7 @@
         "/api/transactions/statistic": {
             "get": {
                 "tags": [
-                    "Transactions"
+                    "Statistic"
                 ],
                 "summary": "get transactions total values and statistic",
                 "parameters": [],
@@ -351,7 +351,7 @@
         "/api/transactions/statistic?month=#&year=#": {
             "get": {
                 "tags": [
-                    "Transactions"
+                    "Statistic"
                 ],
                 "summary": "get transactions total values and statistic of a selected time period",
                 "parameters": [

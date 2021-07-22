@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-const { NETLIFY_URL } = process.env;
+const NETLIFY_URL = "https://costyl-swiss-wallet.netlify.app";
 
 setTimeout(function () {
   window.location = NETLIFY_URL;

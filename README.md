@@ -76,7 +76,7 @@
 -Boss of the React
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Jenya.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]][https://github.com/evgenmag]
+[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]](https://github.com/evgenmag)
 
 **Sanya aka Huracan**
 

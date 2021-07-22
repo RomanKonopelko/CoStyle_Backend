@@ -55,21 +55,21 @@
 
 # Backend/Teamlead
 
-<a href="https://github.com/" title="Roman"><img height="20" src="assets/Roman.png" /></a>
+<a href="https://github.com/" title="Roman"><img height="40" src="assets/Roman.png" /></a>
 
 # Frontend
 
 -Scrum Master
 
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Katya.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Katya.png" /></a>
 
 -Lama UI team:
 
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Jenya.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Huracan.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Sveta.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Ravshan.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/Andrey.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Jenya.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Huracan.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Sveta.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Ravshan.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="40" src="assets/Andrey.png" /></a>
 
 ## About The Project
 
@@ -102,7 +102,7 @@ This section should list any major frameworks that you built your project using.
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/express.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/joi.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/js.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30"src="assets/icons/mailigen.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mailigen.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongodb.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongoose.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/node.png" /></a>
@@ -143,10 +143,10 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/home.png
-[balance-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/balance.png
-[lama-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/lama.png
-[transactions-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/transactions.png
+[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/home.png
+[balance-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/balance.png
+[lama-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/lama.png
+[transactions-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/transactions.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge

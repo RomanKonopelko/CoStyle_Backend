@@ -143,7 +143,7 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/home.png
+[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/home.png
 [balance-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/balance.png
 [lama-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/lama.png
 [transactions-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/transactions.png

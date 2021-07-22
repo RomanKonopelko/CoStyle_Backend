@@ -641,18 +641,18 @@
                     "name": {
                         "type": "string",
                         "description": "User's name",
-                        "example": "Grisha"
+                        "example": "Roman"
                     },
                     "email": {
                         "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "example": "roman11@gmail.com"
+                        "example": "romank761@gmail.com"
                     },
                     "password": {
                         "type": "string",
                         "description": "User's password",
-                        "example": "qweqw123"
+                        "example": "qwe_Lw123"
                     }
                 }
             },
@@ -709,7 +709,7 @@
                         "type": "string",
                         "description": "User's email",
                         "format": "email",
-                        "email": "roman@gmail.com"
+                        "email": "romank761@gmail.com"
                     },
                     "password": {
                         "type": "string",

@@ -116,8 +116,8 @@ This section should list any major frameworks that you built your project using.
 
 ## Backend
 
-<a href="https://github.com/" title="GitHub"><img height="100" src="assets/icons/redis.png" /></a>
-<a href="https://github.com/" title="GitHub"><img  height="100" src="assets/icons/mongodb.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="200" style="border-raduis: 50%"src="assets/icons/redis.png" /></a>
+<a href="https://github.com/" title="GitHub"><img  height="200" src="assets/icons/mongodb.png" /></a>
 
 Talking about what is going on under the skin?
 
@@ -143,10 +143,10 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/home.png
+[home-screen]: assets/screenshots/home.png
 [balance-screen]: assets/screenshots/balance.png
-[lama-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/lama.png
-[transactions-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/feature/gmailAPI/assets/screenshots/transactions.png
+[lama-screen]: assets/screenshots/lama.png
+[transactions-screen]: assets/screenshots/transactions.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge

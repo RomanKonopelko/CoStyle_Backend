@@ -68,9 +68,7 @@
 -Scrum Master
   
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Katya.png" /></a>
-
 [![Linkedin][linkedin]](https://www.linkedin.com/in/katerynalutska/)
-  
 [![Git][git]](https://github.com/katerynalutska)
 
 -Lama UI team:

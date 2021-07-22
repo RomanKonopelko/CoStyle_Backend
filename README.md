@@ -98,25 +98,25 @@ All the transactions are syncronized, so you can notice all the balance changes 
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/css.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/express.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/joi.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/js.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mailigen.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongodb.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongoose.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/node.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/nodemailer.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/passport.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/react.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/redis.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/redux.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/sass.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/css.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/express.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/joi.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/js.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mailigen.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mongodb.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mongoose.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/node.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/nodemailer.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/passport.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/react.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/redis.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/redux.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/sass.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/.png" /></a>
 
 ## Backend
 
-<a href="https://github.com/" title="GitHub"><img height="200" border-raduis="50%" src="assets/icons/redis.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="200" src="assets/icons/redis.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="200" src="assets/icons/mongodb.png" /></a>
 
 Talking about what is going on under the skin?

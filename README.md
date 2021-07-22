@@ -143,10 +143,10 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[home-screen]: /assets/screenshots/home.png
-[balance-screen]: /assets/screenshots/balance.png
-[lama-screen]: /assets/screenshots/lama.png
-[transactions-screen]: /assets/screenshots/transactions.png
+[home-screen]: assets/screenshots/home.png
+[balance-screen]: assets/screenshots/balance.png
+[lama-screen]: assets/screenshots/lama.png
+[transactions-screen]: assets/screenshots/transactions.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
@@ -157,4 +157,3 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 [issues-url]: https://github.com/RomanKonopelko/CoStyle_Backend/issues
 [license-shield]: https://img.shields.io/github/license/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [license-url]: https://github.com/RomanKonopelko/CoStyle_Backend/blob/master/LICENSE.txt
-[product-screenshot]: assets/home.png

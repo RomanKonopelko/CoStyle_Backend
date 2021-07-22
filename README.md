@@ -120,7 +120,6 @@
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Andrey.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/andrey-kulba-50503ab3/)
-  
 [![Git][git]](https://github.com/andriikulba)
 
 ## About The Project
@@ -218,4 +217,4 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 [issues-shield]: https://img.shields.io/github/issues/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [issues-url]: https://github.com/RomanKonopelko/CoStyle_Backend/issues
 [license-shield]: https://img.shields.io/github/license/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
-[license-url]: https://github.com/RomanKonopelko/CoStyle_Backend/LICENSE.txt
+[license-url]: https://github.com/RomanKonopelko/CoStyle_Backend/master/LICENSE.txt

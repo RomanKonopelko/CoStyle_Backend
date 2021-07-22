@@ -12,7 +12,7 @@
     "servers": [
         {
             "url": "/",
-            "description": "heroku hosting"
+            "description": "https://costyle-wallet-app.herokuapp.com/"
         }
     ],
     "tags": [

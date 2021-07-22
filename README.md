@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./assets/lama.jpg" alt="Logo">
+    <img src="./assets/TheCodingAlpaca.png" alt="Logo">
   </a>
 
   <h3 align="center">LAMA WALLET PROJECT</h3>
@@ -19,7 +19,7 @@
     <a href="https://github.com/RomanKonopelko/CoStyle_Backend"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/RomanKonopelko/CoStyle_Backend">View Demo</a>
+    <a href="https://costyle-wallet-app.herokuapp.com/api-docs/">View SWAGGER docs</a>
     ·
     <a href="https://github.com/RomanKonopelko/CoStyle_Backend/issues">Report Bug</a>
     ·
@@ -55,21 +55,53 @@
 
 # Backend/Teamlead
 
+**Roman**
+-Teamlead
 <a href="https://github.com/" title="Roman"><img height="40" src="assets/Roman.png" /></a>
+
+[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]][https://github.com/romankonopelko]
 
 # Frontend
 
+**Katya**
 -Scrum Master
 
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Katya.png" /></a>
 
--Lama UI team:
+[![Linkedin][linkedin]][https://www.linkedin.com/in/katerynalutska/] [![Git][git]][https://github.com/katerynalutska]
 
+-Lama UI team:
+**Jenya**
+
+-Boss of the React
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Jenya.png" /></a>
+
+[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]][https://github.com/evgenmag]
+
+**Sanya aka Huracan**
+
+-Sass master
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Huracan.png" /></a>
+
+[![Linkedin][linkedin]][http://linkedin.com/in/alexander-huracan-1b8229119/] [![Git][git]][https://github.com/huracan22505]
+
+**Sveta**
+-Bootstrap women
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Sveta.png" /></a>
+
+[![Linkedin][linkedin]][https://www.linkedin.com/in/svetlanakhvastova/] [![Git][git]][https://github.com/svetlanakhvastova]
+
+**Ravshan**
+-Site Adaptivator 2000
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Ravshan.png" /></a>
+
+[![Linkedin][linkedin]][https://www.linkedin.com/in/ravshanmahmudov/] [![Git][git]][https://github.com/rmhmdv]
+
+**Andrey**
+-Redux brain
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Andrey.png" /></a>
+
+[![Linkedin][linkedin]][https://www.linkedin.com/in/andrey-kulba-50503ab3/] [![Git][git]][https://github.com/andriikulba]
 
 ## About The Project
 
@@ -85,13 +117,13 @@ If having any issues with our API, Lama Manager is always ready to help.
 
 We implemented full CRUD logic to operated with the transactions:
 
-*Easly create!*
+_Easly create!_
 
-*Easly read!*
-  
-*Easly update!*
-  
-*Easly delete!*
+_Easly read!_
+
+_Easly update!_
+
+_Easly delete!_
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
 
@@ -102,18 +134,31 @@ All the transactions are syncronized, so you can notice all the balance changes 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/css.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/express.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/joi.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/js.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mailigen.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mongodb.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/mongoose.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/node.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/nodemailer.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/passport.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/react.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/redis.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/redux.png" /></a>
+
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/sass.png" /></a>
 
 ## Backend
@@ -126,6 +171,12 @@ Talking about what is going on under the skin?
 Our backend has two databases connected! We decided to use MongoDB to organize user and transactions collections. And Redis cache database to work with our tokens.
 
 By the way. Security is also matters. So using the power of Redis we made token caching and blacklisting system that helps us to prevent using twice the same tokens in the system.
+
+## SWAGGER docs
+
+<a href="https://costyle-wallet-app.herokuapp.com/api-docs/" title="swagger"><img src="assets/icons/swagger.png" /></a>
+
+If you wonder how to work with our API check the SWAGGER docs by clicking the logo above!
 
 ## Roadmap
 
@@ -154,6 +205,8 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [forks-url]: https://github.com/RomanKonopelko/CoStyle_Backend/network/members
 [stars-shield]: https://img.shields.io/github/stars/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
+[linkedin]: https://img.shields.io/badge/linkedin-social-blue
+[git]: https://img.shields.io/badge/GIT-repo-lightgrey
 [stars-url]: https://github.com/RomanKonopelko/CoStyle_Backend/stargazers
 [issues-shield]: https://img.shields.io/github/issues/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [issues-url]: https://github.com/RomanKonopelko/CoStyle_Backend/issues

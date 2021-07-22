@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./assets/TheCodingAlpaca.png" alt="Logo">
+    <img src="./assets/TheCodingAlpaca.png"  height="300" alt="Logo">
   </a>
 
   <h3 align="center">LAMA WALLET PROJECT</h3>
@@ -59,7 +59,7 @@
 -Teamlead
 <a href="https://github.com/" title="Roman"><img height="40" src="assets/Roman.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]][https://github.com/romankonopelko]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/) [![Git][git]](https://github.com/romankonopelko)
 
 # Frontend
 
@@ -68,7 +68,7 @@
 
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Katya.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/katerynalutska/] [![Git][git]][https://github.com/katerynalutska]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/katerynalutska/) [![Git][git]](https://github.com/katerynalutska)
 
 -Lama UI team:
 **Jenya**
@@ -76,20 +76,20 @@
 -Boss of the React
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Jenya.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/roman-konopelko-b78668189/] [![Git][git]][https://github.com/evgenmag]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/) [![Git][git]](https://github.com/evgenmag)
 
 **Sanya aka Huracan**
 
 -Sass master
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Huracan.png" /></a>
 
-[![Linkedin][linkedin]][http://linkedin.com/in/alexander-huracan-1b8229119/] [![Git][git]][https://github.com/huracan22505]
+[![Linkedin][linkedin]](http://linkedin.com/in/alexander-huracan-1b8229119/) [![Git][git]](https://github.com/huracan22505)
 
 **Sveta**
 -Bootstrap women
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Sveta.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/svetlanakhvastova/] [![Git][git]][https://github.com/svetlanakhvastova]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/svetlanakhvastova/) [![Git][git]](https://github.com/svetlanakhvastova)
 
 **Ravshan**
 -Site Adaptivator 2000

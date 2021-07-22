@@ -98,21 +98,21 @@ All the transactions are syncronized, so you can notice all the balance changes 
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/css.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/express.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/joi.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/js.png" /></a>
-<a href="https://github.com/" title="GitHub"><img src="assets/icons/mailigen.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/mongodb.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/mongoose.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/node.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/nodemailer.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/passport.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/react.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/redis.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/redux.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/sass.png" /></a>
-<a href="https://github.com/" title="GitHub"><img height="20" src="assets/icons/.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/css.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/express.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/joi.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/js.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30"src="assets/icons/mailigen.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongodb.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/mongoose.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/node.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/nodemailer.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/passport.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/react.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/redis.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/redux.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/sass.png" /></a>
+<a href="https://github.com/" title="GitHub"><img height="30" src="assets/icons/.png" /></a>
 
 ## Backend
 
@@ -143,10 +143,10 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[home-screen]: assets/screenshots/home.png
-[balance-screen]: assets/screenshots/balance.png
-[lama-screen]: assets/screenshots/lama.png
-[transactions-screen]: assets/screenshots/transactions.png
+[home-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/home.png
+[balance-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/balance.png
+[lama-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/lama.png
+[transactions-screen]: https://github.com/RomanKonopelko/CoStyle_Backend/assets/screenshots/transactions.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge

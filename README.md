@@ -97,7 +97,7 @@
 
 **Sveta**
   
--Bootstrap women
+-Conqueror of libraries
   
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Sveta.png" /></a>
 
@@ -128,11 +128,11 @@
 
 We created an Lamawesome online Wallet application, that easly will help you to keep an eye on your income and money consumptions. Light and fluff UI and usage that easy to understand!
 
-[![Lama Wallet manager][lama-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet manager][lama-screen]](https://lama-wallet.netlify.app/home)
 
 If having any issues with our API, Lama Manager is always ready to help.
 
-[![Lama Wallet transactions][transactions-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app/home)
 
 We implemented full CRUD logic to operated with the transactions:
 
@@ -144,7 +144,7 @@ _Easly update!_
 
 _Easly delete!_
 
-[![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet balance][balance-screen]](https://lama-wallet.netlify.app/home)
 
 All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
 
@@ -196,7 +196,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swiss-wallet.netlify.app/home)
+Project Link: [https://lama-wallet.netlify.app/home](https://lama-wallet.netlify.app/home)
 
 <!-- ACKNOWLEDGEMENTS -->
 

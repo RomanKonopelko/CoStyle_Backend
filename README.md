@@ -95,13 +95,13 @@
 -Site Adaptivator 2000
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Ravshan.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/ravshanmahmudov/] [![Git][git]][https://github.com/rmhmdv]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/ravshanmahmudov/) [![Git][git]](https://github.com/rmhmdv)
 
 **Andrey**
 -Redux brain
 <a href="https://github.com/" title="GitHub"><img height="40" src="assets/Andrey.png" /></a>
 
-[![Linkedin][linkedin]][https://www.linkedin.com/in/andrey-kulba-50503ab3/] [![Git][git]][https://github.com/andriikulba]
+[![Linkedin][linkedin]](https://www.linkedin.com/in/andrey-kulba-50503ab3/) [![Git][git]](https://github.com/andriikulba)
 
 ## About The Project
 

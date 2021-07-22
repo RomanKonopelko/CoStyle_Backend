@@ -5,9 +5,11 @@ const { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } = require("../helper
 const {
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
+  UPDATE_TRANSACTIONS_BALANCE,
   GET_CATEGORY_AMOUNT,
   TO_CONVERT_TIME,
   GET_BALANCE_AMOUNT,
+  UPDATE_BALANCE_AMOUNT,
 } = require("../helpers/functions");
 
 const { OK, CREATED, NOT_FOUND } = HTTP_CODES;
@@ -79,13 +81,31 @@ const getTransactionStatistic = async (req, res, next) => {
 const removeTransaction = async (req, res, next) => {
   try {
     const userId = req.user.id;
+    const { balanceValue } = req.user;
+    const options = { pagination: false };
+    const { docs: transactions, ...rest } = await Transaction.getAllTransactions(
+      userId,
+      req.query,
+      options
+    );
     const transaction = await Transaction.removeTransaction(userId, req.params.transactionId);
-    if (transaction) {
-      return res
-        .status(OK)
-        .json({ status: SUCCESS, code: OK, message: DELETED, payload: { transaction } });
-    }
-    return res.json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
+
+    if (!transaction) res.json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
+
+    const { sort, amount } = transaction;
+    const updatedTransactions = await UPDATE_TRANSACTIONS_BALANCE(transactions, transaction);
+    const userBalance = await UPDATE_BALANCE_AMOUNT(sort, amount, balanceValue);
+
+    await updateBalance(userId, userBalance);
+
+    await updatedTransactions.forEach(async (el) => {
+      const { balance } = el;
+      return await Transaction.updateTransaction(userId, el.id, { balance });
+    });
+
+    return res
+      .status(OK)
+      .json({ status: SUCCESS, code: OK, message: DELETED, payload: { transaction } });
   } catch (error) {
     next(error);
   }

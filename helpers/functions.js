@@ -2,6 +2,9 @@ const { HTTP_CODES, HTTP_MESSAGES } = require("./constants");
 const { OK, BAD_REQUEST, CONFLICT } = HTTP_CODES;
 const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
 const { findByVerifyToken, updateVerifyToken } = require("../repositories/user");
+require("dotenv").config();
+
+const { NETLIFY_URL } = process.env;
 
 const GET_CATEGORY_COLOR = function (arr, category) {
   if (!category) return null;
@@ -46,6 +49,24 @@ const GET_BALANCE_AMOUNT = function (sort, amount, balance) {
   return { balance };
 };
 
+const UPDATE_BALANCE_AMOUNT = function (sort, amount, balance) {
+  balance = sort === "Доход" ? (balance -= amount) : (balance += amount);
+  return { balance };
+};
+
+const UPDATE_TRANSACTIONS_BALANCE = function (arr, transaction) {
+  const dataSelectedArr = arr.filter((el) =>
+    el.time.date > transaction.time.date ? el : el.createdAt > transaction.createdAt
+  );
+  const updatedBalanceArr = dataSelectedArr.map((el) => {
+    transaction.sort === "Доход"
+      ? (el.balance -= transaction.amount)
+      : (el.balance += transaction.amount);
+    return el;
+  });
+  return updatedBalanceArr;
+};
+
 const TO_CONVERT_TIME = function (time) {
   const [year, month, day] = time.split("-").map(Number);
   return {
@@ -59,17 +80,12 @@ const TO_CONVERT_TIME = function (time) {
 
 const VERIFY_TOKEN = async (req, res, next) => {
   try {
-    console.log(req.params);
     const user = await findByVerifyToken(req.params.token);
     if (user) {
       await updateVerifyToken(user.id, true, null);
-      return res.json({ status: SUCCESS, code: OK, data: { message: SUCCESS } });
+      return res.render("verifiedEmail/index");
     }
-    return res.status(BAD_REQUEST).json({
-      status: ERROR,
-      code: BAD_REQUEST,
-      message: "Verification token is not valid",
-    });
+    return res.render("unverifiedEmail/index");
   } catch (error) {
     next(error);
   }
@@ -114,4 +130,6 @@ module.exports = {
   TO_CONVERT_TIME,
   VERIFY_TOKEN,
   REPEAT_EMAIL_VERIFICATION,
+  UPDATE_TRANSACTIONS_BALANCE,
+  UPDATE_BALANCE_AMOUNT,
 };

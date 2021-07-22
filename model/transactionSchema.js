@@ -1,9 +1,6 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
-const {
-  TRANSACTION_CATEGORIES,
-  TRANSACTION_SORTS,
-} = require("../helpers/constants");
+const { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } = require("../helpers/constants");
 
 const { GET_CATEGORY_COLOR } = require("../helpers/functions");
 
@@ -45,10 +42,12 @@ const transactionSchema = new Schema(
       type: String,
     },
     owner: { type: SchemaTypes.ObjectId, ref: "user" },
+    createdAt: Number,
+    updatedAt: Number,
   },
   {
     versionKey: false,
-    timestamps: true,
+    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) },
     toJSON: {
       virtuals: true,
       transform: function (doc, ret) {

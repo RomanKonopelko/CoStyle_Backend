@@ -88,10 +88,10 @@ We implemented full CRUD logic to operated with the transactions:
 *Easly create!*
 
 *Easly read!*
-
-*Easly delete!*
-
+  
 *Easly update!*
+  
+*Easly delete!*
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
 

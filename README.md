@@ -88,7 +88,6 @@
 [![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/)
   
 [![Git][git]](https://github.com/evgenmag)
-
 **Sanya aka Huracan**
 
 -Sass master

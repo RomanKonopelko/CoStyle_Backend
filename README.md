@@ -165,6 +165,8 @@ Our backend has two databases connected! We decided to use MongoDB to organize u
 By the way. Security is also matters. So using the power of Redis we made token caching and blacklisting system that helps us to prevent using twice the same tokens in the system.
 
 ## SWAGGER docs
+  
+https://user-images.githubusercontent.com/68011362/126765045-e9af4e89-e125-4c27-9bda-0bedec4fd690.mp4
 
 <a href="https://costyle-wallet-app.herokuapp.com/api-docs/" title="swagger"><img src="assets/icons/swagger.png" /></a>
 

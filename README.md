@@ -193,7 +193,7 @@ Project Link: [https://lama-wallet.netlify.app](https://lama-wallet.netlify.app)
 [home-screen]: assets/screenshots/home.png
 [balance-screen]: assets/screenshots/balance.png
 [lama-screen]: assets/screenshots/lama.png
-[transactions-screen]: assets/screenshots/transactions.png
+[transactions-screen]: assets/transactions.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge

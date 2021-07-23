@@ -125,15 +125,15 @@
 
 ## About The Project
 
-[![Lama Wallet home][home-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet home][home-screen]](https://lama-wallet.netlify.app)
 
 We created an Lamawesome online Wallet application, that easly will help you to keep an eye on your income and money consumptions. Light and fluff UI and usage that easy to understand!
 
-[![Lama Wallet manager][lama-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet manager][lama-screen]](https://lama-wallet.netlify.app)
 
 If having any issues with our API, Lama Manager is always ready to help.
 
-[![Lama Wallet transactions][transactions-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app)
 
 We implemented full CRUD logic to operated with the transactions:
 
@@ -197,7 +197,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swiss-wallet.netlify.app/home)
+Project Link: [https://lama-wallet.netlify.app](https://lama-wallet.netlify.app)
 
 <!-- ACKNOWLEDGEMENTS -->
 

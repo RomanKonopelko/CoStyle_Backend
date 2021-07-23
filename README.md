@@ -150,7 +150,7 @@ All the transactions are syncronized, so you can notice all the balance changes 
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Here we show you the list of frameworks/libs etc. we used creating the app. There is collected together front-end / back-end techs
 
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/css.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/express.png" /></a>

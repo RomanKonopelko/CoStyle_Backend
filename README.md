@@ -130,7 +130,6 @@ _Easly delete!_
   
 [![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app)
   
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68011362/126766646-700846a1-882b-4767-80c7-73268206ed98.gif)
 All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)

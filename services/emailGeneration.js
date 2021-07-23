@@ -54,6 +54,7 @@ class EmailService {
       html: emailHtml,
     };
     const result = await this.sender.send(msg);
+    console.log(result);
   }
 }
 

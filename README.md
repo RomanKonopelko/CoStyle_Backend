@@ -118,8 +118,6 @@ If having any issues with our API, Lama Manager is always ready to help.
   
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/68011362/126766032-2b24d8bd-7a76-46d5-830b-80c789bb8db6.gif)
 
-[![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app)
-
 We implemented full CRUD logic to operated with the transactions:
 
 _Easly create!_
@@ -129,10 +127,13 @@ _Easly read!_
 _Easly update!_
 
 _Easly delete!_
+  
+[![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app)
+  
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68011362/126766646-700846a1-882b-4767-80c7-73268206ed98.gif)
+All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
-
-All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
 
 ### Built With
 
@@ -165,8 +166,8 @@ Our backend has two databases connected! We decided to use MongoDB to organize u
 By the way. Security is also matters. So using the power of Redis we made token caching and blacklisting system that helps us to prevent using twice the same tokens in the system.
 
 ## SWAGGER docs
-  
-https://user-images.githubusercontent.com/68011362/126765045-e9af4e89-e125-4c27-9bda-0bedec4fd690.mp4
+  ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68011362/126766710-a69fb32a-f4d1-4888-858a-a2745fdf043d.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/68011362/126766770-34098118-f796-440d-8f5b-6a67f6d66ba6.gif)
 
 <a href="https://costyle-wallet-app.herokuapp.com/api-docs/" title="swagger"><img src="assets/icons/swagger.png" /></a>
 

@@ -1,24 +1,4 @@
-import { Request, Response, NextFunction } from "express";
-
-interface ICategories {
-  [key: string]: {
-    title: string;
-    color: string;
-  };
-}
-
-interface ISorts {
-  income: string;
-  consumption: string;
-}
-
-interface ICodes {
-  [key: string]: number;
-}
-
-interface IMessages {
-  [key: string]: string;
-}
+import { ILimiter, IMessages, ICategories, ICodes, ISorts } from "./interfaces/interfaces";
 
 const TRANSACTION_CATEGORIES: ICategories = {
   main: {
@@ -79,12 +59,6 @@ const HTTP_MESSAGES: IMessages = {
   TRANSACTION_CREATED: "Transaction has been created!",
 };
 
-interface ILimiter {
-  windowsMs: number;
-  max: number;
-  handler(req: Request, res: Response, next: NextFunction): void;
-}
-
 const APIlimiter: ILimiter = {
   windowsMs: 15 * 60 * 1000,
   max: 1000,
@@ -97,7 +71,7 @@ const APIlimiter: ILimiter = {
   },
 };
 
-module.exports = {
+export {
   TRANSACTION_SORTS,
   TRANSACTION_CATEGORIES,
   HTTP_MESSAGES,

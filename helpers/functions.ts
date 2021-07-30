@@ -1,3 +1,5 @@
+import { ICategories } from "./interfaces/interfaces";
+
 const { HTTP_CODES, HTTP_MESSAGES } = require("./constants");
 const { OK, BAD_REQUEST, CONFLICT } = HTTP_CODES;
 const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
@@ -6,7 +8,7 @@ require("dotenv").config();
 
 const { NETLIFY_URL } = process.env;
 
-const GET_CATEGORY_COLOR = function (arr, category) {
+const GET_CATEGORY_COLOR = function (arr: ICategories[], category: string) {
   if (!category) return null;
   const color = arr.find((e) => e[1].title === category)[1].color;
   return color;
@@ -121,7 +123,7 @@ const REPEAT_EMAIL_VERIFICATION = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export {
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
   GET_CATEGORY_AMOUNT,

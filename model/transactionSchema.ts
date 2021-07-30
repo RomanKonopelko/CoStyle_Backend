@@ -1,12 +1,34 @@
-const { Schema, model, SchemaTypes } = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate-v2");
-const { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } = require("../helpers/constants");
+import { Schema, model, SchemaTypes } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
+import { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } from "../helpers/constants";
 
-const { GET_CATEGORY_COLOR } = require("../helpers/functions");
+import { GET_CATEGORY_COLOR } from "../helpers/functions";
 
 const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
-const SORTS = Object.values(TRANSACTION_SORTS);
+const SORTS: string[] = Object.values(TRANSACTION_SORTS);
+
+enum ESort {
+  income = "Доход",
+  consumption = "Расход",
+}
+
+interface ITransaction {
+  category: {
+    type: string;
+    enum: string[];
+  };
+  time: {
+    date: string;
+    month: string;
+    year: string;
+  };
+  color(): string;
+  balance: number;
+  amount: number;
+  sort: ESort;
+  commentary: string;
+}
 
 const transactionSchema = new Schema(
   {

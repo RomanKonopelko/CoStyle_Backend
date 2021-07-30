@@ -1,4 +1,26 @@
-const TRANSACTION_CATEGORIES = {
+import { Request, Response, NextFunction } from "express";
+
+interface ICategories {
+  [key: string]: {
+    title: string;
+    color: string;
+  };
+}
+
+interface ISorts {
+  income: string;
+  consumption: string;
+}
+
+interface ICodes {
+  [key: string]: number;
+}
+
+interface IMessages {
+  [key: string]: string;
+}
+
+const TRANSACTION_CATEGORIES: ICategories = {
   main: {
     title: "Основные",
     color: "rgba(254, 208, 87, 1)",
@@ -18,14 +40,14 @@ const TRANSACTION_CATEGORIES = {
   other: { title: "Другое", color: "rgba(0, 173, 132, 1)" },
 };
 
-const TRANSACTION_SORTS = {
+const TRANSACTION_SORTS: ISorts = {
   income: "Доход",
-  consuption: "Расход",
+  consumption: "Расход",
 };
 
-const RATE_LIMIT = 10000;
+const RATE_LIMIT: number = 10000;
 
-const HTTP_CODES = {
+const HTTP_CODES: ICodes = {
   OK: 200,
   NOT_FOUND: 404,
   NO_CONTENT: 204,
@@ -38,7 +60,7 @@ const HTTP_CODES = {
   TOO_MANY_REQUESTS: 429,
 };
 
-const HTTP_MESSAGES = {
+const HTTP_MESSAGES: IMessages = {
   INVALID_CREDENTIALS: "Invalid credentials",
   ERROR: "Error",
   FAIL: "Fail",
@@ -57,7 +79,13 @@ const HTTP_MESSAGES = {
   TRANSACTION_CREATED: "Transaction has been created!",
 };
 
-const APIlimiter = {
+interface ILimiter {
+  windowsMs: number;
+  max: number;
+  handler(req: Request, res: Response, next: NextFunction): void;
+}
+
+const APIlimiter: ILimiter = {
   windowsMs: 15 * 60 * 1000,
   max: 1000,
   handler: (req, res, next) => {

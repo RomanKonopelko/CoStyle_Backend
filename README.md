@@ -40,12 +40,10 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -53,12 +51,10 @@
 
 ## Lama Team
 
-# Backend/Teamlead
+# Backend
 
-**Roman**
-  
--Teamlead
-  
+**Roman-Teamlead**
+
 <a href="https://github.com/" title="Roman"><img height="60" src="assets/Roman.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/)
@@ -66,74 +62,61 @@
 
 # Frontend
 
-**Katya**
-  
--Scrum Master
-  
+**Katya -Scrum Master**
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Katya.png" /></a>
-  
+
 [![Linkedin][linkedin]](https://www.linkedin.com/in/katerynalutska/)
 [![Git][git]](https://github.com/katerynalutska)
 
 -Lama UI team:
-  
-**Jenya**
 
--Boss of the React
-  
+**Jenya -Boss of the React**
+
+
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Jenya.png" /></a>
-  
+
 [![Linkedin][linkedin]](https://www.linkedin.com/in/roman-konopelko-b78668189/)
 [![Git][git]](https://github.com/evgenmag)
-  
-**Sanya aka Huracan**
 
--Sass master
-  
+**Sanya aka Huracan -Sass master**
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Huracan.png" /></a>
 
-[![Linkedin][linkedin]](http://linkedin.com/in/alexander-huracan-1b8229119/) 
+[![Linkedin][linkedin]](http://linkedin.com/in/alexander-huracan-1b8229119/)
 [![Git][git]](https://github.com/huracan22505)
 
-**Sveta**
-  
--Bootstrap women
-  
+**Sveta -UI women**
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Sveta.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/svetlanakhvastova/)
 [![Git][git]](https://github.com/svetlanakhvastova)
 
-**Ravshan**
-  
--Site Adaptivator 2000
-  
+**Ravshan -Site Adaptivator 2000**
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Ravshan.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/ravshanmahmudov/)
 [![Git][git]](https://github.com/rmhmdv)
 
-**Andrey**
-  
--Redux brain
-  
+**Andrey -Redux brain**
+
 <a href="https://github.com/" title="GitHub"><img height="60" src="assets/Andrey.png" /></a>
 
 [![Linkedin][linkedin]](https://www.linkedin.com/in/andrey-kulba-50503ab3/)
-  
 [![Git][git]](https://github.com/andriikulba)
 
 ## About The Project
 
-[![Lama Wallet home][home-screen]](https://costyl-swiss-wallet.netlify.app/home)
+[![Lama Wallet home][home-screen]](https://lama-wallet.netlify.app)
 
 We created an Lamawesome online Wallet application, that easly will help you to keep an eye on your income and money consumptions. Light and fluff UI and usage that easy to understand!
-
-[![Lama Wallet manager][lama-screen]](https://costyl-swiss-wallet.netlify.app/home)
-
+  
 If having any issues with our API, Lama Manager is always ready to help.
-
-[![Lama Wallet transactions][transactions-screen]](https://costyl-swiss-wallet.netlify.app/home)
+  
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/68011362/126766032-2b24d8bd-7a76-46d5-830b-80c789bb8db6.gif)
 
 We implemented full CRUD logic to operated with the transactions:
 
@@ -144,14 +127,16 @@ _Easly read!_
 _Easly update!_
 
 _Easly delete!_
+  
+[![Lama Wallet transactions][transactions-screen]](https://lama-wallet.netlify.app)
+  
+All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
 
 [![Lama Wallet balance][balance-screen]](https://costyl-swiss-wallet.netlify.app/home)
 
-All the transactions are syncronized, so you can notice all the balance changes after the transaction has been made. You can see the current user balance, and the staged balance caches right after the transaction was created!
-
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Here we show you the list of frameworks/libs etc. we used creating the app. There is collected together front-end / back-end techs
 
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/css.png" /></a>
 <a href="https://github.com/" title="GitHub"><img height="50" src="assets/icons/express.png" /></a>
@@ -180,6 +165,8 @@ Our backend has two databases connected! We decided to use MongoDB to organize u
 By the way. Security is also matters. So using the power of Redis we made token caching and blacklisting system that helps us to prevent using twice the same tokens in the system.
 
 ## SWAGGER docs
+  
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/68011362/126766915-7eaff11f-5731-4cb1-a958-088cdce63230.gif)
 
 <a href="https://costyle-wallet-app.herokuapp.com/api-docs/" title="swagger"><img src="assets/icons/swagger.png" /></a>
 
@@ -197,7 +184,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swiss-wallet.netlify.app/home)
+Project Link: [https://lama-wallet.netlify.app](https://lama-wallet.netlify.app)
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -206,7 +193,7 @@ Project Link: [https://costyl-swiss-wallet.netlify.app/home](https://costyl-swis
 [home-screen]: assets/screenshots/home.png
 [balance-screen]: assets/screenshots/balance.png
 [lama-screen]: assets/screenshots/lama.png
-[transactions-screen]: assets/screenshots/transactions.png
+[transactions-screen]: assets/transaction.png
 [contributors-shield]: https://img.shields.io/github/contributors/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/RomanKonopelko/CoStyle_Backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/RomanKonopelko/CoStyle_Backend.svg?style=for-the-badge

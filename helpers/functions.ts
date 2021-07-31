@@ -1,34 +1,34 @@
-import { ICategories } from "./interfaces/interfaces";
+import { ICategory, ITransaction, ITransactionValue } from "./interfaces/interfaces";
+import EmailService from "../services/email-sender";
+import CreateSenderNodemailer from "../services/emailGeneration";
 
-const { HTTP_CODES, HTTP_MESSAGES } = require("./constants");
+import { HTTP_CODES, HTTP_MESSAGES } from "./constants";
 const { OK, BAD_REQUEST, CONFLICT } = HTTP_CODES;
 const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
-const { findByVerifyToken, updateVerifyToken } = require("../repositories/user");
+import { findByVerifyToken, updateVerifyToken, findByEmail } from "../repositories/user";
 require("dotenv").config();
 
-const { NETLIFY_URL } = process.env;
-
-const GET_CATEGORY_COLOR = function (arr: ICategories[], category: string) {
+const GET_CATEGORY_COLOR = function (arr: ICategory[], category: string) {
   if (!category) return null;
   const color = arr.find((e) => e[1].title === category)[1].color;
   return color;
 };
 
-const GET_INCOME_AMOUNT = function (arr) {
+const GET_INCOME_AMOUNT = function (arr: ITransaction[]) {
   const incomeArr = arr.filter((e) => e.sort === "Доход").map((e) => e.amount);
   const summaryValue = incomeArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
 };
 
-const GET_CONSUMPTION_AMOUNT = function (arr) {
+const GET_CONSUMPTION_AMOUNT = function (arr: ITransaction[]) {
   const consumptionArr = arr.filter((e) => e.sort === "Расход").map((e) => e.amount);
   const summaryValue = consumptionArr.reduce((acc, value) => acc + value, 0);
   return summaryValue;
 };
 
-const GET_CATEGORY_AMOUNT = function (arr, categories) {
+const GET_CATEGORY_AMOUNT = function (arr: ITransaction[], categories: ICategory[]) {
   const incomeArr = arr.filter((e) => e.sort === "Расход");
-  const amountObj = incomeArr.reduce((acc, value) => {
+  const amountObj: ITransactionValue = incomeArr.reduce((acc, value) => {
     return (
       acc[value.category]
         ? (acc[value.category] = {

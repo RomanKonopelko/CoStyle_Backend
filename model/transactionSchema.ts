@@ -1,36 +1,15 @@
 import { Schema, model, SchemaTypes } from "mongoose";
+import { ICategory, ITransactionSchema } from "../helpers/interfaces/interfaces";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } from "../helpers/constants";
 
 import { GET_CATEGORY_COLOR } from "../helpers/functions";
 
-const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
+const CATEGORIES: ICategory[] = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
 const SORTS: string[] = Object.values(TRANSACTION_SORTS);
 
-enum ESort {
-  income = "Доход",
-  consumption = "Расход",
-}
-
-interface ITransaction {
-  category: {
-    type: string;
-    enum: string[];
-  };
-  time: {
-    date: string;
-    month: string;
-    year: string;
-  };
-  color(): string;
-  balance: number;
-  amount: number;
-  sort: ESort;
-  commentary: string;
-}
-
-const transactionSchema = new Schema(
+const transactionSchema = new Schema<ITransactionSchema>(
   {
     category: {
       type: String,

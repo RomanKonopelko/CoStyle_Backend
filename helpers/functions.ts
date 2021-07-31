@@ -28,7 +28,7 @@ const GET_CONSUMPTION_AMOUNT = function (arr: ITransaction[]) {
 
 const GET_CATEGORY_AMOUNT = function (arr: ITransaction[], categories: ICategory[]) {
   const incomeArr = arr.filter((e) => e.sort === "Расход");
-  const amountObj: ITransactionValue = incomeArr.reduce((acc, value) => {
+  const amountObj: ITransactionValue = incomeArr.reduce((acc: ITransactionValue, value) => {
     return (
       acc[value.category]
         ? (acc[value.category] = {

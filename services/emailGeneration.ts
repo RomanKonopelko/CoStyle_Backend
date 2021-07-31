@@ -1,14 +1,15 @@
 import Mailgen from "mailgen";
 
 import dotenv from "dotenv";
+import CreateSenderNodemailer from "./email-sender";
 dotenv.config();
 
 const { DEVELOPE_URL, PRODUCTION_URL } = process.env;
 
 class EmailService {
   sender: any;
-  link: string;
-  constructor(env, sender) {
+  link?: string;
+  constructor(env: string | undefined, sender: CreateSenderNodemailer) {
     this.sender = sender;
     switch (env) {
       case "development":
@@ -24,7 +25,7 @@ class EmailService {
         break;
     }
   }
-  #createTemplateVerificationEmail(verifyToken, name) {
+  #createTemplateVerificationEmail(verifyToken: string, name: string) {
     const mailGenerator = new Mailgen({
       theme: "neopolitan",
       product: {
@@ -49,7 +50,7 @@ class EmailService {
     };
     return mailGenerator.generate(email);
   }
-  async sendVerifyEmail(verifyToken, email, name) {
+  async sendVerifyEmail(verifyToken: string, email: string, name: string) {
     const emailHtml = this.#createTemplateVerificationEmail(verifyToken, name);
     const msg = {
       to: email,

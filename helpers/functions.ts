@@ -6,7 +6,9 @@ const { OK, CONFLICT } = HTTP_CODES;
 const { SUCCESS, ERROR, EMAIL_IS_VERIFIED, RESUBMITTED } = HTTP_MESSAGES;
 import { findByVerifyToken, updateVerifyToken, findByEmail } from "../repositories/user";
 import { NextFunction, Request, Response } from "express";
-require("dotenv").config();
+
+import dotenv from "dotenv";
+dotenv.config();
 
 const GET_CATEGORY_COLOR = function (arr: ICategory[], category: string) {
   if (!category) return null;

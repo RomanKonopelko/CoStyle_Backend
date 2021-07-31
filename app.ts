@@ -1,18 +1,18 @@
-const express = require("express");
-const logger = require("morgan");
-const cors = require("cors");
+import express, { NextFunction, Request, Response } from "express";
+import logger from "morgan";
+import cors from "cors";
 const app = express();
-const path = require("path");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
-const { RATE_LIMIT, HTTP_CODES, HTTP_MESSAGES } = require("./helpers/constants");
+import path from "path";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger.json";
+import { RATE_LIMIT, HTTP_CODES, HTTP_MESSAGES } from "./helpers/constants";
 
 const { INTERNAL_SERVER_ERROR, NOT_FOUND } = HTTP_CODES;
 const { ERROR, NOT_FOUND_MSG, FAIL } = HTTP_MESSAGES;
 
-const { APIlimiter } = require("./helpers/constants");
+import { APIlimiter } from "./helpers/constants";
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -38,10 +38,10 @@ app.use((req, res) => {
   res.status(NOT_FOUND).json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
 });
 
-app.use((err, req, res, next) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res
     .status(INTERNAL_SERVER_ERROR)
     .json({ status: FAIL, code: INTERNAL_SERVER_ERROR, message: err.message });
 });
 
-module.exports = app;
+export default app;

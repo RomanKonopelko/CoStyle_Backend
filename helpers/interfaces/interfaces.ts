@@ -61,6 +61,7 @@ interface ITransaction {
   amount: number;
   sort: ESort;
   commentary: string;
+  createdAt: number;
 }
 
 interface ITransactionValue {

@@ -1,9 +1,11 @@
-const Mongoose = require("mongoose");
-require("dotenv").config();
+import Mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
 const uriDb = process.env.URI_DB;
 
 const db = Mongoose.connect(uriDb, {
-  useNewPArser: true,
+  useNewParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -29,4 +31,4 @@ process.on("SIGINT", async () => {
   });
 });
 
-module.exports = db;
+export default db;

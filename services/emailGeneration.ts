@@ -1,10 +1,13 @@
-const Mailgen = require("mailgen");
+import Mailgen from "mailgen";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const { DEVELOPE_URL, PRODUCTION_URL } = process.env;
 
 class EmailService {
+  sender: any;
+  link: string;
   constructor(env, sender) {
     this.sender = sender;
     switch (env) {
@@ -57,5 +60,4 @@ class EmailService {
     console.log(result);
   }
 }
-
 export default EmailService;

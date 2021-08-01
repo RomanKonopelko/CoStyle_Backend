@@ -1,4 +1,4 @@
-const Transaction = require("../model/transactionSchema");
+import Transaction from "../model/transactionSchema";
 
 const getAllTransactions = async (userId, query, options) => {
   const { pagination = true } = options;
@@ -34,8 +34,20 @@ const getAllTransactions = async (userId, query, options) => {
   return result;
 };
 
-const addTransaction = async (userId, body, convertedTime, balance) => {
-  const result = await Transaction.create({ owner: userId, ...body, ...convertedTime, ...balance });
+const addTransaction = async (
+  userId: string,
+  body,
+  convertedTime,
+  balance: { balance: number },
+  color: string
+) => {
+  const result = await Transaction.create({
+    owner: userId,
+    ...body,
+    ...convertedTime,
+    ...balance,
+    ...color,
+  });
   return result;
 };
 
@@ -61,7 +73,7 @@ const updateTransaction = async (userId, id, body) => {
   return result;
 };
 
-module.exports = {
+export {
   getAllTransactions,
   addTransaction,
   removeTransaction,

@@ -25,7 +25,7 @@ const findByVerifyToken = async (verifyToken) => {
   return await User.findOne({ verifyToken });
 };
 
-module.exports = {
+export {
   findByEmail,
   findById,
   create,

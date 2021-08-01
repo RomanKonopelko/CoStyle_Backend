@@ -43,7 +43,7 @@ interface ITransactionSchema extends Document {
     month: string;
     year: string;
   };
-  color(): (a: ICategory[], b: string) => string;
+  color: string;
   balance: number;
   amount: number;
   sort: ESort;

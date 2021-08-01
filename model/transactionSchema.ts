@@ -3,8 +3,6 @@ import { ICategory, ITransactionSchema } from "../helpers/interfaces/interfaces"
 import mongoosePaginate from "mongoose-paginate-v2";
 import { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } from "../helpers/constants";
 
-import { GET_CATEGORY_COLOR } from "../helpers/functions";
-
 const CATEGORIES: ICategory[] = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
 const SORTS: string[] = Object.values(TRANSACTION_SORTS);
@@ -22,9 +20,6 @@ const transactionSchema = new Schema<ITransactionSchema>(
 
     color: {
       type: String,
-      default: function () {
-        return GET_CATEGORY_COLOR(CATEGORIES, this.category);
-      },
     },
     balance: {
       type: Number,
@@ -70,4 +65,4 @@ transactionSchema.plugin(mongoosePaginate);
 
 const Transaction = model("transaction", transactionSchema);
 
-module.exports = Transaction;
+export default Transaction;

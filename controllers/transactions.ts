@@ -1,8 +1,11 @@
-const Transaction = require("../repositories/transactions");
-const { updateBalance } = require("../repositories/user");
-const { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } = require("../helpers/constants");
+import * as Transaction from "../repositories/transactions";
+import { updateBalance } from "../repositories/user";
+import { Response, Request, NextFunction } from "express";
+import { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } from "../helpers/constants";
+import { GET_CATEGORY_COLOR } from "../helpers/functions";
+import { ICategory } from "../helpers/interfaces/interfaces";
 
-const {
+import {
   GET_INCOME_AMOUNT,
   GET_CONSUMPTION_AMOUNT,
   UPDATE_TRANSACTIONS_BALANCE,
@@ -10,14 +13,14 @@ const {
   TO_CONVERT_TIME,
   GET_BALANCE_AMOUNT,
   UPDATE_BALANCE_AMOUNT,
-} = require("../helpers/functions");
+} from "../helpers/functions";
 
 const { OK, CREATED, NOT_FOUND } = HTTP_CODES;
 const { SUCCESS, TRANSACTION_CREATED, DELETED, MISSING_FIELDS, ERROR, NOT_FOUND_MSG } =
   HTTP_MESSAGES;
-const CATEGORIES = Object.entries(TRANSACTION_CATEGORIES);
+const CATEGORIES: ICategory[] = Object.entries(TRANSACTION_CATEGORIES);
 
-const getAllTransactions = async (req, res, next) => {
+const getAllTransactions = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user.id;
     const options = { pagination: true };
@@ -36,15 +39,22 @@ const getAllTransactions = async (req, res, next) => {
   }
 };
 
-const addTransaction = async (req, res, next) => {
+const addTransaction = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user.id;
     const { balanceValue } = req.user;
-    const { sort, amount, time } = req.body;
+    const { sort, amount, time, category } = req.body;
 
-    const convertedTime = await TO_CONVERT_TIME(time);
-    const balance = await GET_BALANCE_AMOUNT(sort, amount, balanceValue);
-    const transaction = await Transaction.addTransaction(userId, req.body, convertedTime, balance);
+    const convertedTime = TO_CONVERT_TIME(time);
+    const balance = GET_BALANCE_AMOUNT(sort, amount, balanceValue);
+    const categoryColor = GET_CATEGORY_COLOR(CATEGORIES, category);
+    const transaction = await Transaction.addTransaction(
+      userId,
+      req.body,
+      convertedTime,
+      balance,
+      categoryColor
+    );
 
     await updateBalance(userId, balance);
 
@@ -59,15 +69,15 @@ const addTransaction = async (req, res, next) => {
   }
 };
 
-const getTransactionStatistic = async (req, res, next) => {
+const getTransactionStatistic = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user.id;
     const { balanceValue } = req.user;
     const options = { pagination: false };
     const { docs: transactions } = await Transaction.getAllTransactions(userId, req.query, options);
-    const incomeValue = await GET_INCOME_AMOUNT(transactions);
-    const consumptionValue = await GET_CONSUMPTION_AMOUNT(transactions);
-    const categoriesSummary = await GET_CATEGORY_AMOUNT(transactions, CATEGORIES);
+    const incomeValue = GET_INCOME_AMOUNT(transactions);
+    const consumptionValue = GET_CONSUMPTION_AMOUNT(transactions);
+    const categoriesSummary = GET_CATEGORY_AMOUNT(transactions, CATEGORIES);
     return res.status(OK).json({
       status: SUCCESS,
       code: OK,
@@ -78,7 +88,7 @@ const getTransactionStatistic = async (req, res, next) => {
   }
 };
 
-const removeTransaction = async (req, res, next) => {
+const removeTransaction = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user.id;
     const { balanceValue } = req.user;
@@ -93,12 +103,12 @@ const removeTransaction = async (req, res, next) => {
     if (!transaction) res.json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
 
     const { sort, amount } = transaction;
-    const updatedTransactions = await UPDATE_TRANSACTIONS_BALANCE(transactions, transaction);
-    const userBalance = await UPDATE_BALANCE_AMOUNT(sort, amount, balanceValue);
+    const updatedTransactions = UPDATE_TRANSACTIONS_BALANCE(transactions, transaction);
+    const userBalance = UPDATE_BALANCE_AMOUNT(sort, amount, balanceValue);
 
     await updateBalance(userId, userBalance);
 
-    await updatedTransactions.forEach(async (el) => {
+    updatedTransactions.forEach(async (el) => {
       const { balance } = el;
       return await Transaction.updateTransaction(userId, el.id, { balance });
     });
@@ -111,7 +121,7 @@ const removeTransaction = async (req, res, next) => {
   }
 };
 
-const updateTransaction = async (req, res, next) => {
+const updateTransaction = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.user.id;
     const { balanceValue } = req.user;
@@ -122,7 +132,7 @@ const updateTransaction = async (req, res, next) => {
     }
 
     if (req.body.amount) {
-      const balance = await GET_BALANCE_AMOUNT(req.body.sort, req.body.amount, balanceValue);
+      const balance = GET_BALANCE_AMOUNT(req.body.sort, req.body.amount, balanceValue);
       req.body.balance = balance;
       await updateBalance(userId, balance);
     }

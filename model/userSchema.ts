@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcryptjs");
+import { Schema, model } from "mongoose";
+import bcrypt from "bcryptjs";
 const SALT_WORK_FACTOR = 8;
-const { nanoid } = require("nanoid");
+import { nanoid } from "nanoid";
 
 const userSchema = new Schema({
   name: {
@@ -17,7 +17,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Email is required"],
     unique: true,
-    validate(value) {
+    validate(value: string) {
       const re = /\S+@\S+\.\S+/g;
       return re.test(String(value).toLowerCase());
     },

@@ -1,5 +1,6 @@
-const redis = require("redis");
-require("dotenv").config();
+import redis from "redis";
+import dotenv from "dotenv";
+dotenv.config();
 
 const redisClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, {
   no_ready_check: true,
@@ -18,4 +19,4 @@ redisClient.on("disconnected", () => {
   console.log(`redis has been disconnected`);
 });
 
-module.exports = redisClient;
+export default redisClient;

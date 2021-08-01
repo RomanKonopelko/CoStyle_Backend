@@ -1,6 +1,7 @@
+import { IConvertedTime, ITransactionBody } from "../helpers/interfaces/interfaces";
 import Transaction from "../model/transactionSchema";
 
-const getAllTransactions = async (userId, query, options) => {
+const getAllTransactions = async (userId: string, query: any, options: { pagination: boolean }) => {
   const { pagination = true } = options;
   const {
     sortBy,
@@ -10,6 +11,7 @@ const getAllTransactions = async (userId, query, options) => {
     limit = 5,
     offset = 0,
   } = query;
+
   const optionSearch = {
     owner: userId,
   };
@@ -36,35 +38,35 @@ const getAllTransactions = async (userId, query, options) => {
 
 const addTransaction = async (
   userId: string,
-  body,
-  convertedTime,
+  body: ITransactionBody,
+  convertedTime: IConvertedTime,
   balance: { balance: number },
-  color: string
+  color: string | null
 ) => {
   const result = await Transaction.create({
     owner: userId,
     ...body,
     ...convertedTime,
     ...balance,
-    ...color,
+    color,
   });
   return result;
 };
 
-const getTransactionById = async (userId, id) => {
-  const result = await Contact.findOne({ _id: id, owner: userId }).populate({
+const getTransactionById = async (userId: string, id: string) => {
+  const result = await Transaction.findOne({ _id: id, owner: userId }).populate({
     path: "owner",
     select: "balanceValue -_id",
   });
   return result;
 };
 
-const removeTransaction = async (userId, id) => {
+const removeTransaction = async (userId: string, id: string) => {
   const result = await Transaction.findOneAndRemove({ _id: id, owner: userId });
   return result;
 };
 
-const updateTransaction = async (userId, id, body) => {
+const updateTransaction = async (userId: string, id: string, body: ITransactionBody) => {
   const result = await Transaction.findOneAndUpdate(
     { _id: id, owner: userId },
     { ...body },

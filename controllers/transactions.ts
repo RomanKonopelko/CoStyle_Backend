@@ -3,7 +3,7 @@ import { updateBalance } from "../repositories/user";
 import { Response, Request, NextFunction } from "express";
 import { HTTP_CODES, HTTP_MESSAGES, TRANSACTION_CATEGORIES } from "../helpers/constants";
 import { GET_CATEGORY_COLOR } from "../helpers/functions";
-import { ICategory } from "../helpers/interfaces/interfaces";
+import { ICategory, IUser } from "../helpers/interfaces/interfaces";
 
 import {
   GET_INCOME_AMOUNT,

@@ -1,27 +1,29 @@
-const User = require("../model/userSchema");
+import { IUserBody } from "../helpers/interfaces/interfaces";
 
-const findById = async (id) => await User.findById(id);
+import User from "../model/userSchema";
 
-const findByEmail = async (email) => await User.findOne({ email });
+const findById = async (id: string) => await User.findById(id);
 
-const create = async (body) => {
+const findByEmail = async (email: string) => await User.findOne({ email });
+
+const create = async (body: IUserBody) => {
   const user = new User(body);
   return await user.save();
 };
 
-const updateBalance = async (id, { balance }) => {
-  return await User.updateOne({ _id: id }, { balanceValue: balance });
+const updateBalance = async (id: string, balance: { balance: number }) => {
+  return await User.updateOne({ _id: id }, { balanceValue: balance.balance });
 };
 
-const updateToken = async (id, token) => {
+const updateToken = async (id: string, token: string) => {
   return await User.updateOne({ _id: id }, { token });
 };
 
-const updateVerifyToken = async (id, isVerified, verifyToken) => {
+const updateVerifyToken = async (id: string, isVerified: boolean, verifyToken: string) => {
   return await User.updateOne({ _id: id }, { isVerified, verifyToken });
 };
 
-const findByVerifyToken = async (verifyToken) => {
+const findByVerifyToken = async (verifyToken: string) => {
   return await User.findOne({ verifyToken });
 };
 

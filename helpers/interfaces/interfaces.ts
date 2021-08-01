@@ -33,6 +33,13 @@ enum ESort {
   income = "Доход",
   consumption = "Расход",
 }
+
+interface IUserBody {
+  password: string;
+  email: string;
+  name: string;
+}
+
 interface ITransactionSchema extends Document {
   category: {
     type: string;
@@ -50,7 +57,16 @@ interface ITransactionSchema extends Document {
   commentary: string;
 }
 
+interface ITransactionBody {
+  category?: string;
+  time?: string;
+  amount?: number;
+  sort?: string;
+  commentary?: string;
+  balance?: number;
+}
 interface ITransaction {
+  id: string;
   category: string;
   time: {
     date: string;
@@ -71,6 +87,20 @@ interface ITransactionValue {
   };
 }
 
+interface IConvertedTime {
+  time: {
+    date: Date;
+    month: string;
+    year: string;
+  };
+}
+
+interface IUser {
+  user: {
+    id: string;
+  };
+}
+
 export {
   ILimiter,
   IMessages,
@@ -81,4 +111,8 @@ export {
   ITransactionSchema,
   ITransaction,
   ITransactionValue,
+  IUserBody,
+  ITransactionBody,
+  IConvertedTime,
+  IUser,
 };

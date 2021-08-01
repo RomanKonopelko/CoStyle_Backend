@@ -1,5 +1,5 @@
 import { Schema, model, SchemaTypes } from "mongoose";
-import { ICategory, ITransactionSchema } from "../helpers/interfaces/interfaces";
+import { ICategory } from "../helpers/interfaces/interfaces";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { TRANSACTION_CATEGORIES, TRANSACTION_SORTS } from "../helpers/constants";
 
@@ -7,7 +7,7 @@ const CATEGORIES: ICategory[] = Object.entries(TRANSACTION_CATEGORIES);
 const CATEGORIES_ARRAY = CATEGORIES.map((e) => e[1].title);
 const SORTS: string[] = Object.values(TRANSACTION_SORTS);
 
-const transactionSchema = new Schema<ITransactionSchema>(
+const transactionSchema = new Schema(
   {
     category: {
       type: String,

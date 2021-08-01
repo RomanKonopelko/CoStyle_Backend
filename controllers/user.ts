@@ -1,11 +1,11 @@
-const User = require("../repositories/user");
-const jwt = require("jsonwebtoken");
-const redisClient = require("../model/redis");
-const { GENERATE_REFRESH_TOKEN } = require("../helpers/tokenCreation");
-const { HTTP_CODES, HTTP_MESSAGES } = require("../helpers/constants");
-const EmailService = require("../services/emailGeneration");
-const CreateSenderNodemailer = require("../services/email-sender");
-const { REPEAT_EMAIL_VERIFICATION } = require("../helpers/functions");
+import User from "../repositories/user";
+import jwt from "jsonwebtoken";
+import redisClient from "../model/redis";
+import { GENERATE_REFRESH_TOKEN } from "../helpers/tokenCreation";
+import { HTTP_CODES, HTTP_MESSAGES } from "../helpers/constants";
+import EmailService from "../services/emailGeneration";
+import CreateSenderNodemailer from "../services/email-sender";
+import { REPEAT_EMAIL_VERIFICATION } from "../helpers/functions";
 
 require("dotenv").config();
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;

@@ -11,8 +11,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const GET_CATEGORY_COLOR = function (arr: ICategory[], category: string) {
-  if (!category) return null;
-  const color = arr.find((e) => e[1].title === category)[1].color;
+  if (!category || !arr) return null;
+  const color = arr.find((e) => e[1]!.title === category)![1].color;
   return color;
 };
 
@@ -39,7 +39,7 @@ const GET_CATEGORY_AMOUNT = function (arr: ITransaction[], categories: ICategory
           })
         : (acc[value.category] = {
             value: value.amount,
-            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))[1]
+            color: categories.find((e) => (e[1].title === value.category ? e[1].color : null))![1]
               .color,
           }),
       acc

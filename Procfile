@@ -1,1 +1,1 @@
-web:node bin/server.js
+web:ts-node bin/server.js

@@ -19,6 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateTransaction = exports.removeTransaction = exports.getTransactionStatistic = exports.addTransaction = exports.getAllTransactions = void 0;
 const Transaction = __importStar(require("../repositories/transactions"));
 const user_1 = require("../repositories/user");
 const constants_1 = require("../helpers/constants");
@@ -42,6 +43,7 @@ const getAllTransactions = async (req, res, next) => {
         next(error);
     }
 };
+exports.getAllTransactions = getAllTransactions;
 const addTransaction = async (req, res, next) => {
     try {
         const userId = req.user.id;
@@ -63,6 +65,7 @@ const addTransaction = async (req, res, next) => {
         next(error);
     }
 };
+exports.addTransaction = addTransaction;
 const getTransactionStatistic = async (req, res, next) => {
     try {
         const userId = req.user.id;
@@ -82,6 +85,7 @@ const getTransactionStatistic = async (req, res, next) => {
         next(error);
     }
 };
+exports.getTransactionStatistic = getTransactionStatistic;
 const removeTransaction = async (req, res, next) => {
     try {
         const userId = req.user.id;
@@ -107,6 +111,7 @@ const removeTransaction = async (req, res, next) => {
         next(error);
     }
 };
+exports.removeTransaction = removeTransaction;
 const updateTransaction = async (req, res, next) => {
     try {
         const userId = req.user.id;
@@ -133,10 +138,4 @@ const updateTransaction = async (req, res, next) => {
         next(error);
     }
 };
-module.exports = {
-    getAllTransactions,
-    addTransaction,
-    getTransactionStatistic,
-    removeTransaction,
-    updateTransaction,
-};
+exports.updateTransaction = updateTransaction;

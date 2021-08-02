@@ -26,7 +26,7 @@ const schemaCreateUser = Joi.object({
     .min(1)
     .max(12)
     .required()
-    .message({ "name.alphanum": "Имя должно содержать только буквы и цифры!" }),
+    .messages({ "string.alphanum": "Имя должно содержать только буквы и цифры!" }),
   email: Joi.string()
     .trim()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })

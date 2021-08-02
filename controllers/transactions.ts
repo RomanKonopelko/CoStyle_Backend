@@ -156,8 +156,7 @@ const updateTransaction = async (req: Request, res: Response, next: NextFunction
     next(error);
   }
 };
-
-module.exports = {
+export {
   getAllTransactions,
   addTransaction,
   getTransactionStatistic,

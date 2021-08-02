@@ -42,7 +42,7 @@ interface IUserBody {
 
 interface IUserData {
   isVerified: boolean;
-  isValidPassword(data: any): boolean;
+  isValidPassword(data: any): Promise<boolean>;
   id: string;
   name: string;
   email: string;

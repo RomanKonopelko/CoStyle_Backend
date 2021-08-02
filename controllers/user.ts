@@ -47,7 +47,7 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user: IUserData = await User.findByEmail(req.body.email);
-    const isValidPassword = user?.isValidPassword(req.body.password);
+    const isValidPassword = await user?.isValidPassword(req.body.password);
     if (!user?.isVerified)
       return res
         .status(CONFLICT)

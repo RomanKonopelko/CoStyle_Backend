@@ -25,19 +25,7 @@ const schemaCreateUser = Joi.object({
     .trim()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required(),
-  password: JoiPasswordComplexity.string()
-    .trim()
-    .min(6)
-    .max(12)
-    .minOfSpecialCharacters(1)
-    .minOfUppercase(1)
-    .minOfNumeric(1)
-    .required()
-    .messages({
-      "password.minOfUppercase": "Пароль должен иметь минимум один A-Z символ",
-      "password.minOfSpecialCharacters": "Пароль должен иметь минимум олин спец.символ",
-      "password.minOfNumeric": "Пароль должен иметь минимум одну 0-9 цифру",
-    }),
+  password: JoiPasswordComplexity.string().trim().min(6).max(12).required(),
 });
 
 const toValidate = async (schema, obj, next) => {

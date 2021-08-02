@@ -40,6 +40,20 @@ interface IUserBody {
   name: string;
 }
 
+interface IUserData {
+  isVerified: boolean;
+  isValidPassword(data: any): boolean;
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface IMessage {
+  to: string;
+  subject: string;
+  html: string;
+}
+
 interface ITransactionSchema extends Document {
   category: {
     type: string;
@@ -65,6 +79,7 @@ interface ITransactionBody {
   commentary?: string;
   balance?: number;
 }
+
 interface ITransaction {
   id: string;
   category: string;
@@ -115,4 +130,6 @@ export {
   ITransactionBody,
   IConvertedTime,
   IUser,
+  IUserData,
+  IMessage,
 };

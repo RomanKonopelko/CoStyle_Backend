@@ -4,7 +4,7 @@ dotenv.config();
 
 const uriDb = process.env.URI_DB;
 
-const db = Mongoose.connect(uriDb, {
+const db = Mongoose.connect(uriDb!, {
   useNewParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

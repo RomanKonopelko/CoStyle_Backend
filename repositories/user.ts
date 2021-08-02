@@ -15,11 +15,11 @@ const updateBalance = async (id: string, balance: { balance: number }) => {
   return await User.updateOne({ _id: id }, { balanceValue: balance.balance });
 };
 
-const updateToken = async (id: string, token: string) => {
+const updateToken = async (id: string, token: string | null) => {
   return await User.updateOne({ _id: id }, { token });
 };
 
-const updateVerifyToken = async (id: string, isVerified: boolean, verifyToken: string) => {
+const updateVerifyToken = async (id: string, isVerified: boolean, verifyToken: string | null) => {
   return await User.updateOne({ _id: id }, { isVerified, verifyToken });
 };
 

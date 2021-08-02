@@ -1,5 +1,4 @@
 import Mailgen from "mailgen";
-
 import dotenv from "dotenv";
 import CreateSenderNodemailer from "./email-sender";
 dotenv.config();
@@ -30,7 +29,7 @@ class EmailService {
       theme: "neopolitan",
       product: {
         name: "CoStyle Studio",
-        link: this.link,
+        link: this.link!,
       },
     });
     const email = {

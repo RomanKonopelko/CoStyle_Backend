@@ -1,4 +1,5 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { ErrorRequestHandler } from "express";
+import { Response, NextFunction, Request } from "express-serve-static-core";
 import logger from "morgan";
 import cors from "cors";
 const app = express();
@@ -34,11 +35,11 @@ app.use("/api/", rateLimit(APIlimiter));
 
 app.use("/api/", require("./routes/api"));
 
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(NOT_FOUND).json({ status: ERROR, code: NOT_FOUND, message: NOT_FOUND_MSG });
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
   res
     .status(INTERNAL_SERVER_ERROR)
     .json({ status: FAIL, code: INTERNAL_SERVER_ERROR, message: err.message });

@@ -1,11 +1,12 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import { IMessage } from "../helpers/interfaces/interfaces";
 dotenv.config();
 
 const { EMAIL_PASSWORD, EMAIL_LOGIN } = process.env;
 
 class CreateSenderNodemailer {
-  async send(msg) {
+  async send(msg: IMessage) {
     const config = {
       host: "smtp.gmail.com",
       port: 465,

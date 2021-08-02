@@ -20,7 +20,13 @@ const schemaUpdateTransaction = Joi.object({
 });
 
 const schemaCreateUser = Joi.object({
-  name: Joi.string().trim().alphanum().min(1).max(12).required(),
+  name: Joi.string()
+    .trim()
+    .alphanum()
+    .min(1)
+    .max(12)
+    .required()
+    .message({ "name.alphanum": "Имя должно содержать только буквы и цифры!" }),
   email: Joi.string()
     .trim()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
